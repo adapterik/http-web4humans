@@ -13,5 +13,5 @@ group :development do
   gem 'guard', '2.18.1'
   gem 'guard-puma', '0.8.1' 
   gem 'htmlbeautifier', '1.4.3'
-  gem 'ruby-lsp', '0.17.14'
+  gem 'ruby-lsp', '0.17.15'
  end
