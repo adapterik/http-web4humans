@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body class="http-only-site">
+    <%= include_partial "header" %>
+    <div class="body">
+      <table  class="layout-table" cellspacing="0">
+        <tr>
+          <td  class="home-menu-area">
+            <ul class="menu-list">
+              <li><a href="/home">Home</a></li>
+              <li><a href="/news">News</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/sites">Sites</a></li>
+            </ul>
+          </td>
+          <td  class="home-content-column1">
+            <div>
+              <%= include_content %>
+            </div>
+            <div class="preview-box" style="margin-bottom: 16px;">
+              <div class="title">
+                Latest News
+              </div>
+              <div class="content blog">
+                <% if @data[:latest_news] %>
+                <div class="title">
+                  <a href="/news/<%= @data[:latest_news]['id'] %>">
+                  <%= @data[:latest_news]['title'] %>
+                  </a>
+                </div>
+                <div class="created"><%= render_epoch_time @data[:latest_news]['created'] %></div>
+                <div class="content"><%= render_markdown @data[:latest_news]['content'] %></div>
+                <% else %>
+                  no news yet
+                <% end %>
+              </div>
+            </div>
+          </td>
+          <td  class="home-content-column2">
+            <div class="preview-box" style="margin: 16px 16px 16px 0;">
+              <div class="title">
+                Recently Used Sites
+              </div>
+              <div class="content">
+                <% @data[:favorite_sites].each do |site| %>
+                <div class="blog">
+                  <div class="title">
+                      <a href="<%= site['url'] %>" target="_blank"><%= site['title'] %></a>
+                  </div>
+                  <div class="content">
+                      <%= site['description'] %>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="preview-box">
+               <div class="title">
+                Latest Blog Entry
+              </div>
+              <div class="content blog">
+                <div class="title">
+                  <a href="/blog/<%= @data[:latest_blog_entry]['id'] %>">
+                  <%= @data[:latest_blog_entry]['title'] %>
+                  </a>
+                </div>
+                <div class="created"><%= render_epoch_time @data[:latest_blog_entry]['created'] %></div>
+                <div class="content"><%= render_markdown @data[:latest_blog_entry]['content'] %></div>
+              </div>
+            </div>
+          </td>
+          <td class="side-bar">
+            <ul class="side-bar-menu-list">
+              <li>
+                <a href="/edit/<%= @context[:content]['id'] %>?return_path=<%= @context[:path] %>">
+                    Edit this <%= @context[:content_type]['noun'] %>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/delete/<%= @context[:content]['id'] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
+                  Delete this <%= @context[:content_type]['noun'] %>
+                </a>
+              </li>
+            </ul>
+           
+          </td>
+        </tr>
+      </table>
+
+      
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>

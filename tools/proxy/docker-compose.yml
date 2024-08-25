@@ -1,0 +1,18 @@
+version: '3.6'
+networks:
+  adapt-dev:
+    name: adapt-dev
+services:
+  adapt-proxy:
+    build:
+      context: .
+    # there is only one proxy image, for local development, so just call it :dev
+    image: adapt/adapt-proxy:dev
+    networks:
+      - adapt-dev
+    container_name: adapt-proxy
+    ports:
+      - '80:80'
+      - '443:443'
+    dns: 8.8.8.8
+

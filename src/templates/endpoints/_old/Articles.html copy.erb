@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body data-bs-theme="dark" class="d-flex flex-column two-column-page">
+    <%= include_partial "header" %>
+    <%# <div class="article flex-grow-1 overflow-y-auto"> %>
+    <div class="content-area -grid">
+      <div class="-col1">
+        <div class="vertical-scroll-auto">
+          <%= include_content %>
+          <ul class="nav flex-column">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>
+                    Title
+                  </th>
+                  <th>
+                    Author
+                  </th>
+                  <th>
+                    Created
+                  </th>
+                  <th>
+                    Updated
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @context[:articles].each do |article| %>
+                  <li class="nav-item"><a class="nav-link" href="/article/<%= article['id'] %>"><%= article['title'] %></a></li>
+                <% end %>
+              </tbody>
+            </table>
+          </ul>
+        </div>
+      </div>
+      <div class="-col2">
+        <div class="vertical-scroll-auto">
+          <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="/add/article">Add Article</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body class="http-only-site">
+    <%= include_partial "header" %>
+    <div class="body">
+      <table  class="layout-table" cellspacing="0">
+        <tr>
+          <td  class="content-area">
+            <%= include_content %>
+          </td>
+          <td class="side-bar">
+            <ul class="side-bar-menu-list">
+              <li><a href="/home">Home</a></li>
+              <li>
+                <a href="/edit/<%= @context[:content]['id'] %>?return_path=<%= @context[:path] %>">
+                    Edit this <%= @context[:content_type]['noun'] %>
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="/delete/<%= @context[:content]['id'] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
+                  Delete this <%= @context[:content_type]['noun'] %>
+                </a>
+              </li>
+            </li>
+          </td>
+        </tr>
+      </table>
+
+      
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>

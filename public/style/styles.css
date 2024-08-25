@@ -1,0 +1,353 @@
+/* nada */
+body {
+    font-size: 16px;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.http-only-site .page {
+   
+}
+
+.http-only-site .body {
+    
+}
+
+.header {
+    flex: 0 0 auto;
+    border-bottom: 1px gray solid;
+    background-color: silver;
+    /* height: 50px; */
+}
+
+.header  table {
+    width: 100%;
+    height: 100%;
+}
+
+.header  td {
+    padding: 16px;
+}
+
+.header a + a {
+    padding-left: 8px;
+}
+
+
+.footer {
+    flex: 0 0 auto;
+    padding: 16px;
+    border-top: 1px gray solid;
+    background-color: silver;
+}
+
+
+.footer .footer-links {
+    text-align: right;
+}
+
+.footer .footer-links a +  a {
+    margin-left: 16px;
+}
+
+table.layout-table {
+    width: 100%;
+}
+
+table.layout-table td.content-area {
+    width: 80%;
+    vertical-align: top;;
+}
+
+table.layout-table td.home-menu-area {
+    width: 20%;
+    vertical-align: top;;
+}
+
+
+table.layout-table td.home-content-column1 {
+    width: 30%;
+    vertical-align: top;
+    padding-right: 16px;
+}
+
+table.layout-table td.home-content-column2 {
+    width: 30%;
+    vertical-align: top;
+
+    padding-right: 16px;
+}
+
+
+/* sidebar */
+
+.side-bar {
+    width: 20%;
+    background-color: aqua;
+    vertical-align: top;;
+}
+
+.side-bar-section-header {
+    margin: 10px;
+    font-weight: bold;
+}
+
+/* home menu */
+
+ul.menu-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    list-style-position: inside; 
+}
+
+ul.menu-list li {
+    padding: 20px;
+    font-size: 200%;
+}
+
+ul.menu-list li a {
+    padding: 20px;
+}
+
+ul.menu-list li a:hover {
+    background-color: silver;
+}
+
+/* sidebar */
+
+
+
+/* sidebar menu */
+
+ul.side-bar-menu-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.side-bar-menu-list li {
+    padding: 10px;
+}
+
+ul.side-bar-menu-list li a {
+    padding: 10px;
+}
+
+ul.side-bar-menu-list li a:hover {
+    background-color: silver;
+}
+
+/* general page */
+
+/* an alert */
+
+.alert {
+    margin: 16px;
+    padding: 16px;
+}
+
+
+.alert.primary {
+    border: 2px solid rgb(17, 37, 150);
+}
+
+.alert.info {
+    border: 2px solid rgb(99, 99, 99);
+}
+
+.alert.warning {
+    border: 2px solid rgb(229, 170, 42);
+}
+
+.alert.error {
+    border: 2px solid red;
+}
+
+/* article */
+
+.content-area .article {
+    margin: 16px;
+}
+
+.content-area .article-title {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.content-area .article-created {
+    font-style: italic;
+    color: gray;
+}
+
+.content-area .article-content {
+
+}
+
+/* sidebar article menu */
+
+ul.side-bar-article-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.side-bar-article-list li {
+    padding: 10px;
+}
+
+.side-bar-article-list .article-title {
+    font-weight: bold;
+}
+
+.side-bar-article-list .article-created {
+    font-style: italic;
+    color: gray;
+}
+
+
+/* ul.side-bar-article-list li a {
+    padding: 10px;
+} */
+
+/* ul.side-bar-article-list li a:hover {
+    background-color: silver;
+} */
+
+
+/* blog */
+
+.content-area .blog {
+    margin: 16px;
+}
+
+.content-area .blog-title {
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.content-area .blog-created {
+    font-style: italic;
+    color: gray;
+}
+
+.content-area .blog-content {
+
+}
+
+/* sidebar blog menu */
+
+ul.side-bar-blog-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul.side-bar-blog-list li {
+    padding: 10px;
+}
+
+.side-bar-blog-list .blog-title {
+    font-weight: bold;
+}
+
+.side-bar-blog-list .blog-created {
+    font-style: italic;
+    color: gray;
+}
+
+/* editor */
+
+table.content-edit-layout-table {
+    width: 100%;
+    margin: 16px;
+}
+
+table.content-edit-layout-table td {
+    padding: 4px;
+}
+
+table.content-edit-layout-table td:nth-child(1) {
+    width: 50px;
+}
+
+table.content-edit-layout-table input {
+    width: 100%;
+}
+
+table.content-edit-layout-table textarea {
+    width: 100%;
+    margin: 0;
+}
+
+/* Try to make some basic built-in components nicer */
+
+/* nice buttons */
+
+button {
+    font-size: 16px;
+    padding: 8px;
+    background-color: rgb(230, 230, 230);
+}
+
+button:active {
+    background-color: green;
+}
+
+/* styles only for secure/modern browsers */
+
+.grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid .row {
+    display: flex; 
+    flex-direction: row;
+}
+
+.grid.gutter .row + .row {
+    margin-top: 16px;
+}
+
+.grid .row > .col {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Home page */
+
+.preview-box {
+    border: 1px solid silver;
+    width: 100%;
+}
+
+.preview-box > .title {
+    border-bottom: 1px dashed silver;
+    font-weight: bold;
+    color: gray;
+    padding: 8px;
+}
+
+.preview-box > .content {
+    padding: 8px;
+}
+
+.preview-box .blog > .title {
+    font-weight: bold;
+    color: gray;
+}
+
+.preview-box .blog > .created {
+    font-weight: gray;
+    font-style: italic;
+}
+
+.preview-box .blog > .content {
+    /* min-height: 100px; */
+    max-height: 200px;
+    overflow-y: auto;
+    text-overflow: ellipsis;
+}

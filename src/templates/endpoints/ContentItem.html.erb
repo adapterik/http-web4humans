@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body data-bs-theme="dark" class="d-flex flex-column two-column-page">
+    <%= include_partial "page-header" %>
+    <div class="content-area -grid">
+      <div class="-col1">
+        <div style="overflow-y: auto;" class="markdown-rendered">
+          <%= include_content %>
+        </div>
+      </div>
+      <div class="-col2" style="display: flex; flex-direction: column; align-items: flex-end;">
+        <ul class="nav flex-column" style="width: 14rem">
+          <li class="nav-item"><a class="nav-link" href="/home/<%= @context[:content_type]['id'] %>s">
+            <span class="bi bi-arrow-90deg-up"></span>
+            Back to  <%= @context[:content_type]['noun'] %>s Index</a></li>
+          <% if can_edit? %>
+          <li class="nav-item">
+            <a class="nav-link" 
+               href="/edit/<%= @context[:content_id] %>?return_path=<%= @context[:path] %>">
+                 <span class="bi bi-pencil"></span> 
+                 Edit this <%= @context[:content_type]['noun'] %>
+            </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" 
+                 href="/delete/<%= @context[:content_id] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
+                <span class="bi bi-trash"></span> 
+                Delete this <%= @context[:content_type]['noun'] %>
+              </a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>

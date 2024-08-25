@@ -1,0 +1,58 @@
+networks:
+  adapt-dev:
+    name: adapt-dev
+services:
+  adapt-site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: adaptations/http-only-site:dev
+
+    container_name: http-only-site
+    dns: 8.8.8.8
+    volumes:
+      # Update this to wherever you want VS Code to mount the folder of your project
+      - ..:/workspace:cached
+      # Uncomment the next line to use Docker from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker-compose for details.
+      # - /var/run/docker.sock:/var/run/docker.sock 
+
+      # Uncomment the next four lines if you will use a ptrace-based debugger like C++, Go, and Rust.
+      # cap_add:
+      #   - SYS_PTRACE
+      # security_opt:
+      #   - seccomp:unconfined
+
+      # just use dev for the image tag so we can easily clean
+      # up afterwards.
+      # image: kbase/kbase-ui:dev
+    networks:
+      - adapt-dev
+    # environment:
+    #   - DEPLOY_ENV=${DEPLOY_ENV:-ci}
+    # Required for a devcontainer -- keeps the container running.
+    # Don't worry, our main interaction with the container is through the 
+    # VSC terminal, which for a devcontainer opens a shell within the
+    # container.
+    entrypoint: /bin/sh -c "while sleep 1000; do :; done"
+  adapt-proxy:
+    build:
+      context: ../tools/proxy
+    # there is only one proxy image, for local development, so just call it :dev
+    image: adaptations/http-only-proxy:dev
+    depends_on:
+      - adapt-site
+    networks:
+      - adapt-dev
+    container_name: http-only-proxy
+    # This is the whole point - to expose http & https on the host, mapped into
+    # the docker network.
+    ports:
+      - '80:80'
+      - '443:443'
+    dns: 
+      # TODO: sort this out!
+      - 8.8.8.8
+      - 9.9.9.9
+      - 1.1.1.1
+      

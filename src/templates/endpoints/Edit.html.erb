@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body>
+    <%= include_partial "header" %>
+    <form action="/<%=  @context[:endpoint_name] %>/<%= @data[:content]["id"] %>" 
+          class="full-height-flex" 
+          method="post">
+      <input type="hidden" name="_method" value="<% if @context[:endpoint_name] != 'add' %>post<% else %>put<% end %>">
+      <input type="hidden" name="return_path" value="<%= @data[:return_path] %>">
+      <table widtgh="100%"  class="content-edit-layout-table">
+        <tr style="margin-top: 8px">
+          <td>ID</td>
+          <td>
+            <input type="text" 
+                      name="id" 
+                      style="width: 100px;"
+                     <% if @context[:endpoint_name] != 'add' %> readonly <% else %><% end %>
+                      value="<%= @data[:content]["id"] %>">
+          </td>
+        </tr>
+        <tr>
+          <td>Title</td>
+          <td>
+            <input type="text" 
+                   name="title" 
+                   style="width: 150px;"
+                   value="<%= @data[:content]["title"] %>">
+          </td>
+        </tr>
+        <tr>
+          <td>Author</td>
+          <td>
+            <input type="text" 
+                   name="author"  
+                   style="width: 100px;"
+                   value="<%= @data[:content]["author"] %>">
+          </td>
+        </tr>
+        <tr>
+          <td>Type</td>
+          <td>
+            <input type="text" 
+                   name="content_type"  
+                   style="width: 100px;"
+                   value="<%= @data[:content_type]["id"] %>">
+          </td>
+        </tr>
+        <tr>
+          <td>Page</td>
+          <td>
+            <table width="100%">
+              <tr>
+                <td width="50%">
+                  <textarea id="content-field" 
+                            name="content" 
+                            class="form-control" 
+                            style="width: 100%"
+                            rows="20" ><%= @data[:content]["content"] %></textarea>
+                </td>
+                <td width="50%">
+                  <div id="mdpreview" class="markdown-preview markdown-rendered" ></div>
+                </td>
+              </table>
+          </td>
+        </tr>
+         <tr>
+          <td></td>
+          <td>
+             <button>Save</button>
+              <!-- TODO: this assumes content is a page, for now... -->
+              <a href="/<%= @data[:content_type]['id'] %>/<%= @data[:content]['id'] %>">Cancel</a>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <div class="alert warning">
+      Will return to <code><%= @data[:return_path] %></code> after Saving or Canceling.
+    </div>
+
+    <%= include_partial "footer" %>
+  </body>
+</html>

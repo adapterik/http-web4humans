@@ -1,0 +1,131 @@
+#
+# A minimal proxying configuration for running the web server through
+# a secure proxy.
+#
+# Note that lower case environment variables are taken from conf/*.env, where * is the 
+# deploy environment, taken from DEPLOY_ENV.
+
+daemon off;
+error_log /dev/stdout info;
+worker_processes auto;
+pid /var/run/nginx.pid;
+
+events {
+	worker_connections 1024;
+}
+
+http {
+	sendfile on;
+	tcp_nopush on;
+	tcp_nodelay on;
+	types_hash_max_size 2048;
+    proxy_headers_hash_bucket_size 256;
+    proxy_ssl_server_name on;
+    proxy_request_buffering off;
+    proxy_buffering off;
+    proxy_http_version 1.1;
+
+    # In addition to the desired file size limit (in bytes),
+    # we ad  smidgen more, as the multipart/form mime structure 
+    # includes the destPath as one part, the file as another, 
+    # and each has a small header section.
+    # 
+    # In practice, this appears to be about 300 bytes plus 
+    # the value for destPath and the file name.
+    # And the mime boundary size will vary as well.
+    #
+    # So let's call it 1K and then call it a day.
+    # So, the max body size should be MAX_FILE_SIZE + 1000.
+
+    # For testing, use a 1K file size, 1K extra.
+    # Or set as you wish to push boundaries.
+    # client_max_body_size 2000;
+
+    # For production, 5G max file size plus 1KB extra.
+    # client_max_body_size 5000001000;
+
+    keepalive_requests 0;
+	# keepalive_timeout 65;
+    keepalive_timeout 0;
+
+	include /etc/nginx/mime.types;
+	default_type application/octet-stream;
+
+    map $http_upgrade $connection_upgrade {
+        default upgrade;
+        ''      close;
+    }
+
+    # Define upstream servers, for convenience.
+    upstream http_only_site {
+        # Use 80 for image; 3000 for devcontainer
+        # server {{ .Env.kbase_ui_host }}:80;
+        # server {{ .Env.kbase_ui_host }}:3000;
+        server http-only-site:3000;
+        # allows the proxy to start up even though the 
+        # dev server may not be running yet
+        # server {{ .Env.kbase_ui_host }}:80 backup;
+        server http-only-site:80 backup;
+        keepalive 16;
+    }
+
+    log_format upstream_log '[$time_local] $remote_addr - $remote_user - $server_name to: $upstream_addr: $request upstream_response_time $upstream_response_time proxy_host $proxy_host upstream_status $upstream_status upstream_response_length $upstream_response_length upstream_http_location $upstream_http_location msec $msec request_time $request_time';
+
+	# Logging Settings
+	access_log /var/log/nginx/access.log;
+	error_log /var/log/nginx/error.log debug;
+
+    # Route insecure requests to secure.
+    # server {
+    #     listen 80 default_server;
+    #     listen [::]:80 default_server;
+    #     # server_name {{ default  .Env.deploy_hostname .Env.deploy_ui_hostname }};
+    #     # return 301 https://{{ default .Env.deploy_hostname .Env.deploy_ui_hostname }}$request_uri;
+    #     server_name tech.web4humans.com;
+    #     # return 301 https://{{ default .Env.deploy_hostname .Env.deploy_ui_hostname }}$request_uri;
+    #     return 301 https://tech.web4humans.com$request_uri;
+    # }
+
+     # The main site
+    server {
+        server_name http.web4humans.com;
+        listen 80 default_server;      
+
+        keepalive_requests 0;
+        keepalive_timeout 0;
+        proxy_socket_keepalive off;
+       
+        location / {
+            proxy_pass http://http_only_site;
+            proxy_set_header Connection "";
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection $connection_upgrade;
+            proxy_set_header Is_Secure "0";
+            proxy_set_header Host $server_name;
+        }
+    }
+    
+    # The secure site
+    server {
+        server_name http.web4humans.com;
+        listen 443 ssl;
+        ssl_certificate /app/ssl/test.crt;
+        ssl_certificate_key /app/ssl/test.key;
+        ssl_protocols TLSv1.2 TLSv1.1 TLSv1;
+
+        keepalive_requests 0;
+        keepalive_timeout 0;
+        proxy_socket_keepalive off;
+
+        location / {
+            proxy_pass http://http_only_site;
+            proxy_set_header Connection "";
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection $connection_upgrade;
+            proxy_set_header Is_Secure "1";
+            proxy_set_header Host $server_name;
+        }
+    }
+}
