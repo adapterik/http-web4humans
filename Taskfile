@@ -28,6 +28,14 @@ function remove-dev-cert {
     rm ./tools/proxy/contents/ssl/*
 }
 
+function build-image {
+    docker build . -t local/http-only:dev
+}
+
+function run-dev-server {
+    docker container run --env OWNER_PASSWORD=abc123 -p 3000:3000 local/http-only:dev 
+}
+
 function start-dev-server {
     OWNER_PASSWORD="${OWNER_PASSWORD}" HOME_DIR=`pwd` bundle exec guard -i
 }
