@@ -15,4 +15,4 @@ RUN bundle install
 
 EXPOSE 3000
 
-ENTRYPOINT ["bash", "scripts/entrypoint.sh"]
+ENTRYPOINT ["bash", "tools/entrypoint.sh"]
