@@ -1,0 +1,11 @@
+---
+name: Manual
+on:
+ workflow_dispatch:
+jobs:
+  build-push:
+    uses: ./.github/workflows/reusable_build-push.yml
+    with:
+      name: '${{ github.event.repository.name }}'
+      tags: '${{ github.ref_name }}'
+    secrets: inherit

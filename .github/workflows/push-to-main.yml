@@ -1,0 +1,16 @@
+---
+name: Push to main
+on:
+  push:
+    branches:
+      - main
+jobs:
+  # test:
+  #   uses: ./.github/workflows/reusable_test.yml
+  build:
+    # needs: test
+    uses: ./.github/workflows/reusable_build-push.yml
+    with:
+      name: '${{ github.event.repository.name }}'
+      tags: '${{ github.ref_name }}'
+    secrets: inherit
