@@ -282,5 +282,19 @@ class SiteDB
     content_list = @db.execute query
     content_list
   end
+
+  # sites / urls 
+  
+  def list_sites(sort: nil, limit: nil)
+    query = "
+      select
+        *
+      from sites
+      #{sort_clause(sort)}
+      #{limit_clause(limit)}
+    "
+    content_list = @db.execute query
+    content_list
+  end
   
 end

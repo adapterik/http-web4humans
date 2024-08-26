@@ -34,40 +34,32 @@
 
           </td>
           <td class="side-bar">
-             <ul class="side-bar-menu-list">
-              <li><a href="/home">Home</a></li>
-              <li>
-                <a href="/edit/<%= data[:entry]['id'] %>?return_path=<%= @context[:path] %>">
-                    Edit this <%= data[:content_type]['noun'] %>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/delete/<%= data[:entry]['id'] %>?return_path_success=/home/<%= data[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
-                  Delete this <%= data[:content_type]['noun'] %>
-                </a>
-              </li>
-            </ul>
-            <hr>
-            <div class="side-bar-section-header">More Blog</div>
-            <ul class="side-bar-blog-list">
-              <% data[:entries].each do |blog_item| %>
-                  <li>
-                    <div class="blog-title">
-                      <a class="nav-link" href="/blog/<%= blog_item['id'] %>"><%= blog_item['title'] %></a>
-                    </div>
-                  
-                    <div class="blog-created">
-                      <%= Time.at(blog_item['created']).strftime('%Y-%m-%d at %H:%M') %>
-                    </div>
+            <%= include_partial "side-bar-navigation" %>
+            
+            <div class="section">
+              <div class="title">
+                More Blog
+              </div>
+              <div class="body">
+                <ul class="side-bar-blog-list">
+                  <% data[:entries].each do |blog_item| %>
+                      <li>
+                        <div class="blog-title">
+                          <a class="nav-link" href="/blog/<%= blog_item['id'] %>"><%= blog_item['title'] %></a>
+                        </div>
+                      
+                        <div class="blog-created">
+                          <%= Time.at(blog_item['created']).strftime('%Y-%m-%d at %H:%M') %>
+                        </div>
 
-                    <div class="blog-abstract">
-                      <%= blog_item['abstract'] %>
-                    </div>
-                  </li>
-                <% end %>
-            </ul>
-
+                        <div class="blog-abstract">
+                          <%= blog_item['abstract'] %>
+                        </div>
+                      </li>
+                    <% end %>
+                </ul>
+              </div>
+            </div>
           </td>
         </tr>
       </table>

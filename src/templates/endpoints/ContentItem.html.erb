@@ -16,22 +16,7 @@
           <li class="nav-item"><a class="nav-link" href="/home/<%= @context[:content_type]['id'] %>s">
             <span class="bi bi-arrow-90deg-up"></span>
             Back to  <%= @context[:content_type]['noun'] %>s Index</a></li>
-          <% if can_edit? %>
-          <li class="nav-item">
-            <a class="nav-link" 
-               href="/edit/<%= @context[:content_id] %>?return_path=<%= @context[:path] %>">
-                 <span class="bi bi-pencil"></span> 
-                 Edit this <%= @context[:content_type]['noun'] %>
-            </a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link" 
-                 href="/delete/<%= @context[:content_id] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
-                <span class="bi bi-trash"></span> 
-                Delete this <%= @context[:content_type]['noun'] %>
-              </a>
-            </li>
-          <% end %>
+         <%= include_partial "content-edit-navigation" %>
         </ul>
       </div>
     </div>

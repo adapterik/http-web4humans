@@ -9,23 +9,11 @@
       <table  class="layout-table" cellspacing="0">
         <tr>
           <td  class="content-area">
+            <h1><%= @context[:content]['title'] %></h1>
             <%= include_content %>
           </td>
           <td class="side-bar">
-            <ul class="side-bar-menu-list">
-              <li><a href="/home">Home</a></li>
-              <li>
-                <a href="/edit/<%= @context[:content]['id'] %>?return_path=<%= @context[:path] %>">
-                    Edit this <%= @context[:content_type]['noun'] %>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/delete/<%= @context[:content]['id'] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
-                  Delete this <%= @context[:content_type]['noun'] %>
-                </a>
-              </li>
-            </li>
+            <%= include_partial "side-bar-navigation" %>
           </td>
         </tr>
       </table>

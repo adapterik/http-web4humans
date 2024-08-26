@@ -84,9 +84,10 @@ table.layout-table td.home-content-column2 {
 
 .side-bar {
     width: 20%;
-    background-color: aqua;
-    vertical-align: top;;
+    /* background-color: aqua; */
+    vertical-align: top;
 }
+
 
 .side-bar-section-header {
     margin: 10px;
@@ -120,6 +121,23 @@ ul.menu-list li a:hover {
 
 
 /* sidebar menu */
+
+
+.side-bar .section {
+    border: 2px dashed silver;
+    padding: 8px;
+    margin: 16px;
+}
+
+.side-bar .section > .title {
+    font-weight: bold;
+    color: gray;
+    text-align: center;
+}
+
+.side-bar .section > .body {
+   
+}
 
 ul.side-bar-menu-list {
     list-style-type: none;

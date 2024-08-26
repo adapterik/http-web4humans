@@ -1,0 +1,24 @@
+
+ <div class="section">
+    <ul class="side-bar-menu-list">
+
+        <% if @context[:content]['id'] != 'home' %>
+        <li><a href="/home">Home</a></li>
+        <% end %>
+
+         <% if can_edit? %>
+
+        <li>
+        <a href="/edit/<%= @context[:content]['id'] %>?return_path=<%= @context[:path] %>">
+            Edit this <%= @context[:content_type]['noun'] %>
+        </a>
+        </li>
+        <li>
+        <a 
+            href="/delete/<%= @context[:content]['id'] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
+            Delete this <%= @context[:content_type]['noun'] %>
+        </a>
+        </li>
+        <% end %>
+    </ul>
+</div>

@@ -29,40 +29,30 @@
 
           </td>
           <td class="side-bar">
-             <ul class="side-bar-menu-list">
-              <li><a href="/home">Home</a></li>
-              <li>
-                <a href="/edit/<%= @context[:content_id] %>?return_path=<%= @context[:path] %>">
-                    Edit this <%= @context[:content_type]['noun'] %>
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="/delete/<%= @context[:content_id] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
-                  Delete this <%= @context[:content_type]['noun'] %>
-                </a>
-              </li>
-            </ul>
-            <hr>
-            <div class="side-bar-section-header">More Articles</div>
-            <ul class="side-bar-article-list">
-              <% @context[:articles].each do |article| %>
-                  <li>
-                    <div class="article-title">
-                      <a class="nav-link" href="/news/<%= article['id'] %>"><%= article['title'] %></a>
-                    </div>
-                  
-                    <div class="article-created">
-                      <%= Time.at(article['created']).strftime('%Y-%m-%d at %H:%M') %>
-                    </div>
+             <%= include_partial "side-bar-navigation" %>
 
-                    <div class="article-abstract">
-                      <%= article['abstract'] %>
-                    </div>
-                  </li>
-                <% end %>
-            </ul>
+            <div class="section">
+              <div class="title">More Articles</div>
+              <div class="body">
+                <ul class="side-bar-article-list">
+                  <% @context[:articles].each do |article| %>
+                      <li>
+                        <div class="article-title">
+                          <a class="nav-link" href="/news/<%= article['id'] %>"><%= article['title'] %></a>
+                        </div>
+                      
+                        <div class="article-created">
+                          <%= Time.at(article['created']).strftime('%Y-%m-%d at %H:%M') %>
+                        </div>
 
+                        <div class="article-abstract">
+                          <%= article['abstract'] %>
+                        </div>
+                      </li>
+                    <% end %>
+                </ul>
+              </div>
+            </div>
           </td>
         </tr>
       </table>

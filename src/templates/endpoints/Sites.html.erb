@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body class="http-only-site">
+    <%= include_partial "header" %>
+    <div class="body">
+      <table  class="layout-table" cellspacing="0">
+        <tr>
+          <td class="content-area">
+
+            <% if @context[:sites].length == 0 %>
+            <div  class="alert warning">
+              <p>No news isn't good news</p>
+              <p>But, seriously, there are no news items on the site yet.</p>
+            </div>
+            <% end %>
+
+
+            <% @context[:sites].each do |site| %>
+              <li>
+                <div class="site-title">
+                  <a href="/news/<%= site['id'] %>"><%= site['title'] %></a>
+                </div>
+
+                 <div class="site-url">
+                  <a href="<%= site['url'] %>" target="_blank"><%= site['url'] %></a>
+                </div>
+              
+                <div class="site-added">
+                  <%= Time.at(site['added']).strftime('%Y-%m-%d at %H:%M') %>
+                </div>
+
+                <div class="site-description">
+                  <%= site['description'] %>
+                </div>
+              </li>
+            <% end %>
+
+          </td>
+           <td class="side-bar">
+            <%= include_partial "side-bar-navigation" %>
+          </td>
+        </tr>
+      </table>
+      
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>
