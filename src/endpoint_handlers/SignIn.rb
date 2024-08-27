@@ -44,8 +44,14 @@ class SignIn < EndpointHandler
       ui: ENV['HTTP_USER_AGENT']
     }
 
+
+    page = {
+      'title' => content['title']
+    }
+
     @context.merge!({
       site: @site,
+      page: page,
       content: content,
       env: {
         request: request

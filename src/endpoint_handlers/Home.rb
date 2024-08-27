@@ -35,12 +35,6 @@ class Home < EndpointHandler
 
     content_type = @site_db.get_content_type content['content_type']
 
-    # We now abstract the "page" to be anything that affects the overall 
-    # and generic information about the page.
-    @context[:page] = {
-      'title' => content['title']
-    }
-
     # Create the context object, which is a merging of
     # - the site, contemnt def, menu, etc. see below
     request = {
@@ -49,8 +43,15 @@ class Home < EndpointHandler
       ui: ENV['HTTP_USER_AGENT']
     }
 
+    # We now abstract the "page" to be anything that affects the overall 
+    # and generic information about the page.
+    page = {
+      'title' => content['title']
+    }
+
     @context.merge!({
       site: @site,
+      page: page,
       content_id: @content_id,
       content: content,
       content_type: content_type,

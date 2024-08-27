@@ -1,13 +1,7 @@
 
+ <% if can_edit? %>
  <div class="section">
     <ul class="side-bar-menu-list">
-
-        <% if @context[:content]['id'] != 'home' %>
-        <li><a href="/home">Home</a></li>
-        <% end %>
-
-         <% if can_edit? %>
-
         <li>
         <a href="/edit/<%= @context[:content]['id'] %>?return_path=<%= @context[:path] %>">
             Edit this <%= @context[:content_type]['noun'] %>
@@ -19,6 +13,6 @@
             Delete this <%= @context[:content_type]['noun'] %>
         </a>
         </li>
-        <% end %>
     </ul>
 </div>
+<% end %>

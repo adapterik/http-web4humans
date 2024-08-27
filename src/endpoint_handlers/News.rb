@@ -71,8 +71,19 @@ class News < EndpointHandler
       ui: ENV['HTTP_USER_AGENT']
     }
 
+    page = {}
+
+    if @article_id 
+      page['title'] = "#{content['title']} | #{article['title']}"
+    else
+      page['title'] = content['title']
+    end
+
+    puts content['title']
+
     @context.merge!({
       site: @site,
+      page: page,
       content_id: @content_id,
       content: content,
       content_type: content_type,

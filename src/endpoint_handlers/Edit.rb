@@ -41,11 +41,6 @@ class Edit < EndpointHandler
 
     @context[:content_id] = edited_content_id
 
-    # Just to please the partials.
-    @context[:content] = {
-      'id' => edited_content_id,
-      'title' => "Editing content item #{edited_content_id}"
-    }
 
     # Here we set up a special context just for this 
     # endpoint
@@ -54,6 +49,21 @@ class Edit < EndpointHandler
 
     # TODO: the content type info can also be returned from query above,
     content_type = @site_db.get_content_type(content['content_type'])
+
+    page = {
+      'title' => content['title']
+    }
+
+    @context[:page] = page
+
+    # Just to please the partials.
+    @context[:content] = {
+      'id' => edited_content_id,
+      'title' => "Editing content item #{edited_content_id}"
+    }
+
+    # TODO: sort out the duplication; commonly used things required by
+    # partials should be in context.
 
     @data = {
       :content_id => edited_content_id,

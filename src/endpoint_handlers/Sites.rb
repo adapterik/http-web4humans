@@ -71,8 +71,19 @@ class Sites < EndpointHandler
       ui: ENV['HTTP_USER_AGENT']
     }
 
+
+    page = {}
+
+    if selected_site 
+      page['title'] = "#{content['title']} | #{selected_site['title']}"
+    else
+      page['title'] = content['title']
+    end
+
+
     @context.merge!({
       site: @site,
+      page: page,
       content_id: @content_id,
       content: content,
       content_type: content_type,

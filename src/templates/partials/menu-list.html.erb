@@ -1,0 +1,6 @@
+<ul class="menu-list">
+    <li <% if @context[:endpoint_name] == 'home' %> class="selected"<% end %>><a href="/home">Home</a></li>
+    <li <% if @context[:endpoint_name] == 'news' %> class="selected"<% end %>><a href="/news">News</a></li>
+    <li <% if @context[:endpoint_name] == 'blog' %> class="selected"<% end %>><a href="/blog">Blog</a></li>
+    <li <% if @context[:endpoint_name] == 'sites' %> class="selected"<% end %>><a href="/sites" >Sites</a></li>
+</ul>

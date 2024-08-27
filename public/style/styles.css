@@ -1,9 +1,14 @@
 /* nada */
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-size: 16px;
     font-family: sans-serif;
     margin: 0;
     padding: 0;
+   
 }
 
 .http-only-site .page {
@@ -51,48 +56,68 @@ body {
     margin-left: 16px;
 }
 
+/* layout table */
+
 table.layout-table {
     width: 100%;
 }
 
+/* and the main page layout */
+
+table.layout-table td.menu-area {
+    width: 16%;
+    vertical-align: top;
+}
+
 table.layout-table td.content-area {
-    width: 80%;
-    vertical-align: top;;
-}
-
-table.layout-table td.home-menu-area {
-    width: 20%;
-    vertical-align: top;;
-}
-
-
-table.layout-table td.home-content-column1 {
-    width: 30%;
+    width: 62%;
     vertical-align: top;
-    padding-right: 16px;
 }
-
-table.layout-table td.home-content-column2 {
-    width: 30%;
-    vertical-align: top;
-
-    padding-right: 16px;
-}
-
 
 /* sidebar */
 
-.side-bar {
-    width: 20%;
+table.layout-table td.side-bar {
+    width: 22%;
     /* background-color: aqua; */
     vertical-align: top;
 }
 
 
-.side-bar-section-header {
+table.layout-table td.side-bar-section-header {
     margin: 10px;
     font-weight: bold;
 }
+
+/* content area containers */
+
+.page {
+    margin: 16px;
+}
+
+
+/* */
+
+table.layout-table td.home-menu-area {
+    width: 16%;
+    vertical-align: top;;
+}
+
+
+table.layout-table td.home-content-column1 {
+    width: 27%;
+    vertical-align: top;
+    padding-right: 16px;
+}
+
+table.layout-table td.home-content-column2 {
+    width: 27%;
+    vertical-align: top;
+
+    padding-right: 16px;
+}
+
+
+
 
 /* home menu */
 
@@ -106,14 +131,22 @@ ul.menu-list {
 ul.menu-list li {
     padding: 20px;
     font-size: 200%;
+    width: 100%;
 }
 
 ul.menu-list li a {
     padding: 20px;
+    width: 100%;
+    display: block;
 }
 
 ul.menu-list li a:hover {
     background-color: silver;
+}
+
+ul.menu-list li.selected a {
+    background-color: gray;
+    color: white;
 }
 
 /* sidebar */
@@ -369,3 +402,29 @@ button:active {
     overflow-y: auto;
     text-overflow: ellipsis;
 }
+
+/* links */
+
+.site-title {
+    font-weight: bold;
+    color: gray;
+}
+.site-url {
+    font-family: monospace;
+}
+.site-added {
+    font-style: italic;
+}
+
+
+.site-list-item {
+    margin-bottom: 32px;
+}
+
+.site-list-header {
+    border: 1px dashed gray;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+/* misc */

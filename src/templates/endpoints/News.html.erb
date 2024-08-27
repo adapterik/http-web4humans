@@ -6,8 +6,11 @@
   <body class="http-only-site">
     <%= include_partial "header" %>
     <div class="body">
-      <table  class="layout-table" cellspacing="0">
+      <table class="layout-table" cellspacing="0">
         <tr>
+          <td class="home-menu-area">
+            <%= include_partial "menu-list" %>
+          </td>
           <td class="content-area">
 
             <% if @context[:articles].length == 0 %>
@@ -30,6 +33,24 @@
           </td>
           <td class="side-bar">
              <%= include_partial "side-bar-navigation" %>
+
+            <% if can_edit? %>
+            <div class="section">
+                <ul class="side-bar-menu-list">
+                    <li>
+                    <a href="/edit/<%= @context[:article]['id'] %>?return_path=<%= @context[:path] %>">
+                        Edit this <%= @context[:content_type]['noun'] %>
+                    </a>
+                    </li>
+                    <li>
+                    <a 
+                        href="/delete/<%=  @context[:article]['id'] %>?return_path_success=/news&return_path_cancel=<%= @context[:path] %>">
+                        Delete this <%= @context[:content_type]['noun'] %>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+            <% end %>
 
             <div class="section">
               <div class="title">More Articles</div>

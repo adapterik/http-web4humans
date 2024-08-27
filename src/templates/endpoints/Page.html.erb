@@ -8,6 +8,9 @@
     <div class="body">
       <table  class="layout-table" cellspacing="0">
         <tr>
+          <td class="home-menu-area">
+            <%= include_partial "menu-list" %>
+          </td>
           <td  class="content-area">
             <h1><%= @context[:content]['title'] %></h1>
             <%= include_content %>
@@ -17,8 +20,6 @@
           </td>
         </tr>
       </table>
-
-      
     </div>
     <%= include_partial "footer" %>
   </body>

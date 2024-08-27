@@ -8,35 +8,76 @@
     <div class="body">
       <table  class="layout-table" cellspacing="0">
         <tr>
+          <td class="home-menu-area">
+            <%= include_partial "menu-list" %>
+          </td>
           <td class="content-area">
+            <div class="page">
 
-            <% if @context[:sites].length == 0 %>
-            <div  class="alert warning">
-              <p>No news isn't good news</p>
-              <p>But, seriously, there are no news items on the site yet.</p>
+              <% if @context[:sites].length == 0 %>
+              <div class="alert warning">
+                <p>No news isn't good news</p>
+                <p>But, seriously, there are no news items on the site yet.</p>
+              </div>
+              <% else %>
+                <form action="" method="get">
+                <div class="site-list-header">
+                  <table style="width: 100%;">
+                    <tr>
+                      
+                      <td>
+                        Sort by 
+                        <select>
+                          <option value="name">Name</option>
+                          <option value="url">URL</option>
+                          <option value="added">Date Added</option>
+                        </select>
+                         <select>
+                          <option value="ascending">ascending</option>
+                          <option value="descending">descending</option>
+                        </select>
+                        <span style="margin-left: 16px;">
+                          Search: <input type="search" value="" style="width: 100px;">
+                        </span>
+                      </td>
+                      <td>
+                        <i>Showing <%= @context[:sites].length %> site<% if @context[:sites].length != 1 %>s<%end%></i>
+                      </td>
+                      <td>
+                        <button type="submit" >Apply</button>
+                      </td>
+                    </tr>
+                  </table>
+                  
+                  </form>
+                </div>
+
+
+                <% @context[:sites].each do |site| %>
+                  <div class="site-list-item">
+
+                    <div class="site-title">
+                      <a href="/news/<%= site['id'] %>"><%= site['title'] %></a>
+                    </div>
+
+                    <div class="site-url">
+                      <a href="<%= site['url'] %>" target="_blank"><%= site['url'] %></a>
+                    </div>
+                  
+                    <div class="site-added">
+                      <%= Time.at(site['added']).strftime('%Y-%m-%d at %H:%M') %>
+                    </div>
+
+                    <div class="site-description">
+                      <%= site['description'] %>
+                    </div>
+
+                  </div>
+
+                <% end %>
+              <% end %>
+
             </div>
-            <% end %>
-
-
-            <% @context[:sites].each do |site| %>
-              <li>
-                <div class="site-title">
-                  <a href="/news/<%= site['id'] %>"><%= site['title'] %></a>
-                </div>
-
-                 <div class="site-url">
-                  <a href="<%= site['url'] %>" target="_blank"><%= site['url'] %></a>
-                </div>
-              
-                <div class="site-added">
-                  <%= Time.at(site['added']).strftime('%Y-%m-%d at %H:%M') %>
-                </div>
-
-                <div class="site-description">
-                  <%= site['description'] %>
-                </div>
-              </li>
-            <% end %>
 
           </td>
            <td class="side-bar">

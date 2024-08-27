@@ -75,8 +75,18 @@ class Blog < EndpointHandler
       ui: ENV['HTTP_USER_AGENT']
     }
 
+
+    page = {}
+
+    if @blog_entry_id 
+      page['title'] = "#{content['title']} | #{blog_entry['title']}"
+    else
+      page['title'] = content['title']
+    end
+
     @context.merge!({
       site: @site,
+      page: page,
       content_id: @content_id,
       content: content,
       content_type: content_type,
