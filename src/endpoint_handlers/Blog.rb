@@ -75,7 +75,6 @@ class Blog < EndpointHandler
       ui: ENV['HTTP_USER_AGENT']
     }
 
-
     page = {}
 
     if @blog_entry_id 

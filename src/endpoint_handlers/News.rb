@@ -57,6 +57,11 @@ class News < EndpointHandler
       @article_id = article['id']
     end
 
+    article_content_type = nil
+    if article
+      article_content_type = @site_db.get_content_type(article['content_type'])
+    end
+
     # if article
      
     #   article['content'] = Kramdown::Document.new(article['content']).to_html
@@ -79,7 +84,13 @@ class News < EndpointHandler
       page['title'] = content['title']
     end
 
-    puts content['title']
+    data = {
+      article: article,
+      articles: articles,
+      content_type: article_content_type
+    }
+
+    puts data
 
     @context.merge!({
       site: @site,
@@ -87,8 +98,7 @@ class News < EndpointHandler
       content_id: @content_id,
       content: content,
       content_type: content_type,
-      articles: articles,
-      article: article,
+      data: data, 
       env: {
         request: request
       },

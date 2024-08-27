@@ -13,19 +13,19 @@
           </td>
           <td class="content-area">
 
-            <% if @context[:articles].length == 0 %>
+            <% if @context[:data][:articles].length == 0 %>
             <div  class="alert warning">
               <p>No news isn't good news</p>
               <p>But, seriously, there are no news items on the site yet.</p>
             </div>
             <% end %>
 
-            <% if @context[:articles].length > 0 %>
+            <% if @context[:data][:articles].length > 0 %>
             <div class="article">
-              <div class="article-title"><%= @context[:article]['title'] %></div>
-              <div class="article-created"><%= Time.at(@context[:article]['created']).strftime('%Y-%m-%d at %H:%M') %></div>
+              <div class="article-title"><%= @context[:data][:article]['title'] %></div>
+              <div class="article-created"><%= Time.at(@context[:data][:article]['created']).strftime('%Y-%m-%d at %H:%M') %></div>
               <div class="article-body">
-                <%= Kramdown::Document.new(article['content']).to_html %>
+                <%= Kramdown::Document.new(@context[:data][:article]['content']).to_html %>
               </div>
             </div>
             <% end %>
@@ -38,14 +38,14 @@
             <div class="section">
                 <ul class="side-bar-menu-list">
                     <li>
-                    <a href="/edit/<%= @context[:article]['id'] %>?return_path=<%= @context[:path] %>">
-                        Edit this <%= @context[:content_type]['noun'] %>
+                    <a href="/edit/<%= @context[:data][:article]['id'] %>?return_path=<%= @context[:path] %>">
+                        Edit this <%= @context[:data][:content_type]['noun'] %>
                     </a>
                     </li>
                     <li>
                     <a 
-                        href="/delete/<%=  @context[:article]['id'] %>?return_path_success=/news&return_path_cancel=<%= @context[:path] %>">
-                        Delete this <%= @context[:content_type]['noun'] %>
+                        href="/delete/<%= @context[:data][:article]['id'] %>?return_path_success=/<%= @context[:data][:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
+                        Delete this <%= @context[:data][:content_type]['noun'] %>
                     </a>
                     </li>
                 </ul>
@@ -56,7 +56,7 @@
               <div class="title">More Articles</div>
               <div class="body">
                 <ul class="side-bar-article-list">
-                  <% @context[:articles].each do |article| %>
+                  <% @context[:data][:articles].each do |article| %>
                       <li>
                         <div class="article-title">
                           <a class="nav-link" href="/news/<%= article['id'] %>"><%= article['title'] %></a>
