@@ -18,33 +18,35 @@
                   <div>
                     <%= include_content %>
                   </div>
-                  <div class="preview-box" style="margin-bottom: 16px;">
+                  <div class="preview-box">
                     <div class="title">
                       Latest News
                     </div>
-                    <div class="content blog">
-                      <% if @data[:latest_news] %>
-                      <div class="title">
-                        <a href="/news/<%= @data[:latest_news]['id'] %>">
-                        <%= @data[:latest_news]['title'] %>
-                        </a>
+                    <div class="content">
+                      <div class="item">
+                        <% if @data[:latest_news] %>
+                        <div class="title">
+                          <a href="/news/<%= @data[:latest_news]['id'] %>">
+                          <%= @data[:latest_news]['title'] %>
+                          </a>
+                        </div>
+                        <div class="created"><%= render_epoch_time @data[:latest_news]['created'] %></div>
+                        <div class="content"><%= render_markdown @data[:latest_news]['content'] %></div>
+                        <% else %>
+                          no news yet
+                        <% end %>
                       </div>
-                      <div class="created"><%= render_epoch_time @data[:latest_news]['created'] %></div>
-                      <div class="content"><%= render_markdown @data[:latest_news]['content'] %></div>
-                      <% else %>
-                        no news yet
-                      <% end %>
                     </div>
                   </div>
                 </td>
                 <td style="width: 50%; padding-left: 16px; vertical-align: top;">
                   <div class="preview-box" style="margin: 16px 16px 16px 0;">
                     <div class="title">
-                      Recently Used Sites
+                      Favorite Sites
                     </div>
                     <div class="content">
                       <% @data[:favorite_sites].each do |site| %>
-                      <div class="blog">
+                      <div class="item">
                         <div class="title">
                             <a href="<%= site['url'] %>" target="_blank"><%= site['title'] %></a>
                         </div>
@@ -59,14 +61,16 @@
                     <div class="title">
                       Latest Blog Entry
                     </div>
-                    <div class="content blog">
-                      <div class="title">
-                        <a href="/blog/<%= @data[:latest_blog_entry]['id'] %>">
-                        <%= @data[:latest_blog_entry]['title'] %>
-                        </a>
+                    <div class="content">
+                      <div class="item">
+                        <div class="title">
+                          <a href="/blog/<%= @data[:latest_blog_entry]['id'] %>">
+                          <%= @data[:latest_blog_entry]['title'] %>
+                          </a>
+                        </div>
+                        <div class="created"><%= render_epoch_time @data[:latest_blog_entry]['created'] %></div>
+                        <div class="content"><%= render_markdown @data[:latest_blog_entry]['content'] %></div>
                       </div>
-                      <div class="created"><%= render_epoch_time @data[:latest_blog_entry]['created'] %></div>
-                      <div class="content"><%= render_markdown @data[:latest_blog_entry]['content'] %></div>
                     </div>
                   </div>
                 </td>

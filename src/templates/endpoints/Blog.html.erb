@@ -45,19 +45,19 @@
 
              <% if can_edit? %>
             <div class="section">
-                <ul class="side-bar-menu-list">
-                    <li>
-                    <a href="/edit/<%= data[:entry]['id'] %>?return_path=<%= @context[:path] %>">
-                        Edit this <%= data[:content_type]['noun'] %>
-                    </a>
-                    </li>
-                    <li>
-                    <a 
-                        href="/delete/<%= data[:entry]['id'] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
-                        Delete this <%= data[:content_type]['noun'] %>
-                    </a>
-                    </li>
-                </ul>
+                <div class="side-bar-menu-list">
+                    <div class="item">
+                      <a href="/edit/<%= data[:entry]['id'] %>?return_path=<%= @context[:path] %>">
+                          Edit this <%= data[:content_type]['noun'] %>
+                      </a>
+                      </div>
+                      <div class="item">
+                      <a 
+                          href="/delete/<%= data[:entry]['id'] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
+                          Delete this <%= data[:content_type]['noun'] %>
+                      </a>
+                    </div>
+                </div>
             </div>
             <% end %>
             
@@ -74,7 +74,7 @@
                         </div>
                       
                         <div class="blog-created">
-                          <%= Time.at(blog_item['created']).strftime('%Y-%m-%d at %H:%M') %>
+                          <%= Time.at(blog_item['created']).strftime('%Y-%m-%d') %>
                         </div>
 
                         <div class="blog-abstract">

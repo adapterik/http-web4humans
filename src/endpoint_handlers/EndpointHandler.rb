@@ -19,6 +19,19 @@ class EndpointHandler
     @site = {}
     @site_db =  SiteDB.new()
   end
+
+  def format_timestamp(time)
+    Time.at(time).strftime('%Y-%m-%d at %H:%M:%S')
+  end
+
+
+  def format_date(time)
+    Time.at(time).strftime('%Y-%m-%d')
+  end
+
+  def format_markdown(content)
+    Kramdown::Document.new(content).to_html
+  end
   
   def set_header(name, value)
     @header[name] = value

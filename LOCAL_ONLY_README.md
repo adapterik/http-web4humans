@@ -1,1 +1,0 @@
-OWNER_PASSWORD=abc123 ./Taskfile start-dev-server

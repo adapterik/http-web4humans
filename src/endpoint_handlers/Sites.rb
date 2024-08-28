@@ -75,7 +75,7 @@ class Sites < EndpointHandler
     page = {}
 
     if selected_site 
-      page['title'] = "#{content['title']} | #{selected_site['title']}"
+      page['title'] = "#{content['title']}: #{selected_site['title']}"
     else
       page['title'] = content['title']
     end

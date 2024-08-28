@@ -82,6 +82,12 @@ This will install all Ruby dependencies into the container (not on your host mac
 
 You should be able to access the server now at `http://localhost:3000`.
 
+For example:
+
+```shell
+OWNER_PASSWORD=abc123 ./Taskfile start-dev-server
+```
+
 #### Using "real" hostname
 
 The production site is available at `https://tech.web4humans.com`. In order to utilize the site on this host, see below:

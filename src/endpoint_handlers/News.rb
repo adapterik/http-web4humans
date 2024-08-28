@@ -79,7 +79,7 @@ class News < EndpointHandler
     page = {}
 
     if @article_id 
-      page['title'] = "#{content['title']} | #{article['title']}"
+      page['title'] = "#{content['title']}: #{article['title']}"
     else
       page['title'] = content['title']
     end

@@ -78,7 +78,7 @@ class Blog < EndpointHandler
     page = {}
 
     if @blog_entry_id 
-      page['title'] = "#{content['title']} | #{blog_entry['title']}"
+      page['title'] = "#{content['title']}: #{blog_entry['title']}"
     else
       page['title'] = content['title']
     end
