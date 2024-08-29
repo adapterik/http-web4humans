@@ -60,9 +60,15 @@ body {
 
 table.layout-table {
     width: 100%;
+    table-layout: fixed;
 }
 
 /* and the main page layout */
+
+table.layout-table td.menu-area {
+    width: 16%;
+    vertical-align: top;
+}
 
 table.layout-table td.menu-area {
     width: 16%;
@@ -77,7 +83,7 @@ table.layout-table td.content-area {
 /* sidebar */
 
 table.layout-table td.side-bar {
-    width: 22%;
+    width: 300px;
     /* background-color: aqua; */
     vertical-align: top;
 }
@@ -98,8 +104,13 @@ table.layout-table td.side-bar-section-header {
 /* */
 
 table.layout-table td.home-menu-area {
-    width: 16%;
-    vertical-align: top;;
+    /* width: 16%; */
+    vertical-align: top;
+    width: 165px;
+}
+
+table.layout-table td.home-menu-area .main-menu {
+    /* width: 100px; */
 }
 
 
@@ -204,11 +215,12 @@ ul.menu-list li.selected a {
 }
 
 .side-bar-menu-list .item + .item {
-    margin-top: 16px;
+    /* margin-top: 16px; */
 }
 
 .side-bar-menu-list .item a {
-    padding: 10px;
+    padding: 8px;
+    display: block;
 }
 
 .side-bar-menu-list .item a:hover {
@@ -309,7 +321,7 @@ ul.side-bar-article-list {
 }
 
 .content-area .blog-content {
-
+    max-width: 600px;
 }
 
 /* sidebar blog menu */
