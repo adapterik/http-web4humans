@@ -3,9 +3,9 @@
   <head>
     <%= include_partial "head" %>
   </head>
-  <body data-bs-theme="dark" class="d-flex flex-column" style="height: 100vh;">
+  <body>
     <%= include_partial "header" %>
-    <div class="article flex-grow-1 overflow-y-auto">
+    <div class="grid">
 
       <!-- edit form -->
       <form action="/save" method="post">
@@ -50,8 +50,6 @@
           </div>
         </div>
       </form>
-
-      <hr />
 
       <div class="alert warning">
       Will return to <code><%= @data[:return_path] %></code> after Saving or Canceling.

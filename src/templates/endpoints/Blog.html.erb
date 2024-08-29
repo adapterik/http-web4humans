@@ -30,7 +30,7 @@
               <div class="blog-created"><%= Time.at(data[:entry]['created']).strftime('%Y-%m-%d at %H:%M') %></div>
 
               <div class="blog-content">
-                <%= Kramdown::Document.new(data[:entry]['content']).to_html %>
+                <%= format_markdown data[:entry]['content'] %>
               </div>
 
             </div>

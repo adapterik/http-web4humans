@@ -1,7 +1,5 @@
 require "cgi"
 require "json"
-require 'rouge'
-require 'kramdown'
 require 'erb'
 require 'uri'
 require_relative 'SiteDB'

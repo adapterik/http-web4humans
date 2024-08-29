@@ -478,3 +478,11 @@ button:active {
 .margin-top {
     margin-top: 16px;
 }
+
+/* fucking markdown */
+
+.rendered-markdown blockquote {
+    margin: 0;
+    padding: 16px;
+    background-color: silver;
+}

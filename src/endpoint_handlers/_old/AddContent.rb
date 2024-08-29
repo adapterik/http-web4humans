@@ -2,23 +2,6 @@ require 'securerandom'
 require_relative './EndpointHandler'
 
 class AddContent < EndpointHandler
-  # def initialize(context, input)
-  #   super(context)
-  #   # if @context[:arguments].length == 0
-  #   #   @page_id = 'home'
-  #   # else
-  #   #   @page_id = context[:arguments][0]
-  #   # end
-  # end
-
-  # def include_page_content()
-  #   template = ERB.new @context[:page]['content']
-  #   fulfilled_content = template.result binding
-  #   rendered = Kramdown::Document.new(fulfilled_content).to_html
-  #   set_rendered(@context[:page_id], rendered)
-  # end
-  # 
-  
   def ensure_can_edit()
      # Ensure authenticated session that can edit.
      if @context[:session].nil?

@@ -1,9 +1,13 @@
 require 'erb' 
-require 'kramdown'
-require 'kramdown-parser-gfm'
+require 'redcarpet'
 require 'rouge'
+require 'rouge/plugins/redcarpet'
 require_relative '../SiteDB'
 require_relative '../responses'
+
+class MyRender < Redcarpet::Render::HTML
+  include Rouge::Plugins::Redcarpet
+end
 
 class EndpointHandler
   @@file_cache = {}
@@ -18,6 +22,7 @@ class EndpointHandler
     @data = {}
     @site = {}
     @site_db =  SiteDB.new()
+    @markdown = Redcarpet::Markdown.new(MyRender, authlink: false, tables: true, fenced_code_blocks: true)
   end
 
   def format_timestamp(time)
@@ -30,7 +35,10 @@ class EndpointHandler
   end
 
   def format_markdown(content)
-    Kramdown::Document.new(content).to_html
+    # Kramdown::Document.new(content, :input => 'GFM', :syntax_highlighter => 'coderay').to_html
+    # CommonMarker.to_html(content)
+    temp = @markdown.render(content)
+    "<div class=\"rendered-markdown\">#{temp}</div>"
   end
   
   def set_header(name, value)
@@ -92,8 +100,7 @@ class EndpointHandler
   def include_content()
     template = ERB.new @context[:content_item]['content']
     fulfilled_content = template.result binding
-    # rendered = Kramdown::Document.new(fulfilled_content, :syntax_highlighter => 'rouge').to_html
-    rendered = Kramdown::Document.new(fulfilled_content).to_html
+    rendered = format_markdown fulfilled_content
     set_rendered(@context [:content_id], rendered)
   end
 

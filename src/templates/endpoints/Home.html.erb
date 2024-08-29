@@ -32,7 +32,7 @@
                           </a>
                         </div>
                         <div class="created"><%= render_epoch_time @data[:latest_news]['created'] %></div>
-                        <div class="content"><%= render_markdown @data[:latest_news]['content'] %></div>
+                        <div class="content"><%= format_markdown @data[:latest_news]['content'] %></div>
                         <% else %>
                           no news yet
                         <% end %>
@@ -70,7 +70,7 @@
                           </a>
                         </div>
                         <div class="created"><%= render_epoch_time @data[:latest_blog_entry]['created'] %></div>
-                        <div class="content"><%= render_markdown @data[:latest_blog_entry]['content'] %></div>
+                        <div class="content"><%= format_markdown @data[:latest_blog_entry]['content'] %></div>
                       </div>
                     </div>
                   </div>

@@ -19,7 +19,7 @@ class Sites < EndpointHandler
   def include_content()
     template = ERB.new @context[:content]['content']
     fulfilled_content = template.result binding
-    rendered = Kramdown::Document.new(fulfilled_content).to_html
+    rendered = format_markdown fulfilled_content
     set_rendered(@context[:content_id], rendered)
   end
 
@@ -48,20 +48,6 @@ class Sites < EndpointHandler
 
     selected_site = nil
 
-    # if @article_id 
-    #   article = @site_db.get_content @article_id
-    # end
-
-    # if @article_id.nil? && articles.length > 0
-    #   article = articles[0]
-    #   @article_id = article['id']
-    # end
-
-    # if article
-     
-    #   article['content'] = Kramdown::Document.new(article['content']).to_html
-    #   article['created'] = Time.at(article['created']).strftime('%Y-%m-%d at %H:%M:%S')
-    # end
 
     # Create the context object, which is a merging of
     # - the site, page def, menu, etc. see below

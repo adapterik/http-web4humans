@@ -25,7 +25,7 @@
               <div class="article-title"><%= @context[:data]['article']['title'] %></div>
               <div class="article-created"><%= Time.at(@context[:data]['article']['created']).strftime('%Y-%m-%d at %H:%M') %></div>
               <div class="article-body">
-                <%= Kramdown::Document.new(@context[:data]['article']['content']).to_html %>
+                <%= format_markdown @context[:data]['article']['content'] %>
               </div>
             </div>
             <% end %>

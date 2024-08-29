@@ -26,7 +26,7 @@ class HomeContentList < EndpointHandler
   def include_content()
     template = ERB.new @context[:content]['content']
     fulfilled_content = template.result binding
-    rendered = Kramdown::Document.new(fulfilled_content).to_html
+    rendered = format_markdown fulfilled_content
     set_rendered(@context[:content_id], rendered)
   end
 

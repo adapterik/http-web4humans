@@ -9,13 +9,10 @@ class Home < EndpointHandler
   def include_content()
     template = ERB.new @context[:content]['content']
     fulfilled_content = template.result binding
-    rendered = Kramdown::Document.new(fulfilled_content).to_html
+    rendered = format_markdown fulfilled_content
     set_rendered(@context[:content_id], rendered)
   end
 
-  def render_markdown(content)
-    Kramdown::Document.new(content).to_html
-  end
 
   def render_epoch_time(time)
     Time.at(time).strftime('%Y-%m-%d at %H:%M')
