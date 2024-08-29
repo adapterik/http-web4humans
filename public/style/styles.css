@@ -60,23 +60,19 @@ body {
 
 table.layout-table {
     width: 100%;
-    table-layout: fixed;
+    /* table-layout: fixed; */
+    border-collapse: collapse;
 }
 
 /* and the main page layout */
 
 table.layout-table td.menu-area {
-    width: 16%;
     vertical-align: top;
-}
-
-table.layout-table td.menu-area {
-    width: 16%;
-    vertical-align: top;
+    width: 165px;
 }
 
 table.layout-table td.content-area {
-    width: 62%;
+    /* width: 62%; */
     vertical-align: top;
 }
 
@@ -102,16 +98,6 @@ table.layout-table td.side-bar-section-header {
 
 
 /* */
-
-table.layout-table td.home-menu-area {
-    /* width: 16%; */
-    vertical-align: top;
-    width: 165px;
-}
-
-table.layout-table td.home-menu-area .main-menu {
-    /* width: 100px; */
-}
 
 
 table.layout-table td.home-content-column1 {
@@ -165,7 +151,7 @@ ul.menu-list li.selected a {
 }
 
 .main-menu > .item {
-    padding: 20px;
+    padding: 20px 20px 20px 0;
     font-size: 200%;
     width: 100%;
 }
@@ -270,7 +256,7 @@ ul.menu-list li.selected a {
 }
 
 .content-area .article-content {
-
+    max-width: 600px;
 }
 
 /* sidebar article menu */

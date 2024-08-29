@@ -6,14 +6,14 @@
   <body class="http-only-site">
     <%= include_partial "header" %>
     <div class="body">
-      <table class="layout-table" cellspacing="0">
+      <table class="layout-table" cellspacing="0" cellpadding="0">
         <tr>
-          <td class="home-menu-area">
+          <td class="menu-area">
             <%= include_partial "menu-list" %>
           </td>
 
           <td class="content-area">
-            <table class="layout-table">
+            <table class="layout-table" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="width: 50%; padding-right: 16px; vertical-align: top;">
                   <div>
@@ -80,9 +80,13 @@
             </table>
           </td>
 
-          <td class="side-bar">
-            <%= include_partial "side-bar-navigation" %>
-          </td>
+          <% if @context[:is_secure] %>
+            <% if @context[:session].nil? %>
+              <td class="side-bar">
+                <%= include_partial "side-bar-navigation" %>
+              </td>
+            <% end %>
+          <% end %>
         </tr>
       </table>
     </div>

@@ -1,24 +1,11 @@
-<div class="footer">
-  <!-- because, for some reason, bootstrap columns are not flexboxes -->
-  <table width="100%" cellspacing="0" cellpadding="0">
+<div class="header">
+  <table>
     <tr>
-      <td width="50%" class="footer-copyright">
-        <small>Copyright © 2024 Adaptations</small>
+      <td style="width: 50%; vertical-align: middle;">
+        <span style="font-weight: bold; color: gray;">HTTP only</span> | <b><%= @context[:page]["title"] %></b>
       </td>
-      <td width="50%" class="footer-links">
-        <% if false %>
-        <a href="/edit/<%= @context[:content]['id'] %>" >
-          edit this <%= @context[:content]['content_type'] %>
-        </a>
-      <% end %>
-      <a  href="/page/contact">
-        contact
-      </a>
-      <a  href="/page/accessibility">
-        accessibility
-      </a>
-
-       <% if @context[:is_secure] %>
+      <td style="width: 100%; text-align: right;">
+        <% if @context[:is_secure] %>
           <% if @context[:session].nil? %>
             <a  href="http://<%= @context[:host] %><%= @context[:path] %>">
               non-secure site
@@ -40,7 +27,6 @@
             secure site
           </a>
         <% end %>
-     
       </td>
     </tr>
   </table>

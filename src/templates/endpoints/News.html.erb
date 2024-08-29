@@ -6,9 +6,9 @@
   <body class="http-only-site">
     <%= include_partial "header" %>
     <div class="body">
-      <table class="layout-table" cellspacing="0">
+      <table class="layout-table"  cellspacing="0" cellpadding="0">
         <tr>
-          <td class="home-menu-area">
+          <td class="menu-area">
             <%= include_partial "menu-list" %>
           </td>
           <td class="content-area">
@@ -24,7 +24,7 @@
             <div class="article">
               <div class="article-title"><%= @context[:data][:article]['title'] %></div>
               <div class="article-created"><%= Time.at(@context[:data][:article]['created']).strftime('%Y-%m-%d at %H:%M') %></div>
-              <div class="article-body">
+              <div class="article-content">
                 <%= format_markdown @context[:data][:article]['content'] %>
               </div>
             </div>
