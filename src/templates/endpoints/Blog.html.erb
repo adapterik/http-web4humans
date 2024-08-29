@@ -28,6 +28,7 @@
               <div class="blog-title"><%= data[:entry]['title'] %></div>
 
               <div class="blog-created"><%= Time.at(data[:entry]['created']).strftime('%Y-%m-%d at %H:%M') %></div>
+              <div class="blog-abstract"><%= data[:entry]['abstract'] %></div>
 
               <div class="blog-content">
                 <%= format_markdown data[:entry]['content'] %>

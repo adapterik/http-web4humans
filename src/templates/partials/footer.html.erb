@@ -7,18 +7,14 @@
       </td>
       <td width="50%" class="footer-links">
         <% if false %>
-        <a href="/edit/<%= @context[:content]['id'] %>" >
-          edit this <%= @context[:content]['content_type'] %>
-        </a>
-      <% end %>
-      <a  href="/page/contact">
-        contact
-      </a>
-      <a  href="/page/accessibility">
-        accessibility
-      </a>
+          <a href="/edit/<%= @context[:content]['id'] %>" >
+            edit this <%= @context[:content]['content_type'] %>
+          </a>
+        <% end %>
+        <a href="/page/contact">contact</a>
+        <a href="/page/accessibility">accessibility</a>
 
-       <% if @context[:is_secure] %>
+        <% if @context[:is_secure] %>
           <% if @context[:session].nil? %>
             <a  href="http://<%= @context[:host] %><%= @context[:path] %>">
               non-secure site
@@ -27,10 +23,10 @@
               sign in
             </a>
           <% else %>
-            <form action="/authenticate" method="post">
+            <form action="/authenticate" method="post" style="display: inline-block; margin-left: 16px;">
               <input type="hidden" name="_method" value="delete">
-              <input type="hidden" name="return-path" value="<%= @context[:path] %>"> <button class="btn btn-text" type="submit">
-                <input type="text" value="" name="dummy" style="display: none;">
+              <input type="hidden" name="return-path" value="<%= @context[:path] %>"> 
+              <button type="submit">
                 sign out <b><%= @context[:session]["user_id"] %></b>
               </button>
             </form>
@@ -40,7 +36,6 @@
             secure site
           </a>
         <% end %>
-     
       </td>
     </tr>
   </table>

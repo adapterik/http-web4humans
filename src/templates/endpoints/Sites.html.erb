@@ -22,9 +22,8 @@
               <% else %>
                 <form action="" method="get">
                 <div class="site-list-header">
-                  <table style="width: 100%;">
+                  <table class="layout-table">
                     <tr>
-                      
                       <td>
                         Sort 
                         <select>
@@ -43,7 +42,7 @@
                       <td>
                         <i><%= @context[:sites].length %> site<% if @context[:sites].length != 1 %>s<%end%></i>
                       </td>
-                      <td>
+                      <td style="text-align: right;">
                         <button type="submit" >Apply</button>
                       </td>
                     </tr>

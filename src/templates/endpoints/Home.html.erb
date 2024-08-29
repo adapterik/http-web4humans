@@ -40,7 +40,7 @@
                     </div>
                   </div>
                 </td>
-                <td style="width: 50%; padding-left: 16px; vertical-align: top;">
+                <td style="width: 50%; padding-left: 16px; padding-right: 16px; vertical-align: top;">
                   <div class="preview-box" style="margin: 16px 16px 16px 0;">
                     <div class="title">
                       Favorite Sites
@@ -81,7 +81,7 @@
           </td>
 
           <% if @context[:is_secure] %>
-            <% if @context[:session].nil? %>
+            <% if !@context[:session].nil? %>
               <td class="side-bar">
                 <%= include_partial "side-bar-navigation" %>
               </td>

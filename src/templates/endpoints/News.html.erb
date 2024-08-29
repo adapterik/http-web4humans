@@ -24,6 +24,7 @@
             <div class="article">
               <div class="article-title"><%= @context[:data][:article]['title'] %></div>
               <div class="article-created"><%= Time.at(@context[:data][:article]['created']).strftime('%Y-%m-%d at %H:%M') %></div>
+              <div class="article-abstract"><%= @context[:data][:article]['abstract'] %></div>
               <div class="article-content">
                 <%= format_markdown @context[:data][:article]['content'] %>
               </div>
