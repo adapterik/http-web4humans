@@ -84,8 +84,6 @@ class News < EndpointHandler
       content_type: article_content_type
     }
 
-    puts data
-
     @context.merge!({
       site: @site,
       page: page,

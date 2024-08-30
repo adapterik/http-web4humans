@@ -304,9 +304,6 @@ class SiteDB
       #{limit_clause(limit)}
     "
 
-    puts sort 
-    puts query
-
     content_list = @db.execute query, query_params
     content_list
   end

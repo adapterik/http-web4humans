@@ -73,18 +73,6 @@ class Main
     if handler_def.nil?
       raise ClientError.new("ERROR - handler not found: #{endpoint_name}")
     end
-
-    # puts "" 
-    # puts "*******"
-    # puts "ENV"
-    # puts "*******"
-    # env.each_pair do |key, value| 
-    #   puts key
-    #   puts value
-    #   puts '-------'
-    # end
-    # puts "*******"
-    # puts ""
     
     is_secure = env['rack.url_scheme'] == 'https'
 
