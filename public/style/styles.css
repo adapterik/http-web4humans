@@ -62,7 +62,7 @@ table.layout-table {
 
 table.layout-table td.menu-area {
     vertical-align: top;
-    width: 165px;
+    width: 150px;
 }
 
 table.layout-table td.content-area {
@@ -111,7 +111,7 @@ table.layout-table td.home-content-column2 {
 }
 
 .main-menu > .item {
-    padding: 16px 16px 16px 0;
+    padding: 16px 0;
     font-size: 200%;
     width: 100%;
 }
