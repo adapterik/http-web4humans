@@ -59,15 +59,15 @@ class Home < EndpointHandler
 
     # Now get the summaries...
     
-    latest_blog_entry = @site_db.list_content 'blog', sort: ['created', 'descending'], limit: 1
+    latest_blog_entries = @site_db.list_content 'blog', sort: ['created', 'descending'], limit: 5
 
-    latest_news = @site_db.list_content 'article', sort: ['created', 'descending'], limit: 1
+    latest_news = @site_db.list_content 'article', sort: ['created', 'descending'], limit: 5
 
     favorite_sites = @site_db.get_sites sort: ['added', 'descending']
 
     @data = {
-      latest_blog_entry: latest_blog_entry[0],
-      latest_news: latest_news[0],
+      latest_blog_entries: latest_blog_entries,
+      latest_news: latest_news,
       favorite_sites: favorite_sites
     }
 

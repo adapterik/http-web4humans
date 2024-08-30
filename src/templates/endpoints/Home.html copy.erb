@@ -19,13 +19,31 @@
                   <div>
                     <%= include_content %>
                   </div>
-                 
+                  <div class="preview-box">
+                    <div class="title">
+                      Latest News
+                    </div>
+                    <div class="content">
+                      <div class="item">
+                        <% if @data[:latest_news] %>
+                        <div class="title">
+                          <a href="/news/<%= @data[:latest_news]['id'] %>">
+                          <%= @data[:latest_news]['title'] %>
+                          </a>
+                        </div>
+                        <div class="created"><%= render_epoch_time @data[:latest_news]['created'] %></div>
+                        <div class="content"><%= format_markdown @data[:latest_news]['content'] %></div>
+                        <% else %>
+                          no news yet
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
                 </td>
                 <td style="width: 50%; padding-left: 16px; padding-right: 16px; vertical-align: top;">
-
-                  <div class="preview-box" style="margin: 16px 0;">
+                  <div class="preview-box" style="margin: 16px 16px 16px 0;">
                     <div class="title">
-                      Favorite <a href="/sites">Sites</a>
+                      Favorite Sites
                     </div>
                     <div class="content">
                       <% @data[:favorite_sites].each do |site| %>
@@ -40,59 +58,22 @@
                       <% end %>
                     </div>
                   </div>
-
-                   <div class="preview-box" style="margin: 16px 0;">
-                    <div class="title">
-                      Latest <a href="/news">News</a>
-                    </div>
-
-                    <% if @data[:latest_news].length == 0 %>
-                      no news yet
-                    <% else %>
-
-                      <% @data[:latest_news].each do |entry| %>
-
-                      <div class="content">
-                        <div class="item">
-                          <div class="title">
-                            <a href="/news/<%= entry['id'] %>">
-                            <%= entry['title'] %>
-                            </a>
-                          </div>
-                          <div class="created"><%= render_epoch_time entry['created'] %></div>
-                          <div class="abstract"><%=  entry['abstract'] %></div>
-                        </div>
-                      </div>
-
-                      <% end %>
-
-                    <% end %>
-
-                  </div>
-
                   <div class="preview-box">
                     <div class="title">
-                      Recent <a href="/blog">Blog</a>
+                      Latest Blog Entry
                     </div>
                     <div class="content">
-                      <% if @data[:latest_blog_entries].length == 0 %>
-                        no blog yet
-                      <% else %>
-                        <% @data[:latest_blog_entries].each do |entry| %>
-                          <div class="item">
-                            <div class="title">
-                              <a href="/blog/<%= entry['id'] %>">
-                              <%= entry['title'] %>
-                              </a>
-                            </div>
-                            <div class="created"><%= render_epoch_time entry['created'] %></div>
-                            <div class="abstract"><%= entry['abstract'] %></div>
-                          </div>
-                        <% end %>
-                      <% end %>
+                      <div class="item">
+                        <div class="title">
+                          <a href="/blog/<%= @data[:latest_blog_entry]['id'] %>">
+                          <%= @data[:latest_blog_entry]['title'] %>
+                          </a>
+                        </div>
+                        <div class="created"><%= render_epoch_time @data[:latest_blog_entry]['created'] %></div>
+                        <div class="content"><%= format_markdown @data[:latest_blog_entry]['content'] %></div>
+                      </div>
                     </div>
                   </div>
-
                 </td>
               </tr>
             </table>

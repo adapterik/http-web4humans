@@ -329,13 +329,14 @@ button:active {
 /* Home page */
 
 .preview-box {
-    border: 1px solid silver;
+    /* border: 1px solid silver; */
     width: 100%;
 }
 
 .preview-box > .title {
-    border-bottom: 1px dashed silver;
+    border-bottom: 2px dashed silver;
     font-weight: bold;
+    font-size: 120%;
     color: gray;
     padding: 8px;
 }
@@ -347,6 +348,10 @@ button:active {
 .preview-box .item > .title {
     font-weight: bold;
     color: gray;
+}
+
+.preview-box .item > .abstract {
+    
 }
 
 .preview-box .item > .created {
