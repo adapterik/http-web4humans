@@ -44,7 +44,15 @@ class Sites < EndpointHandler
     # The a list of articles - which is all content items of content type "article"
     #
 
-    sites = @site_db.list_sites(sort: ['title', 'ascending'])
+    sort = nil
+    if @context[:params]['sort_field'] 
+      # TODO: project with a hash map.
+      sort = [@context[:params]['sort_field'], @context[:params]['sort_direction']]
+    end
+
+    search = @context[:params]['search']
+
+    sites = @site_db.list_sites(sort: sort, search: search)
 
     selected_site = nil
 
@@ -56,7 +64,6 @@ class Sites < EndpointHandler
       referrer: ENV['HTTP_REFERER'],
       ui: ENV['HTTP_USER_AGENT']
     }
-
 
     page = {}
 

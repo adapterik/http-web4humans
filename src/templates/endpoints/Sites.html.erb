@@ -20,23 +20,23 @@
                 <p>But, seriously, there are no news items on the site yet.</p>
               </div>
               <% else %>
-                <form action="" method="get">
+                <form action="/sites" method="get">
                 <div class="site-list-header">
                   <table class="layout-table">
                     <tr>
                       <td>
                         Sort 
-                        <select>
-                          <option value="name">Name</option>
-                          <option value="url">URL</option>
-                          <option value="added">Date Added</option>
+                        <select name="sort_field">
+                          <option value="title" <% if @context[:params]['sort_field'] == 'title' %>selected<% end %>>Name</option>
+                          <option value="url" <% if @context[:params]['sort_field'] == 'url' %>selected<% end %>>URL</option>
+                          <option value="added" <% if @context[:params]['sort_field'] == 'added' %>selected<% end %>>Date Added</option>
                         </select>
-                         <select>
-                          <option value="ascending">ascending</option>
-                          <option value="descending">descending</option>
+                         <select name="sort_direction">
+                          <option value="ascending" <% if @context[:params]['sort_direction'] == 'ascending' %>selected<% end %>>ascending</option>
+                          <option value="descending" <% if @context[:params]['sort_direction'] == 'descending' %>selected<% end %>>descending</option>
                         </select>
                         <span style="margin-left: 16px; white-space: nowrap;">
-                          Search: <input type="search" value="" style="width: 100px;">
+                          Search: <input name="search" type="search" value="<%= @context[:params]['search'] %>" style="width: 200px;">
                         </span>
                       </td>
                       <td>
@@ -47,10 +47,8 @@
                       </td>
                     </tr>
                   </table>
-                  
                   </form>
                 </div>
-
 
                 <% @context[:sites].each do |site| %>
                   <div class="site-list-item">

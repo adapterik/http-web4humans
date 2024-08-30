@@ -17,7 +17,7 @@ class SiteDB
 
 
   def sort_clause(sort)
-    if sort.nil? or sort.length > 0
+    if sort.nil?
       ''
     else
       column = sort[0]
@@ -286,15 +286,28 @@ class SiteDB
 
   # sites / urls 
   
-  def list_sites(sort: nil, limit: nil)
+  def list_sites(sort: nil, limit: nil, search: nil)
+    query_params = []
+
+    where_clause = ''
+    if not search.nil?
+      where_clause += 'where (title like ? or description like ? or url like ?)'
+      query_params.push("%#{search}%", "%#{search}%", "%#{search}%")
+    end
+
     query = "
       select
         *
       from sites
+      #{where_clause}
       #{sort_clause(sort)}
       #{limit_clause(limit)}
     "
-    content_list = @db.execute query
+
+    puts sort 
+    puts query
+
+    content_list = @db.execute query, query_params
     content_list
   end
   
