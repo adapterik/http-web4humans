@@ -10,6 +10,8 @@ class Blog < EndpointHandler
     # is going to be nil. In that case, later we will pluck off the most
     # recent news item, if any.
     @blog_entry_id = context[:arguments][0]
+
+    @content_item = nil
   end
 
   #
@@ -61,7 +63,7 @@ class Blog < EndpointHandler
       blog_content_type = @site_db.get_content_type('blog')
     end
 
-    data = {
+    @content_item = {
       entries: blog_entries,
       entry: blog_entry,
       content_type: blog_content_type,
@@ -89,7 +91,6 @@ class Blog < EndpointHandler
       content_id: @content_id,
       content: content,
       content_type: content_type,
-      data: data,
       env: {
         request: request
       },

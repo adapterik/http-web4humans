@@ -390,8 +390,20 @@ button:active {
 
 /* misc */
 
+.margin {
+    margin: 16px;
+}
+
+.padding {
+    margin: 16px;
+}
+
 .margin-top {
     margin-top: 16px;
+}
+
+.padding-top {
+    padding-top: 16px;
 }
 
 /* fucking markdown */
@@ -410,4 +422,15 @@ input, select, option {
 
 input {
     padding: 8px;
+}
+
+textarea {
+    font-size: 16px;
+}
+
+/* editor */
+
+.markdown-preview {
+    height: 500px;
+    overflow-y: auto;
 }

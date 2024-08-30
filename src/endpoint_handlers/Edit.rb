@@ -1,4 +1,5 @@
 require_relative './EndpointHandler'
+require_relative '../responses'
 
 class Edit < EndpointHandler
   
@@ -17,11 +18,10 @@ class Edit < EndpointHandler
   #
   def handle_get()
     ensure_can_edit
+    
 
     # This allows the header to highlight the page being edited.
     edited_content_id = @context[:arguments][0]
-
-    return_path = @context[:params]['return_path']
 
     @context[:content_id] = edited_content_id
 
@@ -53,7 +53,8 @@ class Edit < EndpointHandler
       :content_id => edited_content_id,
       :content => content,
       :content_type => content_type,
-      :return_path => return_path
+      :return_path_success => @context[:params]['return_path_success'],
+      :return_path_cancel => @context[:params]['return_path_cancel']
     }
 
     dir = File.dirname(File.realpath(__FILE__))
@@ -67,15 +68,19 @@ class Edit < EndpointHandler
 
     edited_content_id = @context[:arguments][0]
 
-    data = URI.decode_www_form(@input.gets).to_h
+    form_data = URI.decode_www_form(@input.gets).to_h
 
-    # TODO: validate all data!
+    if not form_data.has_key? '_method'
+      raise ClientError('Sorry, need a method')
+    end
 
-    @site_db.update_content(edited_content_id, data)
+    fake_method = form_data['_method']
+    if fake_method.downcase != 'put'
+      raise ClientError('Sorry, only "put" supported')
+    end
 
-    # content = @site_db.get_content(edited_content_id)
+    @site_db.update_content(edited_content_id, form_data)
 
-    # ['', 302, {'location' => "/#{content['content_type']}/#{edited_content_id}"}]
-    ['', 302, {'location' => data['return_path']}]
+    ['', 302, {'location' => form_data['return_path_success']}]
   end
 end

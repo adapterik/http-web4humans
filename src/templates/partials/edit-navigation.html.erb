@@ -1,0 +1,19 @@
+<div class="section">
+    <div class="side-bar-menu-list">
+        <div class="item">
+            <a href="/edit/<%= @content_item[:entry]['id'] %>?return_path_success=<%= @context[:path] %>&return_path_cancel=<%= @context[:path] %>">
+                Edit this <%= @content_item[:content_type]['noun'] %>
+            </a>
+        </div>
+        <div class="item">
+            <a href="/delete/<%= @content_item[:entry]['id'] %>?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%= @context[:path] %>">
+                Delete this <%= @content_item[:content_type]['noun'] %>
+            </a>
+        </div>
+        <div class="item">
+            <a href="/add/<%= @content_item[:content_type]['id'] %>?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%= @context[:path] %>">
+                Add a <%= @content_item[:content_type]['noun'] %>
+            </a>
+        </div>
+    </div>
+</div>

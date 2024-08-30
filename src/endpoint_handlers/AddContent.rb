@@ -1,17 +1,8 @@
 require 'securerandom'
 require_relative './EndpointHandler'
+require_relative '../responses'
 
 class AddContent < EndpointHandler
-  def ensure_can_edit()
-     # Ensure authenticated session that can edit.
-     if @context[:session].nil?
-      raise ClientErrorUnauthorized.new
-    end
-    if @context[:session]["can_edit"] == 0
-      raise ClientErrorForbidden.new
-    end
-  end
-
   #
   # The GET method displays the editor form
   #
@@ -21,12 +12,13 @@ class AddContent < EndpointHandler
     # This allows the header to highlight the page being edited.
     content_type_id = @context[:arguments][0]
 
-    return_path = @context[:params]['return_path']
-
     # @context[:content_id] = edited_content_id
     @context[:content] = {
       'id' => '',
       'title' => "Add content item of type #{content_type_id}",
+    }
+    @context[:page] = {
+      'title' => @context[:content]['title']
     }
 
     content_type = @site_db.get_content_type(content_type_id)
@@ -46,39 +38,43 @@ class AddContent < EndpointHandler
       :content_id => '',
       :content => content,
       :content_type => content_type,
-      :return_path => return_path
+      :return_path_success => @context[:params]['return_path_success'],
+      :return_path_cancel => @context[:params]['return_path_cancel']
     }
 
-    #
-    # 
-    # 
     dir = File.dirname(File.realpath(__FILE__))
-    path = "#{dir}/../templates/endpoints/Editor.html.erb"
+    path = "#{dir}/../templates/endpoints/Edit.html.erb"
     template = load_template(path)
     template.result binding
   end
 
+  #
+  # The POST method handles the form submission.
+  #
   def handle_post()
     ensure_can_edit
 
-    # edited_content_id = @context[:arguments][0]
+    form_data = URI.decode_www_form(@input.gets).to_h
 
-    data = URI.decode_www_form(@input.gets).to_h
-
-    # content_id = data['id']
-
-    # TODO: validate all data!
-    # 
-    
-    if data['id'].length == 0
-      data['id'] = SecureRandom.uuid
+    if not form_data.has_key? '_method'
+      raise ClientError('Sorry, need a method')
     end
 
-    @site_db.add_content(data)
+    fake_method = form_data['_method']
+    if fake_method.downcase != 'post'
+      raise ClientError('Sorry, only "post" supported')
+    end
 
-    # content = @site_db.get_content(data['id'])
+    
 
-    # ['', 302, {'location' => "/#{content['content_type']}/#{content['id']}"}]
-    ['', 302, {'location' => "#{data['return_path']}"}]
+    if form_data['id'].length == 0
+      form_data['id'] = SecureRandom.uuid
+    end
+
+    @site_db.add_content(form_data)
+
+   
+
+    ['', 302, {'location' => "#{form_data['return_path_success']}"}]
   end
 end

@@ -72,6 +72,16 @@ class EndpointHandler
     @@rendered_cache.has_key? path
   end
 
+  def ensure_can_edit()
+    # Ensure authenticated session that can edit.
+    if @context[:session].nil?
+     raise ClientErrorUnauthorized.new
+   end
+   if @context[:session]["can_edit"] == 0
+     raise ClientErrorForbidden.new
+   end
+ end
+
   def can_edit?()
     # Ensure authenticated session that can edit.
     @context[:session] && @context[:session]["can_edit"] == 1
@@ -90,11 +100,16 @@ class EndpointHandler
   end
 
   def include_partial(partial_name)
-    dir = File.dirname(File.realpath(__FILE__))
-    path = "#{dir}/../templates/partials/#{partial_name}.html.erb"
-    template = load_template(path)
-    rendered = template.result binding
-    set_rendered(path, rendered)
+    begin 
+      dir = File.dirname(File.realpath(__FILE__))
+      path = "#{dir}/../templates/partials/#{partial_name}.html.erb"
+      template = load_template(path)
+      rendered = template.result binding
+      set_rendered(path, rendered)
+    rescue 
+      puts "Error including partial '#{partial_name}'"
+      "Error including partial '#{partial_name}'" 
+    end
   end
 
   def include_content()

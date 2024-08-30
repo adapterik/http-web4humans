@@ -6,10 +6,7 @@ class News < EndpointHandler
     # In this case, the page content is the same as the endpoint
     @content_id = @context[:endpoint_name]
 
-    # Note that in the base case of going to the news home page, this 
-    # is going to be nil. In that case, later we will pluck off the most
-    # recent news item, if any.
-    @article_id = context[:arguments][0]
+    @content_item = nil
   end
 
   #
@@ -48,13 +45,15 @@ class News < EndpointHandler
 
     article = nil
 
-    if @article_id 
-      article = @site_db.get_content @article_id
+    article_id = @context[:arguments][0]
+
+    if article_id 
+      article = @site_db.get_content article_id
     end
 
-    if @article_id.nil? && articles.length > 0
+    if article_id.nil? && articles.length > 0
       article = articles[0]
-      @article_id = article['id']
+      article_id = article['id']
     end
 
     article_content_type = nil
@@ -72,15 +71,15 @@ class News < EndpointHandler
 
     page = {}
 
-    if @article_id 
+    if article_id 
       page['title'] = "#{content['title']}: #{article['title']}"
     else
       page['title'] = content['title']
     end
 
-    data = {
-      article: article,
-      articles: articles,
+    @content_item = {
+      entry: article,
+      entries: articles,
       content_type: article_content_type
     }
 
@@ -90,7 +89,6 @@ class News < EndpointHandler
       content_id: @content_id,
       content: content,
       content_type: content_type,
-      data: data, 
       env: {
         request: request
       },

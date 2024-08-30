@@ -13,20 +13,20 @@
           </td>
           <td class="content-area">
 
-            <% if @context[:data][:articles].length == 0 %>
+            <% if @content_item[:entries].length == 0 %>
             <div  class="alert warning">
               <p>No news isn't good news</p>
               <p>But, seriously, there are no news items on the site yet.</p>
             </div>
             <% end %>
 
-            <% if @context[:data][:articles].length > 0 %>
+            <% if @content_item[:entries].length > 0 %>
             <div class="article">
-              <div class="article-title"><%= @context[:data][:article]['title'] %></div>
-              <div class="article-created"><%= Time.at(@context[:data][:article]['created']).strftime('%Y-%m-%d at %H:%M') %></div>
-              <div class="article-abstract"><%= @context[:data][:article]['abstract'] %></div>
+              <div class="article-title"><%= @content_item[:entry]['title'] %></div>
+              <div class="article-created"><%= Time.at(@content_item[:entry]['created']).strftime('%Y-%m-%d at %H:%M') %></div>
+              <div class="article-abstract"><%= @content_item[:entry]['abstract'] %></div>
               <div class="article-content">
-                <%= format_markdown @context[:data][:article]['content'] %>
+                <%= format_markdown @content_item[:entry]['content'] %>
               </div>
             </div>
             <% end %>
@@ -36,28 +36,14 @@
              <%= include_partial "side-bar-navigation" %>
 
             <% if can_edit? %>
-            <div class="section">
-                <div class="side-bar-menu-list">
-                    <div class="item">
-                    <a href="/edit/<%= @context[:data][:article]['id'] %>?return_path=<%= @context[:path] %>">
-                        Edit this <%= @context[:data][:content_type]['noun'] %>
-                    </a>
-                    </div>
-                    <div class="item">
-                    <a 
-                        href="/delete/<%= @context[:data][:article]['id'] %>?return_path_success=/<%= @context[:data][:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
-                        Delete this <%= @context[:data][:content_type]['noun'] %>
-                    </a>
-                    </div>
-                </div>
-            </div>
+            <%= include_partial "edit-navigation" %>
             <% end %>
 
             <div class="section">
               <div class="title">More Articles</div>
               <div class="body">
                 <div class="side-bar-article-list">
-                  <% @context[:data][:articles].each do |article| %>
+                  <% @content_item[:entries].each do |article| %>
                       <div class="item">
                         <div class="article-title">
                           <a class="nav-link" href="/news/<%= article['id'] %>"><%= article['title'] %></a>

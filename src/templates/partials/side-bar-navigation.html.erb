@@ -3,7 +3,7 @@
  <div class="section">
     <div class="side-bar-menu-list">
         <div class="item">
-        <a href="/edit/<%= @context[:content]['id'] %>?return_path=<%= @context[:path] %>">
+        <a href="/edit/<%= @context[:content]['id'] %>?return_path_success=<%= @context[:path] %>&return_path_cancel=<%= @context[:path] %>">
             Edit this <%= @context[:content_type]['noun'] %>
         </a>
         </div>

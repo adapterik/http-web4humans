@@ -202,6 +202,7 @@ class SiteDB
     # TODO: apply rules to fields
     
     title = changes['title']
+    author = changes['author']
     abstract = changes['abstract']
     content = changes['content']
     content_type = changes['content_type']
@@ -210,10 +211,10 @@ class SiteDB
       
     query = '
       update content
-      set title = ?, content = ?, abstract = ?, last_updated = ?, content_type = ?
+      set title = ?, author = ?, content = ?, abstract = ?, last_updated = ?, content_type = ?
       where content.id = ?
     '
-    @db.execute query, [title, content, abstract, last_updated, content_type, content_id]
+    @db.execute query, [title, author, content, abstract, last_updated, content_type, content_id]
   end
 
   def add_content(content_item)

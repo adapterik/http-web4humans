@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body>
+    <%= include_partial "header" %>
+
+    <div class="body padding">
+      <h1>Confirm deletion</h1>
+        <form action="/delete/<%= @data[:content]["id"] %>" 
+            class="full-height-flex" 
+            method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="return_path_success" value="<%= @data[:return_path_success] %>">
+
+        <p>Really delete the <%= @data[:content_type]['noun'] %> with title <b><%= @data[:content]['title'] %></b>?</p>
+        
+        <div>
+          <button>Yes</button>
+          <a href="<%= @data[:return_path_cancel] %>">No</a>
+        </div> 
+        <div class="alert info margin-top">
+          Will return to <code><%= @data[:return_path_success] %></code> after Deleting or <code><%= @data[:return_path_cancel] %></code> after Canceling.
+        </div>
+    
+      </form>
+    </div>
+   
+    <%= include_partial "footer" %>
+  </body>
+</html>

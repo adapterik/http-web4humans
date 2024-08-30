@@ -31,6 +31,9 @@ class Delete < EndpointHandler
       'id' => edited_content_id,
       'title' => "Editing content item #{edited_content_id}"
     }
+    @context[:page] = {
+      'title' => @context[:content]['title']
+    }
 
     # Here we set up a special context just for this 
     # endpoint
@@ -60,7 +63,7 @@ class Delete < EndpointHandler
 
      @site_db.delete_content(content_id_to_delete)
 
-     ['', 302, {'location' => form_data['return_path']}]
+     ['', 302, {'location' => form_data['return_path_success']}]
   end
 
   def handle_post()
