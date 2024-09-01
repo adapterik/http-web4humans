@@ -67,6 +67,7 @@ table.layout-table td.menu-area {
 
 table.layout-table td.content-area {
     vertical-align: top;
+    padding: 16px;
 }
 
 /* sidebar */
@@ -444,4 +445,12 @@ textarea {
 
 .main-content {
     padding: 16px;
+}
+
+/* nicer paragraphs */
+
+/* If first in container, no top margin */
+
+h1:nth-child(1) {
+    margin-top: 0;
 }
