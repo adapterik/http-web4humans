@@ -12,10 +12,8 @@
             <%= include_partial "menu-list" %>
           </td>
           <td  class="content-area">
-            <div class="main-content">
-              <h1><%= @context[:page]['title'] %></h1>
-              <%= include_page_content %>
-            </div>
+            <h1><%= @context[:page]['title'] %></h1>
+            <%= include_page_content %>
           </td>
           <% if @context[:is_secure] %>
             <% if !@context[:session].nil? %>

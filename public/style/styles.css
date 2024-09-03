@@ -229,26 +229,25 @@ table.layout-table td.home-content-column2 {
 
 /* article */
 
-.content-area .article {
-    margin: 16px;
+.content-area > .article {
 }
 
-.content-area .article-title {
+.content-area > .article > .article-title {
     font-weight: bold;
     font-size: 120%;
 }
 
-.content-area .article-created {
+.content-area > .article > .article-created {
     font-style: italic;
     color: gray;
 }
 
-.content-area .article-abstract {
+.content-area > .article > .article-abstract {
     /* font-style: italic; */
     color: gray;
 }
 
-.content-area .article-content {
+.content-area > .article > .article-content {
     max-width: 600px;
 }
 
@@ -275,25 +274,24 @@ ul.side-bar-article-list {
 
 /* blog */
 
-.content-area .blog {
-    margin: 16px;
+.content-area > .blog {
 }
 
-.content-area .blog-title {
+.content-area > .blog > .blog-title {
     font-weight: bold;
     font-size: 120%;
 }
 
-.content-area .blog-abstract {
+.content-area > .blog > .blog-abstract {
     color: gray;
 }
 
-.content-area .blog-created {
+.content-area > .blog > .blog-created {
     font-style: italic;
     color: gray;
 }
 
-.content-area .blog-content {
+.content-area > .blog > .blog-content {
     max-width: 600px;
 }
 
