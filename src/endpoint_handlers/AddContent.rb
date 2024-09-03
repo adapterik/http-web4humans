@@ -65,15 +65,11 @@ class AddContent < EndpointHandler
       raise ClientError('Sorry, only "post" supported')
     end
 
-    
-
     if form_data['id'].length == 0
       form_data['id'] = SecureRandom.uuid
     end
 
     @site_db.add_content(form_data)
-
-   
 
     ['', 302, {'location' => "#{form_data['return_path_success']}"}]
   end

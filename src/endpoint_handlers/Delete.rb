@@ -1,6 +1,12 @@
 require_relative './EndpointHandler'
 
-class Delete < EndpointHandler
+class Delete < EndpointHandler 
+  
+def initialize(context, input)
+  super(context, input)
+  # For the generic "news" page content
+  @page_id = @context[:endpoint_name]
+end
   
   def ensure_can_edit()
      # Ensure authenticated session that can edit.
@@ -18,43 +24,43 @@ class Delete < EndpointHandler
   def handle_get()
     ensure_can_edit
 
+    page, content_type = fetch_page
+
+
     # This allows the header to highlight the page being edited.
-    edited_content_id = @context[:arguments][0]
+    content_id_to_delete = @context[:arguments][0]
+    content_to_delete = @site_db.get_content(content_id_to_delete)
+    content_to_delete_content_type = @site_db.get_content_type(content_to_delete['content_type'])
+
+    page['title'] = "Deleting #{content_to_delete_content_type['noun']} \"#{content_to_delete['title']}\""
+
+    request = {
+      ip: ENV['REMOTE_ADDR'],
+      referrer: ENV['HTTP_REFERER'],
+      ui: ENV['HTTP_USER_AGENT']
+    }
+
+    @context.merge!({
+      site: @site,
+      page: page,
+      content_type: content_type,
+      env: {
+        request: request
+      },
+    })
 
     return_path_success = @context[:params]['return_path_success']
     return_path_cancel = @context[:params]['return_path_cancel']
 
-    @context[:content_id] = edited_content_id
-
-    # Just to please the partials.
-    @context[:content] = {
-      'id' => edited_content_id,
-      'title' => "Editing content item #{edited_content_id}"
-    }
-    @context[:page] = {
-      'title' => @context[:content]['title']
-    }
-
-    # Here we set up a special context just for this 
-    # endpoint
-
-    content = @site_db.get_content(edited_content_id)
-
-    # TODO: the content type info can also be returned from query above,
-    content_type = @site_db.get_content_type(content['content_type'])
-
     @data = {
-      :content_id => edited_content_id,
-      :content => content,
-      :content_type => content_type,
+      :content_id => content_id_to_delete,
+      :content => content_to_delete,
+      :content_type => content_to_delete_content_type,
       :return_path_success => return_path_success,
       :return_path_cancel => return_path_cancel
     }
 
-    dir = File.dirname(File.realpath(__FILE__))
-    path = "#{dir}/../templates/endpoints/Delete.html.erb"
-    template = load_template(path)
-    template.result binding
+    render_template
   end
 
   def handle_delete(form_data) 

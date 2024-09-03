@@ -69,8 +69,6 @@ class Authenticate < EndpointHandler
     # two week expireation for login token...
     expires = 1000 * 60 * 60 * 24 * 2;
 
-
-    # ['', 302, {'location' => "/page/#{edited_page_id}"}]
     ['', 302, {
       'location' => data['return-path'],
       'Set-Cookie': "sid=#{session_id};path=/;expires=#{expires}"

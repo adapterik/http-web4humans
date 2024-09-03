@@ -3,39 +3,16 @@ require_relative './EndpointHandler'
 class News < EndpointHandler
   def initialize(context, input)
     super(context, input)
-    # In this case, the page content is the same as the endpoint
-    @content_id = @context[:endpoint_name]
+    # For the generic "news" page content
+    @page_id = @context[:endpoint_name]
 
+    # For news item
     @content_item = nil
   end
 
-  #
-  # There is still page content, even though we are not using the Page 
-  # renderer.
-  #
-  def include_content()
-    template = ERB.new @context[:content]['content']
-    fulfilled_content = template.result binding
-    rendered = format_markdown fulfilled_content
-    set_rendered(@context[:content_id], rendered)
-  end
 
   def handle_get()
-    #
-    # Here we fetch the what should be the page content for this endpoint.
-    # Yes, we are punning the endpont to the page id, but it works!
-    #
-    content = @site_db.get_content(@content_id)
-  
-    # If we can't find the content, we set the content to the "Not Found" content.
-    if content.nil?
-        original_content_id = @content_id
-        content_id = 'not_found'
-        content = @site_db.get_content(content_id)
-        content[:original_content_id] = original_content_id
-    end
-
-    content_type = @site_db.get_content_type content['content_type']
+    page, content_type = fetch_page
 
     #
     # The a list of articles - which is all content items of content type "article"
@@ -69,12 +46,10 @@ class News < EndpointHandler
       ui: ENV['HTTP_USER_AGENT']
     }
 
-    page = {}
-
     if article_id 
-      page['title'] = "#{content['title']}: #{article['title']}"
+      page['title'] = "#{page['title']}: #{article['title']}"
     else
-      page['title'] = content['title']
+      page['title'] = page['title']
     end
 
     @content_item = {
@@ -86,17 +61,12 @@ class News < EndpointHandler
     @context.merge!({
       site: @site,
       page: page,
-      content_id: @content_id,
-      content: content,
       content_type: content_type,
       env: {
         request: request
       },
     })
 
-    dir = File.dirname(File.realpath(__FILE__))
-    path = "#{dir}/../templates/endpoints/News.html.erb"
-    template = load_template(path)
-    template.result binding
+    render_template()
   end
 end

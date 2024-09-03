@@ -1,14 +1,13 @@
 <div class="footer">
-  <!-- because, for some reason, bootstrap columns are not flexboxes -->
-  <table width="100%" cellspacing="0" cellpadding="0">
+  <table class="layout-table" cellspacing="0" cellpadding="0">
     <tr>
-      <td width="50%" class="footer-copyright">
+      <td class="copyright-column">
         <small>Copyright © 2024 Adaptations</small>
       </td>
-      <td width="50%" class="footer-links">
+      <td class="nav-column">
         <% if false %>
-          <a href="/edit/<%= @context[:content]['id'] %>" >
-            edit this <%= @context[:content]['content_type'] %>
+          <a href="/edit/<%= @context[:page]['id'] %>" >
+            edit this <%= @context[:content_type]['noun'] %>
           </a>
         <% end %>
         <a href="/page/contact">contact</a>
@@ -23,7 +22,7 @@
               sign in
             </a>
           <% else %>
-            <form action="/authenticate" method="post" style="display: inline-block; margin-left: 16px;">
+            <form action="/authenticate" class="authenticate-form" method="post">
               <input type="hidden" name="_method" value="delete">
               <input type="hidden" name="return-path" value="<%= @context[:path] %>"> 
               <button type="submit">

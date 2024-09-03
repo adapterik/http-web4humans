@@ -112,6 +112,14 @@ class EndpointHandler
     end
   end
 
+  def include_part(part_content_id)
+    part = @site_db.get_content(part_content_id)
+    template = ERB.new part['content']
+    fulfilled_content = template.result binding
+    rendered = format_markdown fulfilled_content
+    set_rendered(part_content_id, rendered)
+  end
+
   def include_content()
     template = ERB.new @context[:content_item]['content']
     fulfilled_content = template.result binding
@@ -119,17 +127,33 @@ class EndpointHandler
     set_rendered(@context [:content_id], rendered)
   end
 
-  # def get_data()
-  #   # Extract the POSTed data
-  #   case env['CONTENT_TYPE']
-  #   when 'application/json'
-  #     data = JSON.parse(env['rack.input'].gets, symbolize_names: true)
-  #   when 'application/x-www-form-urlencoded'
-  #     data = URI.decode_www_form(env['rack.input'].gets)
-  #   else
-  #     raise ClientError.new("ERROR - content type not supported #{env['HTTP_CONTENT_TYPE']}")
-  #   end
-  # end
+
+  def include_page_content()
+    template = ERB.new @context[:page]['content']
+    fulfilled_content = template.result binding
+    rendered = format_markdown fulfilled_content
+    set_rendered(@context[:page]['id'], rendered)
+  end
+
+
+  def page_template()
+    class_name = self.class.name
+    path = "#{dir}/../templates/endpoints/#{class_name}.html.erb"
+    load_template(path)
+  end
+
+
+  def fetch_page() 
+    page = @site_db.get_content(@page_id)
+
+    if page.nil?
+      raise NotFound.new
+    end
+
+    content_type = @site_db.get_content_type page['content_type']
+
+    return page, content_type
+  end
   
   def handle_get()
     raise ClientErrorMethodNotAllowed.new 'GET'
@@ -145,6 +169,14 @@ class EndpointHandler
 
   def handle_delete()
     raise ClientErrorMethodNotAllowed.new 'DELETE'
+  end
+
+  def render_template()
+    dir = File.dirname(File.realpath(__FILE__))
+    class_name = self.class.name
+    path = "#{dir}/../templates/endpoints/#{class_name}.html.erb"
+    template = load_template(path)
+    template.result binding
   end
   
   def render()

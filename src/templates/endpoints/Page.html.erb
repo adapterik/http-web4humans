@@ -13,8 +13,8 @@
           </td>
           <td  class="content-area">
             <div class="main-content">
-              <h1><%= @context[:content]['title'] %></h1>
-              <%= include_content %>
+              <h1><%= @context[:page]['title'] %></h1>
+              <%= include_page_content %>
             </div>
           </td>
           <% if @context[:is_secure] %>
