@@ -1,11 +1,11 @@
 require_relative './EndpointHandler'
 require_relative '../responses'
 
-class Edit < EndpointHandler
+class EditSite < EndpointHandler
 
   def initialize(context, input)
     super(context, input)
-    # For the generic "news" page content
+    # For the generic page content
     @page_id = @context[:endpoint_name]
   end
   
@@ -19,6 +19,16 @@ class Edit < EndpointHandler
     end
   end
 
+  def get_field(data, field_path)
+    for path_element in field_path
+      return nil if data.nil?
+      return nil if not data.has_key? path_element
+
+      data = data[path_element]
+    end
+    data
+  end
+
   #
   # The GET method displays the editor form
   #
@@ -28,23 +38,25 @@ class Edit < EndpointHandler
     page, content_type = fetch_page
 
     # This allows the header to highlight the page being edited.
-    edited_content_id = @context[:arguments][0]
+    edited_site_id = @context[:arguments][0]
 
-    @context[:content_id] = edited_content_id
-
+    @context[:site_id] = edited_site_id
 
     # Here we set up a special context just for this 
     # endpoint
 
-    content = @site_db.get_content(edited_content_id)
+    site = nil
+    if not edited_site_id.nil?
+      site = @site_db.get_site(edited_site_id)
+    end
 
     # TODO: the content type info can also be returned from query above,
-    content_type = @site_db.get_content_type(content['content_type'])
+    # content_type = @site_db.get_content_type(content['content_type'])
 
-    page['title'] = "Editing content item #{edited_content_id}"
+    page['title'] = "Editing site #{edited_site_id}"
 
     request = {
-      ip: ENV['REMOTE_ADDR'],
+      ip: ENV['REMOTE_ADDR'], 
       referrer: ENV['HTTP_REFERER'],
       ui: ENV['HTTP_USER_AGENT']
     }
@@ -58,13 +70,9 @@ class Edit < EndpointHandler
       },
     })
 
-    # TODO: sort out the duplication; commonly used things required by
-    # partials should be in context.
-
     @data = {
-      :content_id => edited_content_id,
-      :content => content,
-      :content_type => content_type,
+      :site_id => edited_site_id,
+      :site => site,
       :return_path_success => @context[:params]['return_path_success'],
       :return_path_cancel => @context[:params]['return_path_cancel']
     }
@@ -75,7 +83,7 @@ class Edit < EndpointHandler
   def handle_post()
     ensure_can_edit
 
-    edited_content_id = @context[:arguments][0]
+    site_id = @context[:arguments][0]
 
     form_data = URI.decode_www_form(@input.gets).to_h
 
@@ -84,16 +92,18 @@ class Edit < EndpointHandler
     end
 
     fake_method = form_data['_method']
-    if fake_method.downcase != 'put'
-      raise ClientError('Sorry, only "put" supported')
-    end
 
-    @site_db.update_content(edited_content_id, form_data)
-
-    if form_data['apply'] == 'true'
-      ['', 302, {'location' => "/edit/#{edited_content_id}?return_path_success=#{form_data['return_path_success']}&return_path_cancel=#{form_data['return_path_cancel']}"}]
+    case fake_method.downcase
+    when 'post'
+      @site_db.add_site(form_data)
+    when 'put'
+      @site_db.update_site(site_id, form_data)
     else
-      ['', 302, {'location' => form_data['return_path_success']}]
+      raise ClientError('Sorry, only "put" and "post" supported')
     end
+
+    # @site_db.update_content(edited_content_id, form_data)
+
+    ['', 302, {'location' => form_data['return_path_success']}]
   end
 end

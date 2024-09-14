@@ -57,6 +57,10 @@ body {
     padding-left: 8px;
 }
 
+.layout-table.horizontal-gutter {
+    border-collapse: separate;
+    border-spacing: 0 16px;
+}
 /*
     footer
 */
@@ -413,6 +417,10 @@ button:active {
     font-family: monospace;
 }
 .site-added {
+    font-style: italic;
+}
+.site-abstract {
+    color: gray;
     font-style: italic;
 }
 

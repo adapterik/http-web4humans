@@ -7,88 +7,95 @@
     <%= include_partial "header" %>
 
     <div class="body" style="padding: 16px;">
-      <form action="/<%=  @context[:endpoint_name] %><% if @context[:endpoint_name] == 'edit' %>/<%= @data[:content]["id"] %><% end %>" 
+      <form action="/<%=  @context[:endpoint_name] %><% if @context[:endpoint_name] == 'edit-site' %>/<%= @data[:site]["id"] %><% end %>" 
             class="full-height-flex" 
             method="post">
-        <input type="hidden" name="_method" value="<% if @context[:endpoint_name] == 'add' %>post<% else %>put<% end %>">
+        <input type="hidden" name="_method" value="<% if @context[:endpoint_name] == 'add-site' %>post<% else %>put<% end %>">
         <input type="hidden" name="return_path_success" value="<%= @data[:return_path_success] %>">
-        <input type="hidden" name="return_path_cancel" value="<%= @data[:return_path_cancel] %>">
         <table class="content-edit-layout-table" >
           <tr style="margin-top: 8px">
             <td>ID</td>
             <td>
               <input type="text" 
                         name="id" 
-                        style="width: 100px;"
-                      <% if @context[:endpoint_name] != 'add' %> readonly <% else %><% end %>
-                        value="<%= @data[:content]["id"] %>">
+                        style="width: 100%;"
+                      <% if @context[:endpoint_name] != 'add-site' %> readonly <% else %><% end %>
+                        value="<%= get_field @data, [:site, "id"] %>">
             </td>
-            <td>Type</td>
+            <td>Status</td>
             <td>
               <input type="text" 
-                    name="content_type"  
-                    style="width: 100px;  background-color: silver;"
-                    tabindex="-1"
-                    readonly
-                    value="<%= encode_form_field @data[:content]["content_type"] %>">
+                    name="last_status" 
+                    style="width: 150px;"
+                    value="<%= get_field @data, [:site, "last_status"] %>">
             </td>
-            <td>Created</td>
+            <td>Added</td>
             <td>
               <input type="text" 
                     name="created"  
                     style="width: 175px; background-color: silver;"
                     tabindex="-1"
                     readonly
-                    value="<%= format_timestamp @data[:content]["created"] %>">
+                    value="<%= format_timestamp (get_field @data, [:site, "added"]) %>">
             </td>
           </tr>
           <tr>
             <td>Title</td>
-            <td>
+            <td colspan="3">
               <input type="text" 
                     name="title" 
-                    style="width: 100%"
-                    value="<%= encode_form_field @data[:content]["title"] %>">
-            </td>
-            <td>Author</td>
-            <td>
-              <input type="text" 
-                    name="author"  
                     style="width: 100%;"
-                    value="<%= encode_form_field @data[:content]["author"] %>">
+                    value="<%= get_field @data, [:site, "title"] %>">
             </td>
-
-            <td>Last Updated</td>
+          
+            <td>Last Checked</td>
             <td>
               <input type="text" 
-                    name="last_updated"  
+                    name="last_checked"  
                     style="width: 175px; background-color: silver;"
                     tabindex="-1"
                     readonly
-                    value="<%= format_timestamp @data[:content]["last_updated"] %>">
+                    value="<%= get_field @data, [:site, "last_checked"] %>">
             </td>
           </tr>
-          <tr>
+           <tr>
             <td>Abstract</td>
             <td colspan="5">
-              <input type="text" name="abstract" value="<%= @data[:content]['abstract'] %>" style="display: block; width: 90%;">
+              <input type="text" 
+                    name="abstract" 
+                    style="width: 100%;"
+                    value="<%= get_field @data, [:site, "abstract"] %>">
             </td>
           </tr>
           <tr>
-            <td><%= @data[:content_type]['noun'] %></td>
+            <td>URL</td>
+            <td colspan="5">
+              <input type="text" 
+                    name="url" 
+                    style="width: 100%;"
+                    value="<%= get_field @data, [:site, "url"] %>">
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="5">
+            </td>
+          </tr>
+          <tr>
+            <td>Description</td>
             <td colspan="5">
               <table width="100%">
                 <tr>
                   <td width="50%">
                     <textarea id="content-field" 
-                              name="content" 
+                              name="description" 
                               class="form-control" 
                               style="width: 100%; height: 500px;"
-                              rows="20" ><%= @data[:content]["content"] %></textarea>
+                              rows="20" ><%= get_field @data, [:site, "description"] %></textarea>
                   </td>
                   <td width="50%" style="vertical-align: top;">
                     <div id="mdpreview" class="markdown-preview markdown-rendered">
-                        <%= format_markdown @data[:content]['content'] %>
+                        <%= format_markdown get_field @data, [:site, 'description'] %>
 
                     </div>
                   </td>
@@ -98,7 +105,7 @@
           <tr>
             <td></td>
             <td>
-              <button name="apply" value="true">Apply</button>
+              <button>Apply</button>
               <button>Save</button>
                 <!-- TODO: this assumes content is a page, for now... -->
                 <a href="<%= @data[:return_path_cancel] %>">Cancel</a>

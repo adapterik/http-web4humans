@@ -18,41 +18,38 @@
                 <p>But, seriously, there are no news items on the site yet.</p>
               </div>
               <% else %>
-                <div class="site-list-header">
-                  <form action="/sites" method="get">
-                    <table class="layout-table">
-                      <tr>
-                        <td>
-                          Sort 
-                          <select name="sort_field">
-                            <option value="title" <% if @context[:params]['sort_field'] == 'title' %>selected<% end %>>Name</option>
-                            <option value="url" <% if @context[:params]['sort_field'] == 'url' %>selected<% end %>>URL</option>
-                            <option value="added" <% if @context[:params]['sort_field'] == 'added' %>selected<% end %>>Date Added</option>
-                          </select>
-                          <select name="sort_direction">
-                            <option value="ascending" <% if @context[:params]['sort_direction'] == 'ascending' %>selected<% end %>>ascending</option>
-                            <option value="descending" <% if @context[:params]['sort_direction'] == 'descending' %>selected<% end %>>descending</option>
-                          </select>
-                          <span style="margin-left: 16px; white-space: nowrap;">
-                            Search: <input name="search" type="search" value="<%= @context[:params]['search'] %>" style="width: 200px;">
-                          </span>
-                        </td>
-                        <td>
-                          <i><%= @context[:sites].length %> site<% if @context[:sites].length != 1 %>s<%end%></i>
-                        </td>
-                        <td style="text-align: right;">
-                          <button type="submit" >Apply</button>
-                        </td>
-                      </tr>
-                    </table>
-                  </form>
-                </div>
+                <% if @context[:selected_site] %>
+                  <% %>
+                  <div class="selected-site">
 
-                <% @context[:sites].each do |site| %>
+                    <div class="site-title">
+                      <a href="/news/<%= @context[:selected_site]['id'] %>"><%= @context[:selected_site]['title'] %></a>
+                    </div>
+
+                    <div class="site-url">
+                      <a href="<%= @context[:selected_site]['url'] %>" target="_blank"><%= @context[:selected_site]['url'] %></a>
+                    </div>
+                  
+                    <div class="site-added">
+                      <%= Time.at(@context[:selected_site]['added']).strftime('%Y-%m-%d at %H:%M') %>
+                    </div>
+
+                    <div class="site-abstract">
+                      <%=  @context[:selected_site]['abstract'] %>
+                    </div>
+
+                    <div class="site-description">
+                      <%= format_markdown @context[:selected_site]['description'] %>
+                    </div>
+
+                  </div>
+                <% else %>
+                 
+                  <% @context[:sites].each do |site| %>
                   <div class="site-list-item">
 
                     <div class="site-title">
-                      <a href="/news/<%= site['id'] %>"><%= site['title'] %></a>
+                      <a href="/sites/<%= site['id'] %>"><%= site['title'] %></a>
                     </div>
 
                     <div class="site-url">
@@ -63,19 +60,97 @@
                       <%= Time.at(site['added']).strftime('%Y-%m-%d at %H:%M') %>
                     </div>
 
-                    <div class="site-description">
-                      <%= site['description'] %>
+                    <div class="site-abstract">
+                      <%= site['abstract'] %>
                     </div>
 
                   </div>
 
+                  <% end %>
+                
                 <% end %>
               <% end %>
           </td>
             <% if @context[:is_secure] %>
-            <% if @context[:session].nil? %>
+            <% if not @context[:session].nil? %>
               <td class="side-bar">
                 <%= include_partial "side-bar-navigation" %>
+
+                <div class="section">
+                    <div class="side-bar-menu-list">
+                        <div class="item">
+                            <a href="/add-site?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%=  @context[:endpoint_name] %>">
+                                Add a Site
+                            </a>
+                        </div>
+
+                        <% if @context[:selected_site] %>
+                          <div class="item">
+                              <a href="/edit-site/<%= @context[:selected_site]['id'] %>?return_path_success=<%= @context[:path] %>&return_path_cancel=<%= @context[:path] %>">
+                                  Edit this Site
+                              </a>
+                          </div>
+                          <div class="item">
+                            <a href="/delete-site/<%= @context[:selected_site]['id'] %>?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%= @context[:path] %>">
+                                Delete this Site
+                            </a>
+                          </div>
+                        <% else %>
+                         
+                        <% end %>
+
+                    </div>
+                </div>
+
+                <div class="section">
+                    <% if @context[:selected_site].nil? %>
+                    <form action="/sites" method="get">
+                      <table class="layout-table horizontal-gutter">
+                          <tr>
+                            <th style="color: gray;">
+                              sort
+                            </th>
+                            <td>
+                              <select name="sort_field">
+                                <option value="title" <% if @context[:params]['sort_field'] == 'title' %>selected<% end %>>Name</option>
+                                <option value="url" <% if @context[:params]['sort_field'] == 'url' %>selected<% end %>>URL</option>
+                                <option value="added" <% if @context[:params]['sort_field'] == 'added' %>selected<% end %>>Added</option>
+                              </select>
+                              <select name="sort_direction">
+                                <option value="ascending" <% if @context[:params]['sort_direction'] == 'ascending' %>selected<% end %>>ascending</option>
+                                <option value="descending" <% if @context[:params]['sort_direction'] == 'descending' %>selected<% end %>>descending</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr>
+                            <th style="color: gray;">
+                              search
+                            </th>
+                            <td>
+                              <input name="search" type="search" value="<%= @context[:params]['search'] %>" style="width: 100%;">
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" style="text-align: center;">
+                               <i><%= @context[:sites].length %> site<% if @context[:sites].length != 1 %>s<%end%></i>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" style="text-align: center; vertical-align: top;">
+                              <button type="submit" >Apply</button>
+                            </td>
+                          </tr>
+                        </table>
+                    </form>
+                    <% else %>
+                      <div class="side-bar-menu-list">
+                        <div class="item">
+                          <a href="/sites">Back to Sites</a>
+                        </div>
+                      </div>
+                    <% end %>
+                </div>
+
               </td>
             <% end %>
           <% end %>

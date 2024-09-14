@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body class="http-only-site">
+    <%= include_partial "header" %>
+    <div class="body">
+      <table  class="layout-table"  cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="menu-area">
+            <%= include_partial "menu-list" %>
+          </td>
+          <td class="content-area">
+            <div class="selected-site">
+
+              <div class="site-title">
+                <a href="/news/<%= site['id'] %>"><%= site['title'] %></a>
+              </div>
+
+              <div class="site-url">
+                <a href="<%= site['url'] %>" target="_blank"><%= site['url'] %></a>
+              </div>
+            
+              <div class="site-added">
+                <%= Time.at(site['added']).strftime('%Y-%m-%d at %H:%M') %>
+              </div>
+
+              <div class="site-description">
+                <%= site['description'] %>
+              </div>
+
+            </div>
+
+          </td>
+            <% if @context[:is_secure] %>
+            <% if not @context[:session].nil? %>
+              <td class="side-bar">
+                <%= include_partial "side-bar-navigation" %>
+
+                <div class="section">
+                    <div class="side-bar-menu-list">
+                        <div class="item">
+                            <a href="/add-site?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%=  @context[:endpoint_name] %>">
+                                Add a Site
+                            </a>
+                        </div>
+                        <% if @selected-site %>
+                          <div class="item">
+                              <a href="/edit/<%= @content_item[:entry]['id'] %>?return_path_success=<%= @context[:path] %>&return_path_cancel=<%= @context[:path] %>">
+                                  Edit this <%= @content_item[:content_type]['noun'] %>
+                              </a>
+                          </div>
+                          <div class="item">
+                            <a href="/sites/delete/<%= @content_item[:entry]['id'] %>?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%= @context[:path] %>">
+                                Delete this <%= @content_item[:content_type]['noun'] %>
+                            </a>
+                          </div>
+                        <% end %>
+                    </div>
+                </div>
+
+              </td>
+            <% end %>
+          <% end %>
+          
+        </tr>
+      </table>
+      
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>

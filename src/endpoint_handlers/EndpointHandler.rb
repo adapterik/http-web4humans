@@ -5,6 +5,8 @@ require 'rouge/plugins/redcarpet'
 require_relative '../SiteDB'
 require_relative '../responses'
 
+include ERB::Util
+
 class MyRender < Redcarpet::Render::HTML
   include Rouge::Plugins::Redcarpet
 end
@@ -25,21 +27,40 @@ class EndpointHandler
     @markdown = Redcarpet::Markdown.new(MyRender, authlink: false, tables: true, fenced_code_blocks: true)
   end
 
+  #
+  # formatters
+  # 
+
   def format_timestamp(time)
+    return '' if time.nil?
+    
     Time.at(time).strftime('%Y-%m-%d at %H:%M:%S')
   end
 
 
   def format_date(time)
+    return '' if time.nil?
+
     Time.at(time).strftime('%Y-%m-%d')
   end
 
   def format_markdown(content)
-    # Kramdown::Document.new(content, :input => 'GFM', :syntax_highlighter => 'coderay').to_html
-    # CommonMarker.to_html(content)
+    return '' if content.nil?
+
     temp = @markdown.render(content)
     "<div class=\"rendered-markdown\">#{temp}</div>"
   end
+
+  #
+  # encoders
+  # 
+  def encode_form_field(value)
+    html_escape(value.to_s)
+  end
+
+  #
+  #
+  #
   
   def set_header(name, value)
     @header[name] = value
@@ -171,9 +192,11 @@ class EndpointHandler
     raise ClientErrorMethodNotAllowed.new 'DELETE'
   end
 
-  def render_template()
+  def render_template(class_name = nil)
     dir = File.dirname(File.realpath(__FILE__))
-    class_name = self.class.name
+    if class_name.nil?
+      class_name = self.class.name
+    end
     path = "#{dir}/../templates/endpoints/#{class_name}.html.erb"
     template = load_template(path)
     template.result binding

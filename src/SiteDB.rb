@@ -258,6 +258,7 @@ class SiteDB
     return record[0]
   end
 
+
   # Links
   
   def get_site(site_id)
@@ -273,6 +274,17 @@ class SiteDB
   end
 
 
+  def delete_site(site_id)
+    query = '
+      delete 
+      from sites
+      where 
+        id = ?
+    '
+    @db.execute query, [site_id]
+  end
+
+
   def get_sites(sort: nil, limit: nil)
     query = "
       select
@@ -284,6 +296,42 @@ class SiteDB
     content_list = @db.execute query
     content_list
   end
+
+  def update_site(site_id, changes)
+    title = changes['title']
+    url = changes['url']
+    description = changes['description']
+    abstract = changes['abstract']
+    last_checked = changes['last_checked']
+    last_status = changes['last_status']
+      
+    query = '
+      update sites
+      set title = ?, url = ?, abstract = ?, description = ?, last_checked = ?, last_status = ?
+      where id = ?
+    '
+    @db.execute query, [title, url, abstract, description, last_checked, last_status, site_id]
+  end  
+
+  def add_site(changes)
+    title = changes['title']
+    url = changes['url']
+    abstract = changes['abstract']
+    description = changes['description']
+    last_checked = changes['last_checked']
+    last_status = changes['last_status']
+
+    added = (Time.now.to_f).to_i
+    id = changes['id'] or SecureRandom.uuid
+
+    query = '
+      insert into sites
+      (id, title, abstract, description, url, added, last_checked, last_status)
+      values
+      (?, ?, ?, ?, ?, ?, ?, ?)
+    '
+    @db.execute query, [id, title, abstract, description, url, added, last_checked, last_status]
+  end  
 
   # sites / urls 
   

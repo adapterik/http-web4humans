@@ -31,7 +31,9 @@ class Sites < EndpointHandler
     sites = @site_db.list_sites(sort: sort, search: search)
 
     selected_site = nil
-
+    if @site_id 
+      selected_site = @site_db.get_site(@site_id)
+    end
 
     # Create the context object, which is a merging of
     # - the site, page def, menu, etc. see below
