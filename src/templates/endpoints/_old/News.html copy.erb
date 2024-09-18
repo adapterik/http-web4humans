@@ -38,13 +38,13 @@
             <div class="section">
                 <div class="side-bar-menu-list">
                     <div class="item">
-                    <a href="/edit/<%= @context[:data]['article']['id'] %>?return_path=<%= @context[:path] %>">
+                    <a href="/edit/<%= @context[:data]['article']['id'] %>?return_path=<%= @context[:request][:path] %>">
                         Edit this <%= @context[:data]['content_type']['noun'] %>
                     </a>
                     </div>
                     <div class="item">
                     <a 
-                        href="/delete/<%= @context[:data]['article']['id'] %>?return_path_success=/<%= @context[:data]['content_type']['id'] %>s&return_path_cancel=<%= @context[:path] %>">
+                        href="/delete/<%= @context[:data]['article']['id'] %>?return_path_success=/<%= @context[:data]['content_type']['id'] %>s&return_path_cancel=<%= @context[:request][:path] %>">
                         Delete this <%= @context[:data]['content_type']['noun'] %>
                     </a>
                     </div>

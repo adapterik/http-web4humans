@@ -3,22 +3,6 @@ require_relative '../responses'
 
 class EditSite < EndpointHandler
 
-  def initialize(context, input)
-    super(context, input)
-    # For the generic page content
-    @page_id = @context[:endpoint_name]
-  end
-  
-  def ensure_can_edit()
-     # Ensure authenticated session that can edit.
-     if @context[:session].nil?
-      raise ClientErrorUnauthorized.new
-    end
-    if @context[:session]["can_edit"] == 0
-      raise ClientErrorForbidden.new
-    end
-  end
-
   def get_field(data, field_path)
     for path_element in field_path
       return nil if data.nil?
@@ -38,7 +22,7 @@ class EditSite < EndpointHandler
     page, content_type = fetch_page
 
     # This allows the header to highlight the page being edited.
-    edited_site_id = @context[:arguments][0]
+    edited_site_id = @context[:request][:arguments][0]
 
     @context[:site_id] = edited_site_id
 
@@ -73,8 +57,8 @@ class EditSite < EndpointHandler
     @data = {
       :site_id => edited_site_id,
       :site => site,
-      :return_path_success => @context[:params]['return_path_success'],
-      :return_path_cancel => @context[:params]['return_path_cancel']
+      :return_path_success => @context[:request][:params]['return_path_success'],
+      :return_path_cancel => @context[:request][:params]['return_path_cancel']
     }
 
     render_template
@@ -83,7 +67,7 @@ class EditSite < EndpointHandler
   def handle_post()
     ensure_can_edit
 
-    site_id = @context[:arguments][0]
+    site_id = @context[:request][:arguments][0]
 
     form_data = URI.decode_www_form(@input.gets).to_h
 
@@ -104,6 +88,10 @@ class EditSite < EndpointHandler
 
     # @site_db.update_content(edited_content_id, form_data)
 
-    ['', 302, {'location' => form_data['return_path_success']}]
+    if form_data['apply'] == 'true'
+      ['', 302, {'location' => "/edit-site/#{site_id}?return_path_success=#{form_data['return_path_success']}&return_path_cancel=#{form_data['return_path_cancel']}"}]
+    else
+      ['', 302, {'location' => form_data['return_path_success']}]
+    end
   end
 end

@@ -1,16 +1,6 @@
 require_relative './EndpointHandler'
 
 class News < EndpointHandler
-  def initialize(context, input)
-    super(context, input)
-    # For the generic "news" page content
-    @page_id = @context[:endpoint_name]
-
-    # For news item
-    @content_item = nil
-  end
-
-
   def handle_get()
     page, content_type = fetch_page
 
@@ -22,7 +12,7 @@ class News < EndpointHandler
 
     article = nil
 
-    article_id = @context[:arguments][0]
+    article_id = @context[:request][:arguments][0]
 
     if article_id 
       article = @site_db.get_content article_id
@@ -45,6 +35,7 @@ class News < EndpointHandler
       referrer: ENV['HTTP_REFERER'],
       ui: ENV['HTTP_USER_AGENT']
     }
+  
 
     if article_id 
       page['title'] = "#{page['title']}: #{article['title']}"

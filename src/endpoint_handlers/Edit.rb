@@ -2,23 +2,6 @@ require_relative './EndpointHandler'
 require_relative '../responses'
 
 class Edit < EndpointHandler
-
-  def initialize(context, input)
-    super(context, input)
-    # For the generic "news" page content
-    @page_id = @context[:endpoint_name]
-  end
-  
-  def ensure_can_edit()
-     # Ensure authenticated session that can edit.
-     if @context[:session].nil?
-      raise ClientErrorUnauthorized.new
-    end
-    if @context[:session]["can_edit"] == 0
-      raise ClientErrorForbidden.new
-    end
-  end
-
   #
   # The GET method displays the editor form
   #
@@ -27,14 +10,9 @@ class Edit < EndpointHandler
 
     page, content_type = fetch_page
 
-    # This allows the header to highlight the page being edited.
-    edited_content_id = @context[:arguments][0]
+    edited_content_id = @context[:request][:arguments][0]
 
     @context[:content_id] = edited_content_id
-
-
-    # Here we set up a special context just for this 
-    # endpoint
 
     content = @site_db.get_content(edited_content_id)
 
@@ -65,8 +43,8 @@ class Edit < EndpointHandler
       :content_id => edited_content_id,
       :content => content,
       :content_type => content_type,
-      :return_path_success => @context[:params]['return_path_success'],
-      :return_path_cancel => @context[:params]['return_path_cancel']
+      :return_path_success => @context[:request][:params]['return_path_success'],
+      :return_path_cancel => @context[:request][:params]['return_path_cancel']
     }
 
     render_template
@@ -75,7 +53,7 @@ class Edit < EndpointHandler
   def handle_post()
     ensure_can_edit
 
-    edited_content_id = @context[:arguments][0]
+    edited_content_id = @context[:request][:arguments][0]
 
     form_data = URI.decode_www_form(@input.gets).to_h
 

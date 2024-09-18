@@ -1,11 +1,10 @@
 require_relative './EndpointHandler'
 
 class Home < EndpointHandler
-  def initialize(context, input)
-    super(context, input)
+  def set_page_id
     @page_id = 'home'
   end
-
+  
   def render_epoch_time(time)
     Time.at(time).strftime('%Y-%m-%d at %H:%M')
   end

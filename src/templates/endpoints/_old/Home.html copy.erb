@@ -79,12 +79,10 @@
             </table>
           </td>
 
-          <% if @context[:is_secure] %>
-            <% if !@context[:session].nil? %>
+          <% if is_authenticated? %>
               <td class="side-bar">
                 <%= include_partial "side-bar-navigation" %>
               </td>
-            <% end %>
           <% end %>
         </tr>
       </table>

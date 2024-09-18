@@ -5,9 +5,9 @@ class HomeContentList < EndpointHandler
     super(context, input)
     @content_id = context[:endpoint_name]
 
-    @tab = context[:arguments][0]
+    @tab = @context[:request][:arguments][0]
 
-    sort_column_param = @context[:params]['sort-column']
+    sort_column_param = @context[:request][:params]['sort-column']
 
     if sort_column_param.nil?
       @sort_column = 'title'
@@ -15,7 +15,7 @@ class HomeContentList < EndpointHandler
       @sort_column = sort_column_param
     end
 
-    sort_direction_param = @context[:params]['sort-direction']
+    sort_direction_param = @context[:request][:params]['sort-direction']
     if sort_direction_param.nil?
       @sort_direction = 'ascending'
     else
@@ -92,7 +92,7 @@ class HomeContentList < EndpointHandler
         # content_list = @site_db.list_content(content_type_id, sort)
         # 
         
-        search = @context[:params]['search']
+        search = @context[:request][:params]['search']
         content_list = @site_db.search_content(content_type_id, sort, search)
     end
 

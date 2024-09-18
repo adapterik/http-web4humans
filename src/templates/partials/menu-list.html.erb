@@ -1,6 +1,6 @@
 <div class="main-menu">
-    <div class="item<% if @context[:endpoint_name] == 'home' %> selected<% end %>"><a href="/home">Home</a></div>
-    <div class="item<% if @context[:endpoint_name] == 'news' %> selected<% end %>"><a href="/news">News</a></div>
-    <div class="item<% if @context[:endpoint_name] == 'blog' %> selected<% end %>"><a href="/blog">Blog</a></div>
-    <div class="item<% if @context[:endpoint_name] == 'sites' %> selected<% end %>"><a href="/sites" >Sites</a></div>
+    <div class="item<% if @context[:request][:endpoint_name] == 'home' %> selected<% end %>"><a href="/home">Home</a></div>
+    <div class="item<% if @context[:request][:endpoint_name] == 'news' %> selected<% end %>"><a href="/news">News</a></div>
+    <div class="item<% if @context[:request][:endpoint_name] == 'blog' %> selected<% end %>"><a href="/blog">Blog</a></div>
+    <div class="item<% if @context[:request][:endpoint_name] == 'sites' %> selected<% end %>"><a href="/sites" >Sites</a></div>
 </div>

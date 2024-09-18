@@ -1,18 +1,6 @@
 require_relative './EndpointHandler'
 
 class Sites < EndpointHandler
-  def initialize(context, input)
-    super(context, input)
-    # In this case, the page content is the same as the endpoint
-    @page_id = @context[:endpoint_name]
-
-    # Note that in the base case of going to the news home page, this 
-    # is going to be nil. In that case, later we will pluck off the most
-    # recent news item, if any.
-    @site_id = context[:arguments][0]
-  end
-
-
   def handle_get()
     page, content_type = fetch_page
 
@@ -21,18 +9,23 @@ class Sites < EndpointHandler
     #
 
     sort = nil
-    if @context[:params]['sort_field'] 
+    if @context[:request][:params]['sort_field'] 
       # TODO: project with a hash map.
-      sort = [@context[:params]['sort_field'], @context[:params]['sort_direction']]
+      sort = [@context[:request][:params]['sort_field'], @context[:request][:params]['sort_direction']]
     end
 
-    search = @context[:params]['search']
+    search = @context[:request][:params]['search']
 
     sites = @site_db.list_sites(sort: sort, search: search)
 
-    selected_site = nil
-    if @site_id 
-      selected_site = @site_db.get_site(@site_id)
+    puts "OH?"
+    puts @context
+
+    site_id = @context[:request][:arguments][0]
+    if site_id 
+      selected_site = @site_db.get_site(site_id)
+    else
+      selected_site = nil
     end
 
     # Create the context object, which is a merging of

@@ -14,24 +14,24 @@
         <a href="/page/accessibility">accessibility</a>
 
         <% if @context[:is_secure] %>
-          <% if @context[:session].nil? %>
-            <a  href="http://<%= @context[:host] %><%= @context[:path] %>">
+          <% if not @session.is_authenticated? %>
+            <a  href="http://<%= @context[:request][:host] %><%= @context[:request][:path] %>">
               non-secure site
             </a>
-            <a href="/signin?return-path=<%= @context[:path] %>">
+            <a href="/signin?return-path=<%= @context[:request][:path] %>">
               sign in
             </a>
           <% else %>
             <form action="/authenticate" class="authenticate-form" method="post">
               <input type="hidden" name="_method" value="delete">
-              <input type="hidden" name="return-path" value="<%= @context[:path] %>"> 
+              <input type="hidden" name="return-path" value="<%= @context[:request][:path] %>"> 
               <button type="submit">
-                sign out <b><%= @context[:session]["user_id"] %></b>
+                sign out <b><%= @session.user_id %></b>
               </button>
             </form>
           <% end %>
         <% else %>
-          <a  href="https://<%= @context[:host] %><%= @context[:path] %>">
+          <a  href="https://<%= @context[:request][:host] %><%= @context[:request][:path] %>">
             secure site
           </a>
         <% end %>

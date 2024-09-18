@@ -4,7 +4,7 @@ class Authenticate < EndpointHandler
   def handle_post()
     # ensure_can_edit
 
-    # edited_page_id = @context[:arguments][0]
+    # edited_page_id = @context[:request][:arguments][0]
 
     data = URI.decode_www_form(@input.gets).to_h
 
@@ -25,11 +25,11 @@ class Authenticate < EndpointHandler
 
   def handle_signout(data)
 
-    if @context[:session].nil?
+    if not @session.is_authenticated?
       raise ClientError.new('Sorry, cannot logout since not logged in!')
     end
 
-    session_id = @context[:session]["session_id"]
+    session_id = @session.session_id
 
     @site_db.remove_session(session_id)
 
@@ -52,7 +52,7 @@ class Authenticate < EndpointHandler
     end
 
     if username == 'owner'
-        if password != @context[:owner_password]
+        if password != @context[:app][:owner_password]
           raise ClientError.new "Sorry, bad root auth"
         end
     else 

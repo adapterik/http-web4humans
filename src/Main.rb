@@ -4,54 +4,34 @@ require 'erb'
 require 'uri'
 require_relative 'SiteDB'
 require_relative 'responses'
-
-# Gets a value out of a JSON compatible structure 
-def get_property(keys, context)
-  if keys.length == 0 or context.nil?
-    context
-  else
-    key = keys[0]
-    rest = keys[1..]
-    if context.is_a? Array and key.is_a? Integer
-      get_property rest, context[key]
-    elsif context.is_a? Object and key.is_a? Symbol
-      get_property rest, context[key]
-    else
-      raise InternalError.new("Property not supported for #{key}")
-    end
-  end
-end
-
+require_relative 'Session'
 
 class Main
   def initialize(home_dir)
+    # The root of the web app.
     @home_dir = home_dir
+
+    # The site database
     @site_db =  SiteDB.new()
 
+    # The core authentication is the site owner, which is built
+    # into the site database, although the password is dynamically
+    # set.
     @owner_password = ENV['OWNER_PASSWORD']
   end
 
-  def load_json(path)
-    file = File.open("#{@home_dir}/data/#{path}.json")
-    data = JSON.parse(file.read, symbolize_names: true)
-    file.close
-    data
-  end
-
   def handle_request(env)
-    # We accept any search params from the QUERY_STRING CGI key.
+    # We accept any search params from the QUERY_STRING CGI key, which are
+    # known as "params"
     query_string = env['QUERY_STRING']
     params = URI.decode_www_form(query_string).to_h
 
-    # extract from cookies.
+    # Extract the auth session from the cookie, and 
+    # evaluate
     # auth session from cookie
     cookies = CGI::Cookie.parse(env['HTTP_COOKIE'])
-    if cookies.has_key? 'sid'
-      session_id = cookies['sid']
-      session = @site_db.get_session(session_id)
-    else
-      session = nil 
-    end
+    session_id = cookies['sid'][0]
+    session = Session.new(session_id)
 
     # Finally, we get the path component
     path = env['PATH_INFO']
@@ -76,26 +56,52 @@ class Main
     
     is_secure = env['rack.url_scheme'] == 'https'
 
+    # The context structure is the core of sharing information from the 
+    # web app into templates.
+    # Here we set the top level app context - capturing facts about the 
+    # web app itself. 
+    # The endpoint handler will receive this, and then augment it.
+    # TODO: Perhaps we should partition the context based on who or
+    # which phase is adding the context.
+    # context = {
+    #   :method => env['REQUEST_METHOD'],
+    #   :is_secure => is_secure,
+    #   :host => env['SERVER_NAME'],
+    #   :session => session,
+    #   :path => path,
+    #   :path_list => path_list,
+    #   :arguments => arguments,
+    #   :params => params,
+    #   # need?
+    #   :endpoint_name => endpoint_name,
+    #   :handler_def => handler_def,
+    #   :owner_password =>  @owner_password
+    # }
+
     context = {
-      :method => env['REQUEST_METHOD'],
-      :is_secure => is_secure,
-      :host => env['SERVER_NAME'],
-      :session => session,
-      :path => path,
-      :path_list => path_list,
-      :arguments => arguments,
-      :params => params,
-      # need?
-      :endpoint_name => endpoint_name,
-      :handler_def => handler_def,
-      :owner_password =>  @owner_password
+      :app => {
+        :owner_password =>  @owner_password
+      },
+      :request => {
+        :method => env['REQUEST_METHOD'],
+        :is_secure => is_secure,
+        :host => env['SERVER_NAME'],
+        :path => path,
+        :path_list => path_list,
+        :arguments => arguments,
+        :params => params,
+        :endpoint_name => endpoint_name,
+      }
     }
 
-    endpoint_class = handler_def['class']
+    # This is how we dynamically create endpoint handler instances.
+    # We get the class name from the endpoint record. The class name
+    # forms the base of the dependency filename, and also the class name.
 
+    endpoint_class = handler_def['class']
     require_relative "./endpoint_handlers/#{endpoint_class}"
     class_obj = Object.const_get(endpoint_class)
-    class_obj.new(context, env['rack.input']).render
+    class_obj.new(context, session, env['rack.input']).render
   end
 
   def call(env)

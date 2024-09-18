@@ -12,13 +12,18 @@
             <%= include_partial "menu-list" %>
           </td>
           <td  class="content-area">
-            <h1><%= @context[:page]['title'] %></h1>
-            <%= include_page_content %>
+            <h1><%= @context[:alert]['title'] %></h1>
+            <%= format_markdown @context[:alert]['content'] %>
+
+            <%# maybe buttons... %>
+            <% if @context[:request][:params]['next_path'] %>
+            <a href="/<%= @context[:request][:params]['next_path'] %>">Return to <%= @context[:request][:params]['next_path'] %>
+            <% end %>
           </td>
           <% if is_authenticated? %>
-              <td class="side-bar">
-                <%= include_partial "side-bar-navigation" %>
-              </td>
+            <td class="side-bar">
+              <%= include_partial "side-bar-navigation" %>
+            </td>
           <% end %>
         </tr>
       </table>

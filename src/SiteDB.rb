@@ -188,14 +188,15 @@ class SiteDB
     content_record[0]
   end
 
-  def delete_content(content_id)
+  def delete_content(content_type, content_id)
     query = '
       delete 
       from content
       where 
+        content_type = ? and 
         id = ?
     '
-    @db.execute query, [content_id]
+    @db.execute query, [content_type, content_id]
   end
 
   def update_content(content_id, changes)

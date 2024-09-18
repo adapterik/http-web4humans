@@ -5,25 +5,25 @@
         <span style="font-weight: bold; color: gray;">HTTP only</span> | <b><%= @context[:page]["title"] %></b>
       </td>
       <td style="width: 100%; text-align: right;">
-        <% if @context[:is_secure] %>
-          <% if @context[:session].nil? %>
-            <a  href="http://<%= @context[:host] %><%= @context[:path] %>">
+        <% if @context[:request][:is_secure] %>
+          <% if @context[:request][:session].nil? %>
+            <a  href="http://<%= @context[:request][:host] %><%= @context[:request][:path] %>">
               non-secure site
             </a>
-            <a href="/signin?return-path=<%= @context[:path] %>">
+            <a href="/signin?return-path=<%= @context[:request][:path] %>">
               sign in
             </a>
           <% else %>
             <form action="/authenticate" method="post">
               <input type="hidden" name="_method" value="delete">
-              <input type="hidden" name="return-path" value="<%= @context[:path] %>"> <button class="btn btn-text" type="submit">
+              <input type="hidden" name="return-path" value="<%= @context[:request][:path] %>"> <button class="btn btn-text" type="submit">
                 <input type="text" value="" name="dummy" style="display: none;">
-                sign out <b><%= @context[:session]["user_id"] %></b>
+                sign out <b><%= @context[:request][:session]["user_id"] %></b>
               </button>
             </form>
           <% end %>
         <% else %>
-          <a  href="https://<%= @context[:host] %><%= @context[:path] %>">
+          <a  href="https://<%= @context[:request][:host] %><%= @context[:request][:path] %>">
             secure site
           </a>
         <% end %>

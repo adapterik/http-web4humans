@@ -13,6 +13,7 @@
             method="post">
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="return_path_success" value="<%= @data[:return_path_success] %>">
+        <input type="hidden" name="content_type" value="<%= @data[:content]['content_type'] %>">
 
         <p>Really delete the <%= @data[:content_type]['noun'] %> with title <b><%= @data[:content]['title'] %></b>?</p>
         

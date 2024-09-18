@@ -1,9 +1,8 @@
 require_relative './EndpointHandler'
 
 class Page < EndpointHandler
-  def initialize(context, input)
-    super(context, input)
-    @page_id = context[:arguments][0]
+  def set_page_id()
+    @page_id = @context[:request][:arguments][0]
   end
 
   def handle_get()

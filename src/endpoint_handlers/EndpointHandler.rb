@@ -16,8 +16,9 @@ class EndpointHandler
   @@template_cache = {}
   @@rendered_cache = {}
 
-  def initialize(context, input)
+  def initialize(context, session, input)
     @context = context
+    @session = session
     @input = input
 
     @header = {}
@@ -25,6 +26,12 @@ class EndpointHandler
     @site = {}
     @site_db =  SiteDB.new()
     @markdown = Redcarpet::Markdown.new(MyRender, authlink: false, tables: true, fenced_code_blocks: true)
+
+    set_page_id
+  end
+
+  def set_page_id()
+    @page_id = @context[:request][:endpoint_name]
   end
 
   #
@@ -95,17 +102,33 @@ class EndpointHandler
 
   def ensure_can_edit()
     # Ensure authenticated session that can edit.
-    if @context[:session].nil?
-     raise ClientErrorUnauthorized.new
-   end
-   if @context[:session]["can_edit"] == 0
-     raise ClientErrorForbidden.new
-   end
- end
+    if not @session.is_authenticated?
+      raise ClientErrorUnauthorized.new
+    end
+    if not @session.can_edit?
+      raise ClientErrorForbidden.new
+    end
+  end
+
+
+  # def ensure_can_edit()
+  #   # Ensure authenticated session that can edit.
+  #   # if @context[:request][:session].nil?
+  #   #  raise ClientErrorUnauthorized.new
+  #   # end
+  #   if @session.can_edit?
+  #     raise ClientErrorForbidden.new
+  #   end
+  # end
 
   def can_edit?()
     # Ensure authenticated session that can edit.
-    @context[:session] && @context[:session]["can_edit"] == 1
+    @session.can_edit?
+  end
+
+  def is_authenticated?() 
+      # @context[:request][:is_secure] && !@context[:request][:session].nil? 
+      @session.is_authenticated?
   end
   
   def get_rendered(path)
@@ -148,7 +171,6 @@ class EndpointHandler
     set_rendered(@context [:content_id], rendered)
   end
 
-
   def include_page_content()
     template = ERB.new @context[:page]['content']
     fulfilled_content = template.result binding
@@ -156,13 +178,11 @@ class EndpointHandler
     set_rendered(@context[:page]['id'], rendered)
   end
 
-
   def page_template()
     class_name = self.class.name
     path = "#{dir}/../templates/endpoints/#{class_name}.html.erb"
     load_template(path)
   end
-
 
   def fetch_page() 
     page = @site_db.get_content(@page_id)
@@ -201,9 +221,17 @@ class EndpointHandler
     template = load_template(path)
     template.result binding
   end
+
+  def render_misc_template(name)
+    dir = File.dirname(File.realpath(__FILE__))
+  
+    path = "#{dir}/../templates/misc/#{name}.html.erb"
+    template = load_template(path)
+    template.result binding
+  end
   
   def render()
-    case @context[:method]
+    case @context[:request][:method]
     when 'GET'
       handle_get()
     when 'POST'
@@ -213,7 +241,7 @@ class EndpointHandler
     when 'DELETE'
       handle_delete()
     else
-      raise ClientErrorMethodNotAllowed.new("ERROR - request method not handled: #{@context[:method]}")
+      raise ClientErrorMethodNotAllowed.new("ERROR - request method not handled: #{@context[:request][:method]}")
     end
   end
 end

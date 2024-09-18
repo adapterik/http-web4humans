@@ -10,7 +10,7 @@ class AddContent < EndpointHandler
     ensure_can_edit
 
     # This allows the header to highlight the page being edited.
-    content_type_id = @context[:arguments][0]
+    content_type_id = @context[:request][:arguments][0]
 
     # @context[:content_id] = edited_content_id
     @context[:content] = {
@@ -38,8 +38,8 @@ class AddContent < EndpointHandler
       :content_id => '',
       :content => content,
       :content_type => content_type,
-      :return_path_success => @context[:params]['return_path_success'],
-      :return_path_cancel => @context[:params]['return_path_cancel']
+      :return_path_success => @context[:request][:params]['return_path_success'],
+      :return_path_cancel => @context[:request][:params]['return_path_cancel']
     }
 
     dir = File.dirname(File.realpath(__FILE__))

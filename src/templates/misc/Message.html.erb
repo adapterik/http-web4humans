@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body>
+    <%= include_partial "header" %>
+
+    <div class="body padding">
+       <h1><%= @context[:message]['title'] %></h1>
+        <%= format_markdown @context[:message]['content'] %>
+
+        <%# maybe buttons... %>
+        <% if @context[:message]['next_path'] %>
+        <a href="<%= @context[:message]['next_path'] %>">Return to <%= @context[:message]['next_path'] %>
+        <% end %>
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>

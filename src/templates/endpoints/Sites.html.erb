@@ -71,27 +71,26 @@
                 <% end %>
               <% end %>
           </td>
-            <% if @context[:is_secure] %>
-            <% if not @context[:session].nil? %>
+            <% if is_authenticated? %>
               <td class="side-bar">
                 <%= include_partial "side-bar-navigation" %>
 
                 <div class="section">
                     <div class="side-bar-menu-list">
                         <div class="item">
-                            <a href="/add-site?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%=  @context[:endpoint_name] %>">
+                            <a href="/add-site?return_path_success=/<%= @context[:request][:endpoint_name] %>&return_path_cancel=<%=  @context[:request][:endpoint_name] %>">
                                 Add a Site
                             </a>
                         </div>
 
                         <% if @context[:selected_site] %>
                           <div class="item">
-                              <a href="/edit-site/<%= @context[:selected_site]['id'] %>?return_path_success=<%= @context[:path] %>&return_path_cancel=<%= @context[:path] %>">
+                              <a href="/edit-site/<%= @context[:selected_site]['id'] %>?return_path_success=<%= @context[:request][:path] %>&return_path_cancel=<%= @context[:request][:path] %>">
                                   Edit this Site
                               </a>
                           </div>
                           <div class="item">
-                            <a href="/delete-site/<%= @context[:selected_site]['id'] %>?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%= @context[:path] %>">
+                            <a href="/delete-site/<%= @context[:selected_site]['id'] %>?return_path_success=/<%= @context[:request][:endpoint_name] %>&return_path_cancel=<%= @context[:request][:path] %>">
                                 Delete this Site
                             </a>
                           </div>
@@ -112,13 +111,13 @@
                             </th>
                             <td>
                               <select name="sort_field">
-                                <option value="title" <% if @context[:params]['sort_field'] == 'title' %>selected<% end %>>Name</option>
-                                <option value="url" <% if @context[:params]['sort_field'] == 'url' %>selected<% end %>>URL</option>
-                                <option value="added" <% if @context[:params]['sort_field'] == 'added' %>selected<% end %>>Added</option>
+                                <option value="title" <% if @context[:request][:params]['sort_field'] == 'title' %>selected<% end %>>Name</option>
+                                <option value="url" <% if @context[:request][:params]['sort_field'] == 'url' %>selected<% end %>>URL</option>
+                                <option value="added" <% if @context[:request][:params]['sort_field'] == 'added' %>selected<% end %>>Added</option>
                               </select>
                               <select name="sort_direction">
-                                <option value="ascending" <% if @context[:params]['sort_direction'] == 'ascending' %>selected<% end %>>ascending</option>
-                                <option value="descending" <% if @context[:params]['sort_direction'] == 'descending' %>selected<% end %>>descending</option>
+                                <option value="ascending" <% if @context[:request][:params]['sort_direction'] == 'ascending' %>selected<% end %>>ascending</option>
+                                <option value="descending" <% if @context[:request][:params]['sort_direction'] == 'descending' %>selected<% end %>>descending</option>
                               </select>
                             </td>
                           </tr>
@@ -127,7 +126,7 @@
                               search
                             </th>
                             <td>
-                              <input name="search" type="search" value="<%= @context[:params]['search'] %>" style="width: 100%;">
+                              <input name="search" type="search" value="<%= @context[:request][:params]['search'] %>" style="width: 100%;">
                             </td>
                           </tr>
                           <tr>
@@ -152,7 +151,6 @@
                 </div>
 
               </td>
-            <% end %>
           <% end %>
           
         </tr>

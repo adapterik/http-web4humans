@@ -10,8 +10,8 @@
       <div class="alert primary">
         <form method="post" action="/authenticate">
           <input type="hidden" name="_method" value="post">
-          <input type="hidden" name="page" value="<%= @context[:params]["page"] %>">
-          <input type="hidden" name="return-path" value="<%= @context[:params]['return-path']  %>">
+          <input type="hidden" name="page" value="<%= @context[:request][:params]["page"] %>">
+          <input type="hidden" name="return-path" value="<%= @context[:request][:params]['return-path']  %>">
           <table>
             <tr>
               <td>Username</td>
@@ -27,7 +27,7 @@
                 <button type="submit" >
                   Sign in
                 </button>
-                <a href="<%= @context[:params]['return-path']  %>">
+                <a href="<%= @context[:request][:params]['return-path']  %>">
                   Cancel
                 </a>
 
@@ -36,9 +36,9 @@
           </table>
         </form>
       </div>
-      <% if @context[:params]['return-path'].length > 0 %>
+      <% if @context[:request][:params]['return-path'].length > 0 %>
         <div class="alert warning margin-top">
-          After signing in, your browser will be returned to <b><%= @context[:params]['return-path'] %></b>.
+          After signing in, your browser will be returned to <b><%= @context[:request][:params]['return-path'] %></b>.
         </div>
       <% end %>
     </div>

@@ -7,10 +7,10 @@
     <%= include_partial "header" %>
 
     <div class="body" style="padding: 16px;">
-      <form action="/<%=  @context[:endpoint_name] %><% if @context[:endpoint_name] == 'edit' %>/<%= @data[:content]["id"] %><% end %>" 
+      <form action="/<%=  @context[:request][:endpoint_name] %><% if @context[:request][:endpoint_name] == 'edit' %>/<%= @data[:content]["id"] %><% end %>" 
             class="full-height-flex" 
             method="post">
-        <input type="hidden" name="_method" value="<% if @context[:endpoint_name] == 'add' %>post<% else %>put<% end %>">
+        <input type="hidden" name="_method" value="<% if @context[:request][:endpoint_name] == 'add' %>post<% else %>put<% end %>">
         <input type="hidden" name="return_path_success" value="<%= @data[:return_path_success] %>">
         <input type="hidden" name="return_path_cancel" value="<%= @data[:return_path_cancel] %>">
         <table class="content-edit-layout-table" >
@@ -20,7 +20,7 @@
               <input type="text" 
                         name="id" 
                         style="width: 100px;"
-                      <% if @context[:endpoint_name] != 'add' %> readonly <% else %><% end %>
+                      <% if @context[:request][:endpoint_name] != 'add' %> readonly <% else %><% end %>
                         value="<%= @data[:content]["id"] %>">
             </td>
             <td>Type</td>
@@ -30,7 +30,7 @@
                     style="width: 100px;  background-color: silver;"
                     tabindex="-1"
                     readonly
-                    value="<%= encode_form_field @data[:content]["content_type"] %>">
+                    value="<%= encode_form_field @data[:content_type]['id'] %>">
             </td>
             <td>Created</td>
             <td>
@@ -100,8 +100,7 @@
             <td>
               <button name="apply" value="true">Apply</button>
               <button>Save</button>
-                <!-- TODO: this assumes content is a page, for now... -->
-                <a href="<%= @data[:return_path_cancel] %>">Cancel</a>
+              <a href="<%= @data[:return_path_cancel] %>">Cancel</a>
             </td>
           </tr>
         </table>

@@ -1,12 +1,6 @@
 require_relative './EndpointHandler'
 
 class SignIn < EndpointHandler
-  def initialize(context, input)
-    super(context, input)
-    @page_id = context[:endpoint_name]
-  end
-
-
   def handle_get()
     page, content_type = fetch_page
 

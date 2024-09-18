@@ -33,26 +33,25 @@
             </div>
 
           </td>
-            <% if @context[:is_secure] %>
-            <% if not @context[:session].nil? %>
+            <% if is_authenticated? %>
               <td class="side-bar">
                 <%= include_partial "side-bar-navigation" %>
 
                 <div class="section">
                     <div class="side-bar-menu-list">
                         <div class="item">
-                            <a href="/add-site?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%=  @context[:endpoint_name] %>">
+                            <a href="/add-site?return_path_success=/<%= @context[:request][:endpoint_name] %>&return_path_cancel=<%=  @context[:request][:endpoint_name] %>">
                                 Add a Site
                             </a>
                         </div>
                         <% if @selected-site %>
                           <div class="item">
-                              <a href="/edit/<%= @content_item[:entry]['id'] %>?return_path_success=<%= @context[:path] %>&return_path_cancel=<%= @context[:path] %>">
+                              <a href="/edit/<%= @content_item[:entry]['id'] %>?return_path_success=<%= @context[:request][:path] %>&return_path_cancel=<%= @context[:request][:path] %>">
                                   Edit this <%= @content_item[:content_type]['noun'] %>
                               </a>
                           </div>
                           <div class="item">
-                            <a href="/sites/delete/<%= @content_item[:entry]['id'] %>?return_path_success=/<%= @context[:endpoint_name] %>&return_path_cancel=<%= @context[:path] %>">
+                            <a href="/sites/delete/<%= @content_item[:entry]['id'] %>?return_path_success=/<%= @context[:request][:endpoint_name] %>&return_path_cancel=<%= @context[:request][:path] %>">
                                 Delete this <%= @content_item[:content_type]['noun'] %>
                             </a>
                           </div>
@@ -61,7 +60,7 @@
                 </div>
 
               </td>
-            <% end %>
+
           <% end %>
           
         </tr>

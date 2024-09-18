@@ -1,15 +1,15 @@
-
+<%# COMMENT HERE %>
  <% if can_edit? %>
  <div class="section">
     <div class="side-bar-menu-list">
         <div class="item">
-        <a href="/edit/<%= @context[:page]['id'] %>?return_path_success=<%= @context[:path] %>&return_path_cancel=<%= @context[:path] %>">
+        <a href="/edit/<%= @context[:page]['id'] %>?return_path_success=<%= @context[:request][:path] %>&return_path_cancel=<%= @context[:request][:path] %>">
             Edit this <%= @context[:content_type]['noun'] %>
         </a>
         </div>
         <div class="item">
         <a 
-            href="/delete/<%= @context[:page]['id'] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:path] %>">
+            href="/delete/<%= @context[:page]['id'] %>?return_path_success=/home/<%= @context[:content_type]['id'] %>s&return_path_cancel=<%= @context[:request][:path] %>">
             Delete this <%= @context[:content_type]['noun'] %>
         </a>
         </div>
