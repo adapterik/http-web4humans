@@ -52,10 +52,6 @@ class Delete < EndpointHandler
     content_id = @context[:request][:arguments][0]
     content_type = form_data['content_type']
 
-    puts "DELETING"
-    puts content_type
-    puts content_id
-
     @site_db.delete_content content_type, content_id
 
     content = """

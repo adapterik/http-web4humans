@@ -18,9 +18,6 @@ class Sites < EndpointHandler
 
     sites = @site_db.list_sites(sort: sort, search: search)
 
-    puts "OH?"
-    puts @context
-
     site_id = @context[:request][:arguments][0]
     if site_id 
       selected_site = @site_db.get_site(site_id)
