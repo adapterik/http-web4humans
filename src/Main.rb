@@ -53,7 +53,7 @@ class Main
     if handler_def.nil?
       raise ClientError.new("ERROR - handler not found: #{endpoint_name}")
     end
-    
+
     is_secure = env['rack.url_scheme'] == 'https'
 
     # The context structure is the core of sharing information from the 

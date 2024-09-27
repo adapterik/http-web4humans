@@ -35,7 +35,7 @@ class Session
 
         session_record = @site_db.get_session(@sid)
         now = Time.now.to_i
-        if session_record && session_record['expires'] > now
+        if session_record && now > session_record['expires']
             @site_db.remove_session(@sid)
             @sid = nil
             session_record = nil

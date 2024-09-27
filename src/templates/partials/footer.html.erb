@@ -2,7 +2,7 @@
   <table class="layout-table" cellspacing="0" cellpadding="0">
     <tr>
       <td class="copyright-column">
-        <small>Copyright © 2024 Adaptations</small>
+        <small>Copyright © 2024 Tech4Humans (Adaptations)</small>
       </td>
       <td class="nav-column">
         <% if false %>
@@ -13,7 +13,7 @@
         <a href="/page/contact">contact</a>
         <a href="/page/accessibility">accessibility</a>
 
-        <% if @context[:is_secure] %>
+        <% if @context[:request][:is_secure] %>
           <% if not @session.is_authenticated? %>
             <a  href="http://<%= @context[:request][:host] %><%= @context[:request][:path] %>">
               non-secure site

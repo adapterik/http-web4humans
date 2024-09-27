@@ -66,7 +66,7 @@ class SiteDB
       (id, user_id, created, expires) 
       values 
       (?, ?, ?, ?)
-    ', [session_id, user_id, now, expires]
+    ', [session_id, user_id, now, expires] 
     session_id
   end
 
@@ -85,12 +85,40 @@ class SiteDB
         u.name as user_name,
         u.can_view as can_view,
         u.can_edit as can_edit,
-        u.can_manage as can_manage
+        u.can_manage as can_manage,
+        s.created as created,
+        s.expires as expires
       from auth_sessions s, users u 
       where s.id = ? and s.user_id = u.id 
     '
     session = @db.execute query, [session_id]
     session[0]
+  end
+
+  def list_sessions()
+    query = '
+      select 
+        s.id as session_id,
+        s.user_id as user_id,
+        u.name as user_name,
+        u.can_view as can_view,
+        u.can_edit as can_edit,
+        u.can_manage as can_manage,
+        s.created as created,
+        s.expires as expires
+      from auth_sessions s, users u 
+      where s.user_id = u.id 
+    '
+    @db.execute query, []
+  end
+
+  def list_auth_sessions()
+    query = '
+      select 
+        *
+      from auth_sessions
+    '
+    @db.execute query, []
   end
 
   # NAVIGATION
