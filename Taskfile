@@ -33,7 +33,7 @@ function build-image {
 }
 
 function run-dev-server {
-    docker container run --env OWNER_PASSWORD=abc123 -p 3000:3000 local/http-only:dev 
+    docker run --env OWNER_PASSWORD=abc123 -p 3000:3000 local/http-only:dev 
 }
 
 function start-dev-server {

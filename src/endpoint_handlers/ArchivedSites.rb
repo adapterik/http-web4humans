@@ -6,22 +6,22 @@ class ArchivedSites < EndpointHandler
     def set_page_id
         # TODO: make a more generic initialization callback for initialize...
         @archive_name = @context[:request][:arguments][0]
-
         possible_archive_id = @context[:request][:arguments][1]
 
         # Note that we allow nothing in the id part, which accomodates hitting the
         # url without a page - in which case we default to the first page.
         if possible_archive_id.nil? or possible_archive_id.length == 0
           @archive_id = 1
+          @page_id = "#{@archive_name}-archive-page"
         elsif possible_archive_id.match?(/\d+/)
           @archive_id = possible_archive_id.to_i
+          @page_id = "#{@archive_name}-archive-page"
         else
           @archive_id = nil
-          @page_id = "#{possible_archive_id}-#{@archive_name}-archive"
+          @page_id = "#{@archive_name}-archive-about"
         end
 
-        puts 'HMM'
-        puts @archive_name
+         
 
         # trail = @context[:request][:params][:trail]
         # @trail = trail.nil? ? [] : trail.split(',')
@@ -92,9 +92,6 @@ class ArchivedSites < EndpointHandler
       page = {}
 
       page['title'] = "#{metadata['head']['title']} | #{@archive_name} archive #{page['title']}"
-
-      puts 'TITLE??'
-      puts metadata
 
       # page_path = "/archive-raw/#{archive_name}/#{archive_id}"
 
@@ -190,6 +187,7 @@ class ArchivedSites < EndpointHandler
         when 'inprogress'
           handle_message 'Page in inprogress State', "The requested archive page <code>#{uri}</code> was being imported when it was interrupted"
         when 'error'
+          puts 'ok, error.'
           handle_message 'Error Fetching Page', "The requested archive page <code>#{uri}</code> threw an error during import"
         when 'external'
           handle_message 'External Page Not Supported', "The requested external page <code>#{uri}</code> is not yet supported"
