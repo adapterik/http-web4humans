@@ -1,0 +1,46 @@
+<div data-element="archive-body">
+  <h1>A Shell Server for HTTP</h1>
+  The HTTP protocol is very simple. The following is an example of a
+  server program written in sh:
+  <xmp>#! /bin/sh
+    read get docid
+    echo ""
+    echo Here is the data
+  </xmp>
+  <pre></pre>
+  The docid may have a trailing carriage return to be stripped off on
+  some systems. You can modify that script to produce the data you actually
+  want. The <a name="1" href="/archive/cern/38" original-href="../MarkUp/MarkUp.html" archive-page-id="38">HTML</a> syntax for marked-up text is fairly simple, but if
+  you want just to send plain text, then just send the  &amp;lt.PLAINTEXT&amp;gt.
+  tag first:
+  <xmp>#! /bin/sh
+    read get docid
+    echo "</xmp>
+  <pre><plaintext>"
+cat $docid
+
+</plaintext></pre>
+  When you have written your script, set the execute bit and then configure
+  the <a name="2" href="/archive/cern/735" original-href="../Daemon/User/Installation.html#2" archive-page-id="735">inet daemon to run it</a> . A few more examples:
+  <ul>
+    <li>
+      <a name="5" href="/archive/cern/793" original-href="../Tools/HTMLGeneration/dir2html.txt" archive-page-id="793">A sh script to generate a menu for files in a directory</a>
+    </li>
+    <li>
+      <a name="6" href="/archive/cern/794" original-href="../Tools/HTMLGeneration/ls2html.awk.txt" archive-page-id="794">An awk script to generate menu from a list of files</a> .
+    </li>
+    <li>
+      <a name="7" href="/archive/cern/795" original-href="../Daemon/Implementation/asis.txt" archive-page-id="795">A perl script for all kinds of stuff on the ASIS server</a>
+    </li>
+  </ul>
+  If you know the perl language, then that is a powerful (if otherwise
+  incomprehensible) language with which to hack together a server. 
+  <p>
+    See also<a name="3" href="/archive/cern/723" original-href="ServerWriter.html" archive-page-id="723"> a case study of mapping a database onto the web</a> .</p>
+  <p>
+    All contributions to these examples welcome!</p>
+  <p>
+    _________________________________________________________________
+  </p>
+  <address><a name="0" href="/archive/cern/796" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="796">Tim BL</a></address>
+</div>

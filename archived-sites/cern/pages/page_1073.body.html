@@ -1,0 +1,22 @@
+<div data-element="archive-body">
+  <h1>Illegal constructs</h1>
+  These are just plain broken. They're not legal SGML, and
+  I don't know of any implementations that support them.
+  <h2><a name="structure">Document structure</a></h2>
+  Here's <a name="id6" href="/archive/cern/1069" original-href="recommended.html" archive-page-id="1069">an anchor with a 
+    <p>
+      paragraph break</p>
+  </a> in it.
+  <h3>broken 
+    <h4>headers</h4>
+  </h3>
+  busted headers
+  <h2>Body Elements</h2>
+  <h3>Anchors</h3>
+  <a name="xyz">Sample anchor</a>
+  <a name="xyz" href="#xyz">ID already in use</a>
+  I think this is a tag, since SHORTTAG YES is in the SGML decl: &lt;&gt;
+  <p>
+    <gggggreeeeeeeeeeeeeeeeaaatbiglongnameofatagthatsreallyjustjunk>
+    </gggggreeeeeeeeeeeeeeeeaaatbiglongnameofatagthatsreallyjustjunk></p>
+</div>

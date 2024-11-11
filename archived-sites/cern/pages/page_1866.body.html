@@ -1,0 +1,77 @@
+<div data-element="archive-body">
+  <address>Last Modified 22/9/92 by RC,CTB
+  </address>
+  <h1>Profile elements</h1>
+  <h2>AUTH</h2>
+  Syntax:
+  <xmp>		AUTH WHO=String PWD=String	
+  </xmp>
+  <pre></pre>
+  This specifies the authorisation for the user, giving the user ID
+  and password. Note: this ID is not the same as the one used in CLIENT:
+  it is possible that the ID is that of a person who happens to use
+  the client through a different user.
+  <h2>PUBKEY</h2>
+  Syntax:
+  <xmp>		PUBKEY KEY=String	
+  </xmp>
+  <pre></pre>
+  Public key, in case the server wants to encrypt data before sending
+  it. See a very good summary of public-key cryptosystems in practice,
+  including key certification issues, in the <a name="1" href="/archive/cern/4061" original-href="../../../PGP/pgpguide.doc" archive-page-id="4061">documentation of PGP</a> .
+  <h2>CLIENT</h2>
+  Information about the person requesting the data, the user ID (which
+  may be different from the authorisation user ID), the host (s)he's
+  on, the email address and the organisation worked for. The syntax
+  is
+  <xmp>
+    CLIENT ID=String HOST=String EMAIL=String ORG=String 
+  </xmp>
+  <pre></pre>
+  <dl>
+    <dt>ID
+    </dt>
+    <dd> represents the user on the given host.
+    </dd>
+    <dt>HOST
+    </dt>
+    <dd> The full domain name of the host machine on which the client
+      program is running.
+    </dd>
+    <dt>EMAIL
+    </dt>
+    <dd> The contact address for the client. Optional.
+    </dd>
+    <dt>ORG
+    </dt>
+    <dd> The text of the client's affiliation. Optional.
+    </dd>
+  </dl>
+  [JFG] Perhaps use standard RFC-822 fields ? X.500 needed again !
+  <p>
+    I like the EMAIL field: servers can do some direct marketing :-) More
+    seriously, inform their regular users on data updates, discount rates,
+    change of public key, ... [RC: in other words, junk-hypertext. Forbidden
+    in Germany? :-)  ]
+  </p>
+  <h2>FORMAT</h2>
+  <xmp>		FORMAT 
+    NAME=String PENALTY=String
+  </xmp>
+  <pre></pre>
+  Describes a format the client can accept, and the penalty. Multiple
+  instances of  FORMAT add them to a list of acceptable formats.
+  <p>
+    See <a name="3" href="/archive/cern/1049" original-href="../../Protocols/Penalties.html" archive-page-id="1049">Rules for penalty calculation</a> .
+  </p>
+  <h2>SOFTWARE</h2>
+  <xmp>		SOFTWARE PLATFORM=String PROGRAM=String VERSION=String 
+  </xmp>
+  <pre></pre>
+  Information about the client software: the platform it's being run
+  on, the program being used and its version.
+  <p>
+    Allows servers to adapt to the "market".</p>
+  <p>
+    __________________________________________________<a name="0" href="/archive/cern/24" original-href="http://info.cern.ch/hypertext/WWW/People.html#11" archive-page-id="24">CTB</a></p>
+</div>

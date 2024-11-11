@@ -1,0 +1,39 @@
+<div data-element="archive-body">
+  <h1>Getting the WWW files</h1>
+  Read this if you have not yet got the WWW files you need, and you
+  cannot NFS mount a directory on which they reside.
+  <p>
+    The source and binary of WWW project files are currently available
+    (see <a name="1" href="/archive/cern/225" original-href="http://info.cern.ch/hypertext/Copyright.html" archive-page-id="225">copyright</a> ) by anonymous FTP from node info.cern.ch.  This node
+    is currently 128.141.201.74 but THIS MAY CHANGE. The files are compressed
+    tape archive files (.tar.Z).  To get  a file using anonymous FTP,
+    use user name "anonymous", and your email address as a password:-
+  </p>
+  <xmp>			&gt; ftp info.cern.ch
+    Enter user name: anonymous
+    Password: me@myhost.edu
+    ftp&gt; cd /pub/www/src
+    ftp&gt; binary
+    ftp&gt; get WWWLineMode_vvv.tar.Z
+    ftp&gt; quit
+    &gt;
+  </xmp>
+  <pre></pre>
+  The file name will depend on the product you want.  Here vvv is the
+  version number of the software.
+  <p>
+    Once you have the compressed tar file, you must uncompress it and
+    unwrap it.
+  </p>
+  <xmp>			uncompress WWWLineMode_vvv.tar.Z
+  </xmp>
+  <pre></pre>
+  This will make a rather larger file with the name without the ".Z".
+  To unwrap it,
+  <xmp>			tar xvf WWWLineMode_vvv.tar
+  </xmp>
+  <pre></pre>
+  Now you should <a name="2" href="/archive/cern/226" original-href="Installation.html" archive-page-id="226">install the line mode browser</a> , <a name="3" href="/archive/cern/139" original-href="../../Daemon/User/Guide.html" archive-page-id="139">install the server</a>
+  ,<a name="4" href="/archive/cern/227" original-href="../../../Viola/Installation.html" archive-page-id="227"> install Viola</a> , etc.
+  <address><a name="0" href="/archive/cern/224" original-href="http://info.cern.ch/hypertext/TBL_Disclaimer.html" archive-page-id="224">Tim BL</a></address>
+</div>

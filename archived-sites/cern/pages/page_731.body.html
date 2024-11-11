@@ -1,0 +1,129 @@
+<div data-element="archive-body">
+  <h1>Commands</h1>
+  The following commands are available at the prompt within<a name="1" href="/archive/cern/137" original-href="QuickGuide.html" archive-page-id="137"> www</a> . Some
+  are disabled when not applicable. All commands may be abbreviated.
+  Case is not significant.
+  <dl>
+    <dt>
+      <a name="8">Help</a>
+    </dt>
+    <dd> Gives a list of available commands depending on the context,
+      the version number of the www program, and the<a name="4" href="/archive/cern/185" original-href="http://info.cern.ch/hypertext/WWW/Addressing/Addressing.html" archive-page-id="185"> hypertext address</a> ,
+      (or UDI) of the document you are reading.
+    </dd>
+    <dt>&amp;lt.Return&amp;gt.
+    </dt>
+    <dd> Just hitting Return displays the next page of the current
+      document.
+    </dd>
+    <dt>&amp;lt.number&amp;gt.
+    </dt>
+    <dd> Typing a number by itself follows the corresponding
+      reference from the currently displayed document.
+    </dd>
+    <dt>Find keywords
+    </dt>
+    <dd> Queries the current index with the supplied keywords
+      (separated by blanks). The interpretation of the keywords depends
+      on the particular information server you're looking at. In most cases,
+      it will search a database for entries matching the keywords, and will
+      display the results with possibly links to further details. For more
+      complex queries, instructions should be present in the cover page.
+      The "Find" command can be omitted if the first keyword does not conflict
+      with another www command.
+    </dd>
+    <dt>Back
+    </dt>
+    <dd> Goes back to the document you were reading before.
+    </dd>
+    <dt>Home
+    </dt>
+    <dd> Goes back to the first document you were reading.
+    </dd>
+    <dt>Recall
+    </dt>
+    <dd> Without a parameter, gives a numbered list of the documents
+      you have visited.  To select one, type "Recall" followed by the number.
+    </dd>
+    <dt>
+      <a name="2">List</a>
+    </dt>
+    <dd> Gives a numbered list of the links from the current document,
+      giving the title of the target documents (or addresses if no title).
+      To follow a link, type the number by itself as above.
+    </dd>
+    <dt>Next, Previous
+    </dt>
+    <dd> Goes to the next or previous document in the list of
+      pointers from the document that led to the current one. This is better
+      explained with an example: suppose you are reading a document which
+      looks like a menu, and you want to read all entries in turn. You first
+      type "1" to read the first referred document (by following the first
+      link), and then you type "next" or just "n" to read the next one from
+      the menu, without actually coming back to the menu and typing "2",
+      etc.
+    </dd>
+    <dt>Go &amp;lt.address&amp;gt.
+    </dt>
+    <dd> Goes to the document represented by the given<a name="5" href="/archive/cern/185" original-href="http://info.cern.ch/hypertext/WWW/Addressing/Addressing.html" archive-page-id="185"> hypertext
+        address</a> , which is interpreted relatively to the current document.
+    </dd>
+    <dt>Up, Down
+    </dt>
+    <dd> Scrolls up or down one page in the current document.
+    </dd>
+    <dt>
+      <a name="6">Source</a>
+    </dt>
+    <dd> Followed by another command, causes raw source to be generated
+      for that command. Useful for printing postscript files without formatting,
+      with SOURCE PRINT.  See <a name="7" href="/archive/cern/1063" original-href="SourceExamples.html" archive-page-id="1063">examples</a> .
+    </dd>
+    <dt>Top, Bottom
+    </dt>
+    <dd> Goes to the top or the bottom of the current document.
+    </dd>
+    <dt>Verbose
+    </dt>
+    <dd> Toggles verbose mode (for maintenance purposes).
+    </dd>
+    <dt>Quit
+    </dt>
+    <dd> Leaves the application.
+    </dd>
+  </dl>
+  On Unix versions, the following extra commands are available:
+  <dl>
+    <dt>Print
+    </dt>
+    <dd> Prints the current document, without the numbered document references.
+      A background www is launched to do that, and its output is piped to
+      the command defined by the environment variable WWW_PRINT_COMMAND
+      ("lpr" by default).
+    </dd>
+    <dt>&amp;gt. file, &amp;gt.&amp;gt. file
+    </dt>
+    <dd> Saves or appends the current document to
+      the given file, without the numbered document references. A background
+      www is launched to do that.
+    </dd>
+    <dt>| command
+    </dt>
+    <dd> Pipes the current document to the given command, without
+      the numbered document references. A background www is launched to
+      do that.
+    </dd>
+    <dt>! command
+    </dt>
+    <dd> Executes the given shell command without leaving www.
+    </dd>
+    <dt>CD (or LCD) directory
+    </dt>
+    <dd> Changes the local working directory. "! cd directory"
+      won't do this because it applies to a subshell.
+    </dd>
+  </dl>
+  <address>
+    <a name="0" href="/archive/cern/1788" original-href="http://info.cern.ch/hypertext/TBL_Disclaimer.html" archive-page-id="1788">Tim BL</a>
+  </address>
+</div>

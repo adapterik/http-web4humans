@@ -1,0 +1,29 @@
+<div data-element="archive-body">
+  <h1>Porting to a new machine</h1>
+  Read this secion if the browser has not already been ported to a binary-compatible
+  machine.We assume you have a unix-like environment, including some
+  sort of C (either Kernigan and Ritchie or ANSI) compiler, and a socket
+  library supporting TCP/IP communications.  The browser has been ported
+  to many systems, and so you should not have much trouble with a new
+  one.
+  <ul>
+    <li>Make a new subdirectory under WWW/LineMode for your combination of
+      machine and operating system. 
+    </li>
+    <li>Copy the Makefile from another (similar) machine's subdirectory.
+    </li>
+    <li>Modify the Makefile as necessary to compile and install on your system.
+      This involves selecting the compiler command, flags, etc, to be used,
+      and specifying directory names. See the file Implementation/CommonMakefile
+      which is included in the Makefile. Type  "make" to generate an executable
+      file.
+    </li>
+    <li>Mail the Makefile, and any other changes you found were necessary,
+      back to us for the use of others. This is <a name="1" href="/archive/cern/225" original-href="http://info.cern.ch/hypertext/Copyright.html" archive-page-id="225">mandatory</a>
+    </li>
+  </ul>
+  Now <a name="2" href="/archive/cern/226" original-href="Installation.html#8" archive-page-id="226">install the software</a> .
+  <address>
+    <a name="0" href="/archive/cern/1942" original-href="http://info.cern.ch/hypertext/TBL_Disclaimer.html" archive-page-id="1942">Tim BL</a>
+  </address>
+</div>

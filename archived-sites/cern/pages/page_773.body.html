@@ -1,0 +1,22 @@
+<div data-element="archive-body">
+  <h1>Using NFS</h1>
+  If you have NFS access to a machine which has the software already installed, then mounting that disk may be the preferable alternative, as it will save disk space and ease upgrade management.At CERN, the files are currently stored on cernvax. In order to get access, you will need to have the host name of your machine put into a table by the cernvax system manager. When you have done this,  su root in your NeXT, and edit /etc/fstab to contain the line with cernvax/userd as in the following example:
+  <listing>#
+    # NOTE: This file is never consulted if NetInfo is running. It is only
+    # used during bootstrap.
+    #
+    /dev/sd0a / 4.3 rw,noquota,noauto 0 1
+    cernvax:/userd /Net nfs rw,bg,net 0 0
+  </listing>Then, you must give the commands
+  <xmp>		niload fstab . in order to get access.  Your directory browser should now be able to see the directory /private/Net/cernvax/userd/tbl/hypertext/WWW/NeXT/Implementation. In the shell, still as root, you can now link the  and WWW  across to your own directories omitting the "tar" step.  The commands are (omit the mkdir if you already have /LocalApps)
+    Now go on to the  .
+  </xmp>
+  <pre><a name="1" href="/archive/cern/159" original-href="Installation.html#4" archive-page-id="159">application</a><a name="2" href="/archive/cern/159" original-href="Installation.html#5" archive-page-id="159">subdirectory</a><listing> 
+mkdir /LocalApps
+ln -s /private/Net/cernvax/userd/tbl/hypertext/WWW/NeXT/Implementation/WorldWideWeb.app /LocalApps
+
+</listing><a name="3" href="/archive/cern/159" original-href="Installation.html#6" archive-page-id="159">personal setup</a><p>
+__________________________________________________________
+</p><address>
+</address><a name="0" href="/archive/cern/1830" original-href="../../TBL_Disclaimer.html" archive-page-id="1830">Tim BL</a></pre>
+</div>

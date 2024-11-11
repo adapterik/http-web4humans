@@ -1,0 +1,49 @@
+<div data-element="archive-body">
+  <h1>Macros used in W3 code</h1>
+  These are macros which make it less tedious to program in portable
+  C.  They are defined in <a name="13" href="/archive/cern/1890" original-href="../Implementation/HTUtils.h" archive-page-id="1890">HTUtils.h</a>. See <a name="11" href="/archive/cern/873" original-href="Language.html" archive-page-id="873">Language features</a>.
+  <ul>
+    <li>
+    </li>
+  </ul>
+  <h2><a name="5">ARGS1</a></h2>
+  Generates the format parameter list for a function heading. Expands
+  to either an ANSI or non-ANSI argument declaration list. Note in order
+  to do this, it has to take one argument for the type and one for the
+  argument name. This is messy but necessary. See example, also NOARGS,
+  <a name="8" href="#1">PARAMS</a>.
+  <h2>
+    <a name="9">ARGS</a>2</h2>
+  As <a name="6" href="#5">ARGS1</a>, macros ARGS2, ARGS3 etc up to ARGS9 generate arguments lists
+  for function headings with different numbers of arguments. See also
+  NOARGS, <a name="7" href="#1">PARAMS</a>.
+  <h2><a name="10">CONST</a></h2>
+  This is used instead of the keyword "const" which does not exist in
+  K&amp;R C. It expands to const when using ANSI C, otherwise nothing.
+  <h2><a name="3">NOARGS</a></h2>
+  Generates  the argument list for a function header with no arguments..
+  See also ARGS1, NOPARAMS.
+  <h2>NOPARAMS</h2>
+  This is used to generate the formal parameter list in a function declaration
+  having no parameters. It expands to (void) for ANSI C and () for non-ANSI.
+  See also: <a name="2" href="#1">PARAMS</a>
+  <h2><a name="1">PARAMS</a></h2>
+  Define formal parameter list in function declaration. The  normal
+  ANSI function header is given enclosed in DOUBLE parentheses.  This
+  causes the whole list to be replaced with just () when a non-ANSI
+  compiler is used. See also: <a name="4" href="#3">NOPARAMS</a>
+  <h2>StrAllocCopy</h2>
+  This is a safe string assignment function.   It takes as arguments
+  two pointers. If the first is non-zero, it frees the block it points
+  to. It then allocates a block of size sufficient for the zero-terminated
+  string pointed to by the second, and assigns the first pointer to
+  point to that block. Implemented nowadays in terms of a function.
+  Note that unlike teh function, StrAllocCopy takes its first pointer
+  by name not address (p, not &amp;p).
+  <p>
+    (Part of <a name="12" href="/archive/cern/192" original-href="Coding.html" archive-page-id="192">style guide</a>)</p>
+  <p>
+    _________________________________________________________________
+  </p>
+  <address><a name="0" href="/archive/cern/1891" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1891">Tim BL</a></address>
+</div>

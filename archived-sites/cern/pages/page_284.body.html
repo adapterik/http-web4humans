@@ -1,0 +1,230 @@
+<div data-element="archive-body">
+  <h1>W3 address syntax: BNF</h1>
+  This is a BNF-like description of the <a name="73" href="/archive/cern/185" original-href="Addressing.html" archive-page-id="185">W3 addressing syntax</a> . We use
+  a vertical line "|" to indicate alternatives, and [brackets] to indicate
+  optional parts.   Spaces are representational only: no spaces are
+  actually allowed within a W3 address. Single letters stand for single
+  letters. All words of more than one letter below are entites described
+  elsewhere in the syntax description.  (Entity names are here linked
+  to their definitions, probably making this difficult to read with
+  the line mode browser.)
+  <p>
+    An absolute address specified in a link is an <a name="48" href="#47">anchoraddress</a> . The
+    address which is passed to a server is a <a name="49" href="#22">docaddress</a> .
+  </p>
+  <dl>
+    <dt>
+      <a name="47">anchoraddress</a>
+    </dt>
+    <dd>
+      <a name="23" href="#22"> docaddress</a> [ # <a name="21" href="#20">anchor</a> ]
+    </dd>
+    <dt>
+      <a name="22">docaddress</a>
+    </dt>
+    <dd>
+      <a name="2" href="#1"> httpaddress</a> | <a name="52" href="#51">fileaddress</a> | <a name="93" href="#92">newsaddress</a> | <a name="56" href="#55">telnetaddress</a>
+      | <a name="pros1" href="#pros">prosperoaddress</a>
+      | <a name="78" href="#72">gopheraddress</a> | <a name="106" href="#105">waisaddress</a>
+    </dd>
+    <dt>
+      <a name="1">httpaddress</a>
+    </dt>
+    <dd> h t t p :   / / <a name="4" href="#3">hostport</a>  [  / <a name="10" href="#9">path</a> ] [ ? <a name="12" href="#11">search</a> ]
+    </dd>
+    <dt>
+      <a name="pros">prosperoaddress</a>
+    </dt>
+    <dd> p r o s p e r o : / / <a name="pros3" href="#3">hostport</a>
+      /  <a name="50" href="#9">path</a>
+    </dd>
+    <dt>
+      <a name="51">fileaddress</a>
+    </dt>
+    <dd> f i l e : / / <a name="44" href="#43">host</a> / <a name="50" href="#9">path</a>
+    </dd>
+    <dt>
+      <a name="92">newsaddress</a>
+    </dt>
+    <dd> n e w s : <a name="91" href="#90">groupart</a>
+    </dd>
+    <dt>
+      <a name="105">waisaddress</a>
+    </dt>
+    <dd>waisindex | waisdoc
+    </dd>
+    <dt>waisindex
+    </dt>
+    <dd>w a i s : / / <a name="97" href="#3">hostport</a> / <a name="96" href="#95">database</a> [ ? <a name="98" href="#11">search</a> ]
+    </dd>
+    <dt>waisdoc
+    </dt>
+    <dd>w a i s : / / <a name="100" href="#3">hostport</a> / <a name="101" href="#95">database</a> / <a name="103" href="#102">wtype</a> / <a name="107" href="#24">digits</a> / <a name="99" href="#9">path</a>
+    </dd>
+    <dt>
+      <a name="90">groupart</a>
+    </dt>
+    <dd> * | <a name="88" href="#87">group</a> | <a name="86" href="#85">article</a>
+    </dd>
+    <dt>
+      <a name="87">group</a>
+    </dt>
+    <dd>
+      <a name="82" href="#81"> ialpha</a> [ . <a name="89" href="#87">group</a> ]
+    </dd>
+    <dt>
+      <a name="85">article</a>
+    </dt>
+    <dd>
+      <a name="83" href="#17"> xalphas</a> @ <a name="84" href="#43">host</a>
+    </dd>
+    <dt>
+      <a name="95">database</a>
+    </dt>
+    <dd>
+      <a name="94" href="#17">xalphas</a>
+    </dd>
+    <dt>
+      <a name="102">wtype</a>
+    </dt>
+    <dd>
+      <a name="104" href="#17">xalphas</a>
+    </dd>
+    <dt>
+      <a name="55">telnetaddress</a>
+    </dt>
+    <dd> t e l n e t : / / [ <a name="58" href="#57">user</a> @ ] <a name="53" href="#3">hostport</a>
+    </dd>
+    <dt>
+      <a name="72">gopheraddress</a>
+    </dt>
+    <dd> g o p h e r : / / <a name="64" href="#3">hostport</a>  [/ <a name="71" href="#70">gtype</a>  [ / <a name="67" href="#75">selector </a>]
+      ] [ ? <a name="66" href="#11">search</a> ]
+    </dd>
+    <dt>
+      <a name="3">hostport</a>
+    </dt>
+    <dd>
+      <a name="6" href="#43"> host</a> [ : <a name="8" href="#7">port</a> ]
+    </dd>
+    <dt>
+      <a name="43">host</a>
+    </dt>
+    <dd>
+      <a name="38" href="#5"> hostname</a> | <a name="46" href="#45">hostnumber</a>
+    </dd>
+    <dt>
+      <a name="5">hostname</a>
+    </dt>
+    <dd>
+      <a name="59" href="#81"> ialpha</a> [  .  <a name="60" href="#5">hostname</a> ]
+    </dd>
+    <dt>
+      <a name="45">hostnumber</a>
+    </dt>
+    <dd>
+      <a name="39" href="#24"> digits</a> . <a name="40" href="#24">digits</a> . <a name="41" href="#24">digits</a> . <a name="42" href="#24">digits</a>
+    </dd>
+    <dt>
+      <a name="7">port</a>
+    </dt>
+    <dd>
+      <a name="25" href="#24"> digits</a>
+    </dd>
+    <dt>
+      <a name="75">selector</a>
+    </dt>
+    <dd>
+      <a name="74" href="#9"> path</a>
+    </dd>
+    <dt>
+      <a name="9">path</a>
+    </dt>
+    <dd>
+      <a name="62" href="#61"> void</a> |  <a name="14" href="#17">xalphas</a>  [  / <a name="63" href="#9">path</a> ]
+    </dd>
+    <dt>
+      <a name="11">search</a>
+    </dt>
+    <dd>
+      <a name="15" href="#17"> xalphas</a> [ + <a name="68" href="#11">search</a> ]
+    </dd>
+    <dt>
+      <a name="57">user</a>
+    </dt>
+    <dd>
+      <a name="54" href="#17"> xalphas</a>
+    </dd>
+    <dt>
+      <a name="20">anchor</a>
+    </dt>
+    <dd>
+      <a name="19" href="#17"> xalphas</a>
+    </dd>
+    <dt>
+      <a name="70">gtype</a>
+    </dt>
+    <dd>
+      <a name="69" href="#13"> xalpha</a>
+    </dd>
+    <dt>
+      <a name="13">xalpha</a>
+    </dt>
+    <dd>
+      <a name="32" href="#30"> alpha</a> | $ | _ | @ | ! | % | ^ | &amp; | * |  (  |  ) | . | <a name="33" href="#27">digit</a>
+    </dd>
+    <dt>
+      <a name="17">xalphas</a>
+    </dt>
+    <dd>
+      <a name="16" href="#13"> xalpha</a> [ <a name="18" href="#17">xalphas</a> ]
+    </dd>
+    <dt>
+      <a name="81">ialpha</a>
+    </dt>
+    <dd>
+      <a name="79" href="#30"> alpha</a> [ <a name="80" href="#17">xalphas</a> ]
+    </dd>
+    <dt>
+      <a name="30">alpha</a>
+    </dt>
+    <dd> a | b | c | d | e | f | g | h | i | j | k | l | m | n | o |
+      p | q | r | s | t | u | v | w | x | y | z | A | B | C | D | E | F
+      | G | H | I | J | K | L | M | N  | O | P | Q | R | S | T | U | V |
+      W | X | Y | Z
+    </dd>
+    <dt>
+      <a name="27">digit</a>
+    </dt>
+    <dd> 0 |1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+    </dd>
+    <dt>
+      <a name="24">digits</a>
+    </dt>
+    <dd>
+      <a name="28" href="#27"> digit</a> [ <a name="26" href="#24">digits</a> ]
+    </dd>
+    <dt>
+      <a name="34">alphanum</a>
+    </dt>
+    <dd>
+      <a name="31" href="#30"> alpha</a> | <a name="29" href="#27">digit</a>
+    </dd>
+    <dt>
+      <a name="36">alphanums</a>
+    </dt>
+    <dd>
+      <a name="35" href="#34"> alphanum</a> [ <a name="37" href="#36">alphanums</a> ]
+    </dd>
+    <dt>
+      <a name="61">void</a>
+    </dt>
+    <dd>
+    </dd>
+  </dl>
+  See also: General <a name="76" href="/archive/cern/185" original-href="Addressing.html" archive-page-id="185">description</a> of this syntax, <a name="77" href="/archive/cern/843" original-href="Escaping.html" archive-page-id="843">Escaping</a> conventions.
+  _________________________________________________________________
+  <address>
+    <a name="0" href="/archive/cern/1052" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1052">Tim BL</a>
+  </address>
+</div>

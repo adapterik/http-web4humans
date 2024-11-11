@@ -1,0 +1,73 @@
+<div data-element="archive-body">
+  <h1>Making a server</h1>
+  Here is a run-through of what is needed to make a <a name="3" href="/archive/cern/107" original-href="Overview.html" archive-page-id="107">www server</a> , with
+  examples from a suggested server for the HEPDATA base of <a name="1" href="/archive/cern/1781">Mike Whalley</a>
+  . See also <a name="2" href="/archive/cern/222" original-href="Etiquette.html" archive-page-id="222">etiquette</a> .
+  <p>
+    Basically, to make the data available, you make a server which is
+    a modified version of your program. When a user follows a link to
+    HEPDATA (or runs a command to jump straight there), the client program
+    opens a connection to a server program on a VM machine (say, but could
+    be VMS or unix). The server in turn runs your program.</p>
+  <p>
+    Let me just describe the essence of the changes needed so that you
+    can get an idea of how much effort would be involved.</p>
+  <p>
+    The first thing you do is to make up an arbitrary naming method for
+    anything which HEPDATA can display.  In this I include the welcome
+    page, any menu, any article, any help text.  Typically one invents
+    a hierarchical naming scheme, like
+  </p>
+  <xmp>	/HEPDATA			The first "welcome" menu
+    /HEPDATA/HELP			The top-level help
+    /HEPDATA/HELP/REAC		The help on the reaction database.
+    /HEPDATA/REAC			The reaction database itself
+    /HEPDATA/REAC?P+PBAR		list of reactions involving p and pbar (?)
+    /HEPDATA/DATA/RD125V687		Some article (say).
+  </xmp>
+  <pre></pre>
+  You do this because, whereas an interactive user follows a path through
+  the program, the W3 user calls the program once for each thing. There
+  is no "state" information. This allows one to make a hypertext link
+  to any part of the scheme and jump back in again later. For example,
+  one might want to quote an article, or the reaction database, or a
+  particular list of reactions.
+  <p>
+    Now all you do is modify the program so that, given a name above,
+    it will</p>
+  <p>
+    return the required document.  This means basically turning it from
+    a sequence the user goes through into a set of conditionals to isolate
+    each of the individual cases above. Apart from that, the data retrieval
+    code is unchanged apart from the output formatting.  Many of the options
+    in fact mean mapping the name onto a fixed</p>
+  <p>
+    file's name its the searches which have to activate real code.</p>
+  <p>
+    The hypertext trick you need to use in the menus. Where an option
+    is normally output to the screen, you have to tell the client what
+    to ask for is the user selects that option. For example, in the main
+    menu /HEPDATA you have an option which gives the help. You would represnt
+    this "anchor" as<a name="4" href="/archive/cern/1782" original-href="/HEPDATA/HELP" archive-page-id="1782"> Help </a>"Help" is all that is displayed, with some indication
+    that it is an option. If the user choses (clicks a mouse on, choses
+    by number depending on which client he has) then the client asks the
+    server for /HEPDATA/HELP. ("A" is for "anchor", "HREF" is for "hypertext
+    reference")</p>
+  <p>
+    For the index searches, it's as simple. When the server sends the
+    text called /HEPDATA/REAC it also sends a special tag . This tells
+    the client to enable a FIND command, or find panel etc (depending
+    on the client). You don't have to do any human interface work. The
+    client automatically comes back with a search coded up in the form
+    /HEPDATA/REAC?P+PBAR etc. Your server in turn returns a menu (say)
+    with pointers to the data which has been found.</p>
+  <p>
+    You can also put some formatting tags (like headings) which will make
+    the data look really nice on a window system.</p>
+  <p>
+    _________________________________________________________________
+  </p>
+  <address>
+    <a name="0" href="/archive/cern/1783" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1783">Tim BL</a>
+  </address>
+</div>

@@ -1,0 +1,120 @@
+<div data-element="archive-body">
+  <address>Last modified 1/7/92 by RC
+  </address>
+  <h1>Updates To HTTP</h1>
+  The HTTP protocol implements the WWW <a name="13" href="/archive/cern/858" original-href="../../Administration/DataModel.html" archive-page-id="858">data model</a> .
+  <p>
+    In order to improve the functionality of WWW, the HyperText Transfer
+    Protocol needs to be altered (see also: <a name="7" href="/archive/cern/37" original-href="AsImplemented.html" archive-page-id="37">current HTTP implementation,</a><a name="9" href="/archive/cern/860" original-href="../../DesignIssues/ProtocolVersions.html#12" archive-page-id="860">
+      from version to version,</a> our <a name="11" href="/archive/cern/190" original-href="../../Notation.html#1" archive-page-id="190">BNF</a> notation and the <a name="8" href="/archive/cern/282" original-href="../HTTP.html" archive-page-id="282">original HTTP design</a>
+    ).</p>
+  <p>
+    A prime concern is that servers must be able to skip data they don't
+    understand. This will guarantee forward compatibility.
+  </p>
+  <h2><a name="5">Request</a></h2>
+  As before, the client sends a request, but may specify additional
+  information.  The format of the new request is:
+  <xmp>
+    Request ::= Get | Put
+    Get ::=   GET Udi [CiLang]/VersionNumber CrLf
+    ClientInfo
+    Put ::=   PUT Udi [Cilang]/VersionNumber CrLf
+    ClientInfo CrLf
+    DataInfo CrLf
+    [body section]
+    CiLang ::=  HTRQ
+  </xmp>
+  <pre></pre>
+  Udi is the Universal Document Identifier.
+  <p>
+    CiLang specifies the language used to write the ClientInfo and the
+    DataInfo after the GET line. At the moment only <a name="12" href="/archive/cern/861" original-href="../../MarkUp/HTRQ.html" archive-page-id="861">HTRQ</a> is defined .</p>
+  <p>
+    VersionNumber gives the HTTP version being used by the client.</p>
+  <p>
+    If the protocol version is not specified, the server assumes that
+    the browser uses HTTP version 0.9 (before this update was carried
+    out) (See "<a name="14" href="/archive/cern/860" original-href="../../DesignIssues/ProtocolVersions.html" archive-page-id="860"> From Version to Version</a> ").</p>
+  <p>
+    GET means retrieve whatever data is identified by the Udi, so where
+    the Udi refers to a data-producing process, or a script which can
+    be run by such a process, it is this data which will be returned,
+    and not the source text of the script or process.</p>
+  <p>
+    PUT specifies that the data in the body section is to be stored under
+    the supplied Udi, (but see constraint on <a name="16" href="/archive/cern/861" original-href="../../MarkUp/HTRQ.html#13" archive-page-id="861">modification times</a> ).</p>
+  <p>
+    Where the Udi refers to a data-producing process, PUT is not applicable,
+    and will fail. The process should label its response as non-editable.</p>
+  <p>
+    [JFG] Beware here of lexical problems like different character sets
+    on client and server, CR/LF conventions, etc. Also, elementary file
+    locking should be provided.
+  </p>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  <h2>Response</h2>
+  The response from the server may be straight HTML (in the case of
+  older servers), or may start with the following syntax:
+  <xmp>                  RESPONSE=String HTTPV=VersionNumber CrLf
+    ...
+  </xmp>
+  <pre></pre>
+  String identifies the type of the response, VersionNumber identifies
+  the HyperText Transfer Protocol version being used by the server.
+  Then follows additional information depending on the response type.
+  <p>
+    The keywords, here in upper case, are case insensitive. Quotes may
+    be ommited where String does not contain special characters (such
+    as spaces).</p>
+  <p>
+    The response String may have the following values (see <a name="15" href="/archive/cern/858" original-href="../../Administration/DataModel.html" archive-page-id="858">data model</a>
+    ):
+  </p>
+  <dl>
+    <dt>ERROR
+    </dt>
+    <dd> the server encountered an abnormal condition,
+    </dd>
+    <dt>FORWARD
+    </dt>
+    <dd> the data requested has been assigned a new Udi, the change
+      is permanent.  (N.B. this is an optimisation, which must, pragmatically,
+      be included in this definition.  Browsers should automatically relink
+      to the new reference, where possible),
+    </dd>
+    <dt>REDIRECTION
+    </dt>
+    <dd> the data requested actually resides under a different
+      Udi, however, the redirection may be altered on occasion (when making
+      links to these kinds of document, the browser should default to using
+      the Udi of the redirection document, but have the option of linking
+      to the final document),
+    </dd>
+    <dt>QUERY
+    </dt>
+    <dd> the data is composed of (1) the identification of a server and
+      (2) the algorithm in some arbitrary language, to be passed to the
+      server which will use it to extract the data.
+    </dd>
+    <dt>INDEX
+    </dt>
+    <dd> the data is the "front page" of a data base, to which further
+      search keys have to be supplied before desired data can be extracted.
+      A search panel has to be put up by the browser. The front page is
+      otherwise a normal HTML document, including the possibilities of containing
+      anchors.
+    </dd>
+    <dt>DATA
+    </dt>
+    <dd> this is the data requested,
+    </dd>
+    <dt>CONFIRMATION
+    </dt>
+    <dd> the command transmitted has been successfully completed
+      (PUT command).
+    </dd>
+  </dl>
+  Detailed syntax of  the response is given in <a name="17" href="/archive/cern/1867" original-href="HTRESP.html" archive-page-id="1867">HTRESP</a> .</div>

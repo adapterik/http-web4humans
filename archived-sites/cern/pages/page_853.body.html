@@ -1,0 +1,55 @@
+<div data-element="archive-body">
+  <h1>Document caching</h1>
+  Three operations in the retrieval of a document may take significant
+  time:
+  <ul>
+    <li>
+      <a name="3" href="/archive/cern/279" original-href="Formats.html#4" archive-page-id="279">Format conversion</a> by the server, including <a name="5" href="/archive/cern/234" original-href="Versioning.html#3" archive-page-id="234">version regeneration</a>
+    </li>
+    <li>Data transmission across the network
+    </li>
+    <li>Format conversion by the browser
+    </li>
+  </ul>
+  At each stage, the server (in the first case) or browser (in the other
+  cases) may decide to keep a temporary copy of the result.  This copy
+  should ideally be common to many browsers.
+  <p>
+    Automatic caching relieves the user of having to explicitly save things
+    which may be referred to again. It also relieves the system of keeping
+    multiple copies (one for each user who has read the document). It
+    allows local disk space to used optimally. Cache management takes
+    into account such factors as
+  </p>
+  <ul>
+    <li>
+      <a name="2" href="#1">expiry date</a>
+    </li>
+    <li>file size
+    </li>
+    <li>time taken to get the file
+    </li>
+    <li>frequency of access
+    </li>
+    <li>time since access
+    </li>
+  </ul>
+  <h2><a name="1">Expiry date</a></h2>
+  As a guide to help a cache program optimise the data it caches, it
+  is useful if a document is transmitted with an estimate by the server
+  of the lengt of time the data may be kept for.  This allows fast changing
+  documents to be flushed from the system, preventing readers from being
+  mislead.  (I would not propose any notification of document changes
+  to be distributed to cache managers automatically). For example, an
+  RFC may be cached for years, while the state of the alarm system may
+  be marked as valid for only one minute.
+  <p>
+    Window-oriented browsers effectively cache documents when they keep
+    several at a time in memory, in different windows. In this case, for
+    very volatile data, it may be useful to have the browser automatically
+    refresh the window when its data expires. </p>
+  <p>
+    (<a name="4" href="/archive/cern/186" original-href="Overview.html" archive-page-id="186"> design issues</a> )_________________________________
+  </p>
+  <address><a name="0" href="/archive/cern/40" original-href="../../../WWW/disclaimer.html" archive-page-id="40">Tim BL</a></address>
+</div>

@@ -1,0 +1,87 @@
+<div data-element="archive-body">
+  <h1>Topology</h1>
+  Here are a few questions about the underlying connectivity of  a hypertext
+  web.
+  <h2>Are links two- or multi-ended?</h2>
+  The term "link" normally indeicates with two ends. Variations of this
+  are liks with multiple sources and/or multiple destinations, and constructs
+  which relate more than two anchors. The latter map onto logic description
+  systems, predicate calculus, etc. See the "Aquanet" system  from Xerox
+  PARC - paper at HT91).  This is a natural step from hypertext whose
+  the links are typed with semantic content.   For example, the relation
+  "Document A is a basis for document B given argument C". From now
+  on however, let us restrict ourselves to links in the conventional
+  sense, that is, with two ends.
+  <h2>
+    <a name="14">Should the links be  monodirectional or bidirectional</a>? </h2>
+  If they are bidirectional, a link always exists in the reverse direction.
+  A disadvantage of this being enforced is that it might constrain the
+  author of a hypertext - he might want to constrain the reader.  However,
+  an advantage is that often, when a link is made between two nodes,
+  it is made in one direction in the mind of its author, but another
+  reader may be more interested in the reverse link. Put another way,
+  bidirectional linking allows the system to deduce the inverse relationship,
+  that if A includes B, for example, that B is part of A. This effectively
+  adds information for free. This is important when a critical parameter
+  of the system is how long it takes someone to create a link.
+  <p>
+    KMS and hypercard have  one-way links; Enquire has  two-way links.</p>
+  <p>
+    There is a question of how one can make a two-way link to a protected
+    database. The automatic addition of the reverse link is very useful
+    for enhancing the information content of the database.  See also:<a name="2" href="/archive/cern/228" original-href="Multiuser.html#3" archive-page-id="228">
+      Private overlaid web</a> , <a name="3" href="/archive/cern/270" original-href="../../Conferences/../Products/Microcosm/Microcosm.html#GenericLinking" archive-page-id="270">Generic Links</a> .</p>
+  <p>
+    It may be useful to have bidirectional links from the point of view
+    of managing data. For example: if a document is destroyed or moved,
+    one is aware of what dangling links will be created, and can possibly
+    fix them.</p>
+  <p>
+    A compromise that links be one-way in the data model, but that a reverse
+    link is created when any link is made, so long as this can be done
+    without infringing protection. An alternative is for the reverse links
+    to be gathered by a background process operating on a basically monodirectionally
+    linked web. See <a name="13" href="/archive/cern/229" original-href="BuildingBackLinks.html" archive-page-id="229">Building Back-links</a>.
+  </p>
+  <h2><a name="12">Should anchors have more than one link?</a></h2>
+  There is a design issue in whether one anchor may lead to many links,
+  and/or on link have many anchors. It seems reasonable for many anchors
+  to lead to the same reference. If one source anchor leads to more
+  than one destination anchor, then there will be ambiguity if the anchor
+  is clicked on with a mouse. This could be resolved by providing a
+  menu to the user, but I feel this would complicate it too much. I
+  therefore suggest a many-to-one mapping. <a name="8" href="/archive/cern/24" original-href="../People.html#groff" archive-page-id="24">JFG</a> disagrees and would like
+  to see a small menu presented to the user if the link was ambiguous.<a name="9" href="/archive/cern/270" original-href="../../Products/Microcosm/Microcosm.html" archive-page-id="270">
+    Microcosm</a> does this.
+  <h2><a name="4">Should links be typed?</a></h2>
+  A typed link carries some semantic information, which allows the system
+  to manage data more efficiently on behalf of the user.  A default
+  type ("untyped") normally exists in some form when types are implemented.
+  See also a  <a name="1" href="/archive/cern/852" original-href="LinkTypes.html" archive-page-id="852">list of some types</a> . (Should a link be allowed to have
+  many types? (-<a name="6" href="/archive/cern/24" original-href="../People.html#groff" archive-page-id="24"> JFG</a> )  I don't think so: that should be represented
+  by more than one link.(-<a name="7" href="/archive/cern/24" original-href="../People.html#BernersLee" archive-page-id="24"> TBL</a> ))
+  <p>
+    Link typing helps with the generation of <a name="10" href="/archive/cern/230" original-href="Navigation.html#6" archive-page-id="230">graphical overviews</a> , and
+    with <a name="11" href="/archive/cern/942" original-href="TracingLinks.html" archive-page-id="942">automatic tracing</a> .
+  </p>
+  <h2>Should links contain ancillary information?</h2>
+  Does the system allow dating, versioning, authorship, comment text
+  on a link?  If so, how is it displayed and accessed? This sort of
+  information complicates the issue, in that readable information is
+  no longer carried within node contents only. Pretty soon, following
+  this path leads to a link becoming a node in itself, annotatable and
+  all.  This perverts the data model significantly, and I cannot see
+  that that is a good idea. Information about the link can always be
+  put in the source node, or in an intermediate node, for example an
+  annotation. However, this makes tracing more difficult. It is certainly
+  nice to be able to put a comment on a link. Perhaps one should make
+  a link annotatable. I think not.
+  <h2>Should a link contain Preview information?</h2>
+  This is information stored at the source to allow the reader to check
+  whether he wants to follow a link before he goes. I feel that the
+  system may cache some data (such as the target node title), or the
+  writer of the node may include some descriptive material in the highlighted
+  spot, but it is not necessary to include preview information just
+  because access may be slow. Caching should be done instead of corrupting
+  the user interface. If you have a fast <a name="5" href="/archive/cern/230" original-href="Navigation.html#6" archive-page-id="230">graphic overview</a> , this could
+  remove the necessity for a preview function.</div>

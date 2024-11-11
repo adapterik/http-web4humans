@@ -1,0 +1,95 @@
+<div data-element="archive-body">
+  <h1>W3 Server Software</h1>
+  A <a name="23" href="/archive/cern/2" original-href="../TheProject.html" archive-page-id="2">W3</a> server, like the ftp <a name="19" href="/archive/cern/29" original-href="../Terms.html#daemon" archive-page-id="29">daemon</a> , is a program which responds to
+  an incoming tcp connection and provides a service to the caller.There
+  are many varieties of W3 server software to serve different forms
+  of data. 
+  <h2>The basic daemon</h2>
+  The basic W3  daemon program serves files already in hypertext or
+  plain text.  This daemon then is used as a basis for many other types
+  of server and gateway.    Documentation includes:
+  <ul>
+    <li>
+      <a name="1" href="/archive/cern/139" original-href="User/Guide.html" archive-page-id="139">User guide</a> . 
+    </li>
+    <li>
+      <a name="18" href="/archive/cern/163" original-href="Basic.html" archive-page-id="163">Internals</a> -- a description of the code.
+    </li>
+  </ul>
+  Much of the above may also apply in whole or part to other servers
+  mentioned below.  Whatever server you are running, you will probably
+  be interested in:
+  <ul>
+    <li>
+      <a name="21" href="/archive/cern/20" original-href="../Tools/Overview.html" archive-page-id="20">Tools for information providers</a>
+    </li>
+  </ul>
+  <h2>Making a new server</h2>
+  This daemon is often used as a basis for a more specific server for
+  a given application.  A server which allows a world of data to be
+  seen as part of the W3 universe is known as a gateway.  (Most servers
+  could therefore be regarded as gateways, but the term implies some
+  conversion or mapping between dissimilar worlds) .  For  short tutorials
+  with examples, see:
+  <ul>
+    <li>
+      <a name="15" href="/archive/cern/164" original-href="JanetAndJohn.html" archive-page-id="164">Writing a server in C</a>
+    </li>
+    <li>
+      <a name="22" href="/archive/cern/165" original-href="../Provider/ShellScript.html" archive-page-id="165">Writing a server as a script</a>
+    </li>
+  </ul>
+  It is a good idea to pick the basic daemon or one of the servers below
+  as a starting point when making a new server.
+  <h2><a name="20">Other servers and Gateways</a></h2>
+  These are servers which provide data extracted from other systems.
+  they are built using code from the basic daemon, or scripts.
+  <dl>
+    <dt>
+      <a name="9" href="/archive/cern/166" original-href="../FIND/Overview.html" archive-page-id="166">FIND gateway</a>
+    </dt>
+    <dd>for CERN/VM XFIND which calls a REXX exec to get the
+      information from the XFIND system running on the CERNVM mainframe.
+    </dd>
+    <dt>
+      <a name="14" href="/archive/cern/167" original-href="../VMSHelp/Overview.html" archive-page-id="167">VMS Help gateway</a>
+    </dt>
+    <dd> This allows any VMS help files to be made available
+      to WWW clients. Runs on VAX/VMS.
+    </dd>
+    <dt>
+      <a name="12" href="/archive/cern/168" original-href="WAISGate.html" archive-page-id="168">WAISGate</a>
+    </dt>
+    <dd> A gateway to information available using the W.A.I.S. protocol.
+    </dd>
+    <dt>
+      <a name="DCL" href="/archive/cern/169" original-href="DCLServer.html" archive-page-id="169">DCLServer</a>
+    </dt>
+    <dd> A server for VMS systems which allows you to write a gateway
+      to your own favorite information system using DCL.
+    </dd>
+    <dt>
+      <a name="16" href="/archive/cern/170" original-href="System33/Gateway.html" archive-page-id="170">System33</a>
+    </dt>
+    <dd> A (big) csh script server providing data including Xerox
+      System33 documents, man pages in plain text, phone numbers, etc. etc...!
+    </dd>
+    <dt>
+      <a name="17" href="/archive/cern/171" original-href="Oracle/Overview.html" archive-page-id="171">Oracle</a>
+    </dt>
+    <dd> A generic server to oracle. Could be used as a basis for gateways
+      to specific Oracle databases.
+    </dd>
+    <dt>
+      <a name="24" href="/archive/cern/172" original-href="Geography/Overview.html" archive-page-id="172">Geography</a>
+    </dt>
+    <dd>Gateway to the 
+    </dd>
+  </dl>
+  Geography server at U Michigan
+  <dl>
+    <dt>
+    </dt>
+  </dl>
+  <address><a name="0" href="/archive/cern/60" original-href="../../TBL_Disclaimer.html" archive-page-id="60">Tim BL</a></address>
+</div>

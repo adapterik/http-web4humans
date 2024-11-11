@@ -1,0 +1,89 @@
+<div data-element="archive-body">
+  <h1>Command line syntax</h1>
+  The syntax is:
+  <xmp>
+    www [options]  [docaddress [keywords]]
+  </xmp>
+  <pre></pre>
+  With no arguments, the <a name="1" href="/archive/cern/137" original-href="QuickGuide.html" archive-page-id="137">www</a> shell command allows you to browse from
+  the system default page, /usr/local/lib/WWW/default.html.
+  <p>
+    Options should be specified before other arguments. Currently available
+    options are:-
+  </p>
+  <dl>
+    <dt>-n 
+    </dt>
+    <dd>Non-interactive mode.  Outputs the formatted document to the standard
+      output, then exits.  Pages are delimited with form feed (FF) characters.
+    </dd>
+    <dt>
+      <a name="4">-</a>
+    </dt>
+    <dd> A minus sign with no trailing characters indicates that the program
+      will accept <a name="3" href="/archive/cern/1789" original-href="http://info.cern.ch/hypertext/WWW/LineMode/../MarkUp/MarkUp.html" archive-page-id="1789">HTML format</a> input from the standard input. This allows
+      www to be used as a filter from html to plain text for example. Relative
+      links in the input are parsed as though the address of the document
+      was that of the home page (or  docaddress if specified).  Implies
+      non-interactive mode.
+    </dd>
+    <dt>
+      <a name="7">-listrefs</a>
+    </dt>
+    <dd> Implies non-interactive. Adds a list of the addresses of
+      all documents references to the end.
+    </dd>
+    <dt>-pn
+    </dt>
+    <dd> where n is a number, specifies the page length. Without a number,
+      makes the page length infinite. Default is 24. 
+    </dd>
+    <dt>
+      <a name="5">-source</a>
+    </dt>
+    <dd> Display the original source of a document instead of parsing
+      it. Has effect for HTML from w3 servers, and news articles. (v1.2a
+      or later)
+    </dd>
+    <dt>-v
+    </dt>
+    <dd> Verbose mode: Gives a running commentary on the program's attempts
+      to read data in various ways.
+    </dd>
+    <dt>-wn
+    </dt>
+    <dd> where n is a number, specifies the page width in columns. The
+      default is 78, 79 or 80 depending on the system. (v1.0 or later)
+    </dd>
+    <dt>-na
+    </dt>
+    <dd> Hides anchor positions in the text. Useful, when printing out
+      the document.
+    </dd>
+    <dt>
+      <a name="2">-a  format</a>
+    </dt>
+    <dd> Specifies the printf-style format string to be used when
+      printing references. Must contain the two characters "%d" where the
+      numbers should occur.  Be sure to escape or quote any special characters
+      you use.  For example under unix:
+    </dd>
+  </dl>
+  <xmp>
+    www -a \&lt;%d\&gt;
+    www -a " (Type %d)"
+  </xmp>
+  <pre></pre>
+  If present, the next argument (docaddress) is the<a name="6" href="/archive/cern/185" original-href="http://info.cern.ch/hypertext/WWW/Addressing/Addressing.html" archive-page-id="185"> hypertext address</a>
+  , of  the document at which you want to start browsing. You may want
+  to define an alias for www followed by name of your favourite index.
+  <p>
+    Any further command line arguments are taken as keywords. The first
+    argument must refer to an index in this case. The index is searched
+    for entries matching the keywords, and a list of matching entries
+    is displayed.
+  </p>
+  <address>
+    <a name="0" href="/archive/cern/1788" original-href="http://info.cern.ch/hypertext/TBL_Disclaimer.html" archive-page-id="1788">Tim BL</a>
+  </address>
+</div>

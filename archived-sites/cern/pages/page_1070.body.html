@@ -1,0 +1,215 @@
+<div data-element="archive-body">
+  <h1><a name="top">A Complete Set of Constructs</a></h1>
+  The <a name="id1" href="/archive/cern/1069" original-href="recommended.html" archive-page-id="1069">recommended usage</a> is
+  incomplete; it only includes those constructs that are easy to
+  implement and explain. This section discusses a few more constructs
+  that allow you to do anything that can legally be done. There are <a name="id2" href="/archive/cern/1075" original-href="supported.html" archive-page-id="1075">constructs beyond these</a>, but they
+  can all be reduced to constructs shown here.
+  <p>
+  </p>
+  <h2><a name="structure">Document Structure</a></h2>
+  An HTML document is a header part followed by a BODY element.
+  <p>
+    The header part consists of the TITLE, ISINDEX, and NEXTID elements
+    which each appear zero or one time in any order. (see <a name="id3" href="/archive/cern/2006" original-href="structure1.html" archive-page-id="2006">ISINDEX test</a>, <a name="id5" href="/archive/cern/2007" original-href="structure2.html" archive-page-id="2007">no title test</a>)
+  </p>
+  <p>
+    The BODY start and end tags may be omitted. They will be inferred by
+    SGML parsers. <a name="id4" href="/archive/cern/1069" original-href="recommended.html" archive-page-id="1069">"Recommended
+      Usage"</a> is an example of this. This entity is an example of
+    explicitly including the BODY tags.
+  </p>
+  <p>
+    The PLAINTEXT tag signals the end of the HTML text entity, and
+    the beginning of a non-SGML data entity. (The format of the data
+    is governed by the MIME text/plain content type.)</p>
+  <p>
+    See Also:</p>
+  <ul>
+    <li>
+      <a href="/archive/cern/2008" original-href="structure3.html" archive-page-id="2008">plaintext at the beginning of a
+        document</a>
+    </li>
+    <li>
+      <a href="/archive/cern/2009" original-href="structure4.html" archive-page-id="2009">plaintext at the beginning of
+        the body</a>
+    </li>
+    <li>
+      <a href="/archive/cern/2010" original-href="structure5.html" archive-page-id="2010">plaintext after the body</a>
+    </li>
+    <li>
+      <a href="/archive/cern/1071" original-href="tolerated.html#id1" archive-page-id="1071">tolerated errors in
+        structure</a>.
+    </li>
+    <li>
+      <a href="/archive/cern/1073" original-href="errors.html#structure" archive-page-id="1073">severe errors in
+        structure</a>.
+    </li>
+  </ul>
+  <h2>Header Elements</h2>
+  <h3><a name="TITLE">TITLE</a></h3>
+  The title can have an '&lt;' character, as long as it's not followed
+  by a '/' and a letter. See <a name="id10" href="/archive/cern/1068" original-href="Text.html#CDATA" archive-page-id="1068">the
+    section on SGML delimiters in CDATA</a>.
+  <h2>Body Elements</h2>
+  The normal text content of body elements may include several kinds of
+  markup.
+  <p>
+    A comment that you shouldn't see: <!-- Your implementation is broken
+if you see this.--> For copyrights, RCS keywords, etc.
+  </p>
+  <p>
+    processing instruction: <?bold lkjsdf > If you've _got_ to
+      stick TeX macros or something in there, use this. The sample
+      implementation won't even tell you it's there, though.</p>
+    <p>
+    </p>
+    <h3>Entity References</h3>
+    Entity references are recognized in normal body elements (anyplace
+    #PCDATA appears in the DTD) and attribute value literals.
+    See <a name="id11" href="/archive/cern/1068" original-href="Text.html#Entities" archive-page-id="1068">the Entities section of
+      "Text and Markup"</a> for more details.
+    The HTML DTD defines the following entities for characters that might
+    otherwise be parsed as markup:
+    <p>
+    </p>
+    <h4>HTML Entities</h4>
+    <dl>
+      <dt>Name
+      </dt>
+      <dd>Definition
+      </dd>
+      <dt>lt</dt>
+      <dd>&lt;
+      </dd>
+      <dt>gt</dt>
+      <dd>&gt;
+      </dd>
+      <dt>amp</dt>
+      <dd>&amp;
+      </dd>
+      <dt>quot"</dt>
+      <dd>"
+      </dd>
+      <dt>apos</dt>
+      <dd>'
+      </dd>
+    </dl>
+    <p>
+    </p>
+    <h4>ISO Latin-1 Characters</h4>
+    The HTML DTD references the public text
+    "ISO 8879:1986//ENTITIES Added Latin 1//EN"
+    to define entities for latin-1 characters, for example Gödel was a
+    famous mathemetician.
+    <h2>Anchors</h2>
+    <h3>Order and Apperance of Attributes</h3>
+    <a href="#top">name implied</a>
+    <p>
+      <a name="xyz">HREF implied</a></p>
+    <p>
+      <a href="#top" name="xyz1">HREF before name</a></p>
+    <p>
+    </p>
+    <h3>Quotes In Attribute Values</h3>
+    In order to include quotes in the value of the content-type attribute,
+    use "&amp;quot;" and "&amp;apos;" entity references:
+    <a name="id13" href="/archive/cern/2011" content-type='application/x-tar; name="sgmls-0.8.tar"'>link
+      to SGMLS software distribution with fancy content-type attribute</a>
+    <h4>Note: Interpretation of Literals</h4>
+    Section 7.9.3 of the SGML standard states
+    <p>
+    </p>
+    <ul>
+      <li>An attribute value literal is interpreted as an attribute value by
+        replacing references within it, ignoring Ee and RS, and replacing RE
+        or SEPCHAR with SPACE.
+      </li>
+    </ul>
+    For the SGML-impared, Ee is Entity End (like EOF); RS is '\n'; RE is
+    '\r'; SEPCHAR is '\t' and SPACE is ' '.
+    <p>
+      Since to date there are no HTML attributes containing newlines or
+      spaces, that is not much of an issue.</p>
+    <p>
+      @@But replacement of literals is. For one thing, this creates an
+      interaction between the syntax of URLs and SGML syntax. We could
+      resolve this issue by removing '&amp;' from <a href="/archive/cern/284" original-href="http://info.cern.ch/hypertext/WWW/Addressing/BNF.html#xalpha" archive-page-id="284">the
+        URL syntax</a>
+      .</p>
+    <p>
+    </p>
+    <h3>Headings</h3>
+    Six levels of headings are defined: 
+    <p>
+    </p>
+    <h4>Level four heading</h4>
+    <h4>Another level four heading. It's long. It's only conventional and suggested that lines be less than 72 characters long. It's certainly not specified, defined, or required.</h4>
+    <h5>Level five heading</h5>
+    <h6>Level six heading</h6>
+    <h3>Paragraphs</h3>
+    Normal paragraphs consist of text consisting of words, sentences, and
+    other stuff.
+    Line breaks are not significant.
+    This is still the first
+    paragraph of this section.
+    <p>
+      Here's the second paragraph. It's long. It's only conventional and suggested that lines be less than 72 characters long. It's certainly not specified, defined, or required.</p>
+    <p>
+      A P tag isn't needed between a paragraph and some other element, like
+      a heading.
+    </p>
+    <h3>Ordered lists</h3>
+    These are for things like lists of steps, where the order is
+    significant.
+    <ol>
+      <li>This is the first item of an unordered list. 
+      </li>
+      <li>This is the second item. It's kinda long, and should wrap around
+        on most screens.
+      </li>
+      <li>This is the third item.
+      </li>
+      <li>This is the fourth and final item.
+      </li>
+    </ol>
+    <h3>Case of names is not significant: different cases</h3>
+    <h3>Case of names is not significant: both lower case</h3>
+    <h3>TYPEWRITER</h3>
+    <typewriter>Anything you could put on a typewriter (or an ASCII display
+      device, more precicesly) can be represented in a TYPEWRITER
+      element:
+      Tags: &lt;start&gt; &lt;/end&gt;
+      Entity references: &amp;lt; &amp;amp;
+      Tables made from tabs:
+      col 1	col 2	col 3	col 4
+      1		3	4
+      2	3	4
+      1	2	3	4
+      Plus, you can use <a name="id14" href="/archive/cern/1069" original-href="recommended.html" archive-page-id="1069">hypertext links.</a>
+      Linebreaks _are_ significant. There should be three blank lines from here
+      to here.</typewriter>
+    The ASCII Horizontal Tab (HT) character should be interpreted as the
+    smallest positive nonzero number of spaces which will leave the number
+    of characters so far on the line as a multiple of 8. Its use is not
+    recommended however.
+    <p>
+    </p>
+    <h2>Literal Text Elements</h2>
+    <xmp>
+      Comment declaration as data follows:
+      <!-- this would be a comment in PCDATA. It's data in RCDATA. -->
+      Markup declaration as data follows:
+      Start tag follows:
+    </xmp>
+    <pre><start> tags are fine!
+&amp; as long as it's not followed by a letter or '#', it's fine!
+ is even ok, unless it's followed by a letter or a number.
+</start></pre>
+    Tabs in XMP content:
+    <xmp>
+      This is literal text with tabs.		THESE	        words
+      should line up under			THESE		words.
+    </xmp>
+    <pre></pre>
+  </div>

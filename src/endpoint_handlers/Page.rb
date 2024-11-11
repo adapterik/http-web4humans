@@ -26,6 +26,6 @@ class Page < EndpointHandler
       },
     })
 
-    render_template()
+    render_template
   end
 end

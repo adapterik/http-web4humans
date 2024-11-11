@@ -1,0 +1,24 @@
+<div data-element="archive-body">
+  <h1>Installing te basic httop daemon</h1>
+  The usual way to install a daemon is to either run it from the bootstrap
+  command file (for example /etc/rc) so that it runs continuously, or
+  to set up the internet daemon (inetd) to run it when a call comes
+  in. 
+  <p>
+    Remember to make a <a name="5" href="/archive/cern/738" original-href="RuleFile.html" archive-page-id="738">rule file</a> unless you explicitly supress it with
+    the -R option.
+  </p>
+  <h2><a name="2">Using the Internet daemon</a></h2>
+  There is a csh script to do this for a BSD unix system. You might
+  want to edit it to run on other systems. 
+  <p>
+    Otherwise, just follow the <a name="9" href="/archive/cern/1795" original-href="Inetd.html" archive-page-id="1795">instructions for installing a server under
+      the internet daemon</a>.
+  </p>
+  <h2>Log file</h2>
+  If  a log file is required,  make sure that the user name under which
+  the daemon is run  has the right to write the file
+  <address>
+    <a name="0" href="/archive/cern/1794" original-href="../../../TBL_Disclaimer.html" archive-page-id="1794">Tim BL</a>
+  </address>
+</div>

@@ -1,0 +1,32 @@
+<div data-element="archive-body">
+  <h1>Address for an index Search</h1>
+  If a given hypertext node is an index, or the server has an index
+  associated with it, then a search may be done on that index by suffixing
+  the name of the index with a list of keywords, after a question mark:
+  <xmp>		address_of_index ? keywordlist
+  </xmp>
+  <pre></pre>
+  The address of the index is a normal hypertext address. In the keywordlist,
+  multiple keywords are separated by plus signs (+) .  (See <a name="0" href="/archive/cern/284" original-href="BNF.html" archive-page-id="284">BNF syntax
+    description</a> .)  The resulting string still does not contain any spaces.
+  It may be considered to be the hypertext address of a document which
+  is the result of making the keyword search on the index. Normally,
+  if the search was successful, the document returned will contain anchors
+  leading to other documents which match the selection criteria. 
+  <p>
+    The search method, and the logical and lexical functions, weights,
+    etc applied to the keywords will depend on the index address.  One
+    actual index may have several hypertext addresses,  which when searched
+    on will behave in different ways. For example, one may allow a search
+    on author-given keywords only, while another may be a full text search.
+    These things particular to an index should be descibed in the hypertext
+    page for the index node itself (or in linked documents). For example,
+    a server may allow specific boolean search combinations may be represented
+    by the words "and", "or" and "not".
+  </p>
+  <h2>Example:</h2>
+  <xmp>			http://cernvm/FIND/?sgml+cms
+  </xmp>
+  <pre></pre>
+  indicates the result of perfoming a search for keywords "sgml" and
+  "cms" on the index http://cernvm/FIND/. </div>

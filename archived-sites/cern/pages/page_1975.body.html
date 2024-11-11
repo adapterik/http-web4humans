@@ -1,0 +1,266 @@
+<div data-element="archive-body">
+  <h1>MAILBASE COMMANDS</h1>
+  Mailbase responds to commands sent as electronic mail messages to
+  the address 'mailbase@uk.ac.newcastle'
+  <p>
+    It is *important* that commands be sent *only* to this address! Do
+    not send commands to any of the mail distribution lists (for example,
+    the lis-it list mentioned above) which are managed by Mailbase.</p>
+  <p>
+    Commands sent to Mailbase are executed in sequence until a terminator,
+    or an error, is found.  A mail message reporting success or failure
+    is then returned to you.  More than one command may appear in any
+    one mail message to Mailbase, but each command must be on a separate
+    line. Except when stated otherwise, commands may appear in any order,
+    and they may be in UPPER, lower, or MiXeD case.</p>
+  <p>
+    Problems or queries relating to Mailbase commands should be sent
+    as an electronic mail message to 'mailbase-request@uk.ac.newcastle'
+    (see "<a name="1" href="/archive/cern/1973" original-href="Addresses.html" archive-page-id="1973">Addresses</a>").</p>
+  <p>
+    The Mailbase commands are:</p>
+  <p>
+  </p>
+  <xmp>   help                           review </xmp>
+  <pre><listname>
+   describe </listname><commandname>         send </commandname><listname> </listname><filename>
+   index [</filename><listname>]             statistics [command | list]
+   line-limit </listname><number>            stop
+   listme                         subscribe </number><listname> </listname><firstname> </firstname><lastname>
+   lists [full]                   unsubscribe </lastname><listname>
+ 
+</listname></pre>
+  These are described in full below, and also in the Mailbase Reference
+  <p>
+    Card.
+  </p>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  <h2>2.1 Getting Help from Mailbase</h2>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  If you already use Mailbase (by being a member of a list), sending
+  an electronic mail message containing the command help to Mailbase
+  will result in a brief summary of Mailbase commands being sent to
+  you by return.  If you do not already use Mailbase, the help command
+  will send you a copy of this, the User Guide.
+  <xmp>
+  </xmp>
+  <pre></pre>
+  If you already use Mailbase and you wish to obtain a copy of this
+  User Guide by electronic mail, send this command to Mailbase
+  <xmp>
+    send mailbase userhelp
+  </xmp>
+  <pre></pre>
+  Information about a specific command may be retrieved by sending a
+  'describe' command.
+  <p>
+    For example, sending the command 'describe describe' to Mailbase
+    will result in the following message being sent to you
+  </p>
+  <xmp>
+    Name:      describe
+    Example:   describe subscribe
+    Syntax:    describe command
+    Description:   This command gives a description of individual Mailbase
+    commands. The word "describe"  may be abbreviated to "des".
+    See also:   "help"
+  </xmp>
+  <pre></pre>
+  Problems or queries that require human intervention should be addressed
+  to mailbase-request@uk.ac.newcastle
+  <xmp>
+  </xmp>
+  <pre></pre>
+  <h2>2.2 Information on Current Discussions</h2>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  To find out the names of the discussion lists currently managed by
+  Mailbase, send the command 'lists' or 'lists full'.  The command alone
+  will return a list of all the current Mailbase discussion lists; the
+  option 'full' adds a short description of each one.
+  <p>
+    More detailed information about an individual list may be obtained
+    by sending a 'review' command.  For example,
+  </p>
+  <xmp>
+    review lis-it
+  </xmp>
+  <pre></pre>
+  returns the names of owners and members of the list, a brief description
+  of the list's purpose and details about its access facilities, which
+  are marked 'yes' if they are available to non-members and 'no' if
+  not. These are:
+  <dl>
+    <dt>Subscribe direct:
+    </dt>
+    <dd> If 'no', non-members must send an e-mail message
+      to the list owner, asking to be added to the list.
+    </dd>
+    <dt> Contribute mail:
+    </dt>
+    <dd> If 'no', you must join the list before sending mail
+      to it.
+    </dd>
+    <dt> Request review:
+    </dt>
+    <dd> If 'no', you must join the list in order to request
+      review information.
+    </dd>
+    <dt> Request files:
+    </dt>
+    <dd> If 'no', you must join the list in order to retrieve
+      any files which are associated with it.
+    </dd>
+    <dt> Archive:
+    </dt>
+    <dd> If 'no', list contributions are not stored in an archive
+      file.
+    </dd>
+  </dl>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  <h2>2.3 Subscribing to Discussions</h2>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  Note: 'subscribe' is the name chosen for the command: it does not
+  mean that you have to pay a subscription fee!
+  <p>
+    If the list you wish to join is open for direct subscription, send
+    the following command to Mailbase
+  </p>
+  <xmp>
+    subscribe </xmp>
+  <pre><listname> </listname><firstname> </firstname><surname>
+ 
+</surname></pre>
+  For example,
+  <xmp>
+    subscribe lis-it Fred Smith
+  </xmp>
+  <pre></pre>
+  would add your name (Fred Smith) and mail address (taken from your
+  message header) to the lis-it discussion list.
+  <p>
+    If the list you wish to use is closed for direct subscription, you
+    will be asked to send a message to
+  </p>
+  <xmp>
+  </xmp>
+  <pre><listname>-request@uk.ac.newcastle
+ 
+</listname></pre>
+  (where listname is the chosen list).  For example: lis-it-request@uk.ac.newcastle
+  <xmp>
+  </xmp>
+  <pre></pre>
+  <h2>2.4 Checking your Membership of Discussion Lists</h2>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  To obtain a list of the discussion lists of which you are a member,
+  send the following command to Mailbase
+  <xmp>
+    listme
+  </xmp>
+  <pre></pre>
+  <h2>2.5 Leaving Discussions</h2>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  To leave a discussion list, send an 'unsubscribe' command to Mailbase.
+  For example,
+  <xmp>
+    unsubscribe lis-it
+  </xmp>
+  <pre></pre>
+  would remove your name from the lis-it list.
+  <xmp>
+  </xmp>
+  <pre></pre>
+  <h2>2.6 Retrieving Files via Electronic Mail</h2>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  Many discussion lists have files associated with them.  To find out
+  which lists these are, send the following command to Mailbase
+  <xmp>
+    index
+  </xmp>
+  <pre></pre>
+  To find out what files are associated with a particular list, attach
+  the list name to the command.  For example,
+  <xmp>
+    index lis-it
+  </xmp>
+  <pre></pre>
+  will tell you which files are associated with the lis-it list. The
+  index contains information about the size of files.  The files themselves
+  may be retrieved with the command
+  <xmp>
+    send </xmp>
+  <pre><listname> </listname><filename>
+ 
+</filename></pre>
+  For example,
+  <xmp>
+    send lis-it 12-1990
+  </xmp>
+  <pre></pre>
+  will retrieve the file called 12-1990 (the archive file containing
+  all contributions sent to this list during December 1990) which belongs
+  to the lis-it list.  We recommend that you retrieve and read some
+  archive files before you start contributing to discussions.
+  <p>
+    If a file is larger than 100,000 characters (approximately 5000 lines),
+    it may be necessary to retrieve it in several pieces.  Do this by
+    preceding the send command with a 'line-limit' command. For example,
+  </p>
+  <xmp>
+    line-limit 2000
+    send nisp assess.txt
+  </xmp>
+  <pre></pre>
+  would retrieve the file 'assess.txt', associated with the  nisp  list,
+  in the form of several pieces, each containing a maximum of 2000 lines.
+  <xmp>
+  </xmp>
+  <pre></pre>
+  <h2>2.7 Information on Use of Mailbase</h2>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  To obtain some statistical information about the use which has been
+  made of Mailbase, use the statistics command, which has the form
+  <xmp>
+    statistics [ command | list ]
+  </xmp>
+  <pre></pre>
+  The 'command' option gives statistics about commands and 'list' about
+  lists. If no options are given you will receive both command and list
+  information.
+  <xmp>
+  </xmp>
+  <pre></pre>
+  <h2>2.8 Mail with Signatures</h2>
+  <xmp>
+  </xmp>
+  <pre></pre>
+  If your electronic mail messages end with a signature, terminate your
+  Mailbase commands with the command
+  <xmp>
+    stop
+  </xmp>
+  <pre></pre>
+  This prevents Mailbase from attempting to interpret your signature
+  as a series of commands.
+  <xmp>
+  </xmp>
+  <pre></pre>
+</div>

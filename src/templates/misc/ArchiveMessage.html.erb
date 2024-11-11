@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body class="http-only-site">
+    <%= include_partial "header" %>
+    <div class="body">
+      <table  class="layout-table archive"  cellspacing="0" cellpadding="0">
+        <tr class="archive-header-row">
+          <td colspan="4">
+            <a href="/archive/<%= @context[:archive][:name] %>/1"><%= @context[:archive][:name] %> archive home</a>
+          </td>
+        </tr>
+        <tr class="archive-content-row">
+          <td class="archive-left-col">
+          </td>
+          <td class="archive-content-col">
+            <h1><%= @context[:message]['title'] %></h1>
+            <%= format_markdown @context[:message]['content'] %>
+    
+            <%# maybe buttons... %>
+            <% if @context[:message]['next_path'] %>
+            <a href="<%= @context[:message]['next_path'] %>">Return to <%= @context[:message]['next_path'] %>
+            <% end %>
+          </td>
+           <td class="archive-metadata-col">
+            <% if @archive_id.nil? %>
+              SUMMARY OF SITE HERE
+            <% else %>
+
+
+             <table class="metadata-table" cellspacing="0">
+                <tbody>
+                  <tr>
+                      <th>
+                        ID
+                      </th>
+                      <td>
+                        <%= @archive_id %>
+                      </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+            
+
+              
+            <% end %>
+          </td>
+          <td class="archive-right-col">
+          
+          </td>
+        </tr>
+        <tr class="archive-footer-row">
+          <td colspan="4">
+          </td>
+        </tr> 
+      </table>
+
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>

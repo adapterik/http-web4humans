@@ -1,0 +1,70 @@
+<div data-element="archive-body">
+  <h1>Installing a daemon under inetd</h1>
+  The usual way to install a daemon is to either run it from the bootstrap
+  command file (for example /etc/rc) so that it runs continuously, or
+  to set up the internet daemon (inetd) to run it when a call comes
+  in. 
+  <p>
+    There is a csh script to do all this for BSD systems, which should
+    be run from the directory in which you have compiled the daemon.
+  </p>
+  <h2></h2>
+  Copy the daemon program or shell script (<a name="6" href="/archive/cern/139" original-href="Guide.html" archive-page-id="139"> httpd</a> in this example) into
+  a suitable directory such as /usr/etc/httpd.  Protect it from anyone
+  writing to it except root.
+  <p>
+    Put "http" in the /etc/services file, or use the name of a specific
+    service of your own if you want to use have a special port number.</p>
+  <p>
+    (Exceptions: on a NeXT, see  using the <a name="3" href="/archive/cern/3825" original-href="NetInfo.html" archive-page-id="3825">NetInfomanager</a> . On any machine
+    running NIS (yellow pages), see  specicial instructions ). </p>
+  <p>
+    For example,
+  </p>
+  <xmp>www		80/tcp			# WorldWideWeb server
+  </xmp>
+  <pre></pre>
+  Put a line in the internet daemon configuration file, /etc/inetd.conf.
+  For example,
+  <listing>www	stream	tcp	nowait	nobody	/usr/etc/httpd		httpd -l /private/adm/httpd-log.txt
+  </listing>(That was all one line.) Here "www" is used as a link between the
+  services file and inetd.conf: it could have been any identifier. "nobody"
+  is the user name under which you want the daemon to run, which determines
+  what privileges it has for example to read data. The inted.conf format
+  varies from system to system so copy the format of other lines in
+  your version.
+  <p>
+    Note: there seem to be, on the NeXT at least, a limit of 4 arguments
+    passed across by inetd!When you have updated inted.conf, find out
+    which process is running inetd, and send it a "HUP" signal.  On BSD
+    unix (For system V, use ps-el for ps aux) this looks like:
+  </p>
+  <xmp>
+    &gt; ps aux | grep inetd | grep -v grep
+    root        85   0.0  0.9 1.24M  304K ?  S     0:01 /usr/etc/inetd
+    &gt; kill -HUP 85
+    &gt;
+  </xmp>
+  <pre></pre>
+  <h2>Also remember for httpd:</h2>
+  You must make or copy a rule file /etc/httpd.conf, unless you have
+  used the -r option to change its location, or -R to disable it.
+  <p>
+    The -r option tells the daemon which rule file to use.  See <a name="1" href="/archive/cern/738" original-href="RuleFile.html" archive-page-id="738">rule files</a>
+    .</p>
+  <p>
+    If  a log file is required,  make sure that the user name under which
+    the daemon is run (the 5th field in the line above) has the right
+    to write the file.</p>
+  <p>
+    Test the server with the line mode browser by giving its address explicitly:
+  </p>
+  <xmp>			www http://myhost.dom.ain:80/junkdocumentname
+  </xmp>
+  <pre></pre>
+  If it doesn't work, you have probably missed something. See notes
+  on <a name="4" href="/archive/cern/739" original-href="Debugging.html" archive-page-id="739">debugging</a> .
+  <address>
+    <a name="0" href="/archive/cern/3824" original-href="../../../TBL_Disclaimer.html" archive-page-id="3824">Tim BL</a>
+  </address>
+</div>

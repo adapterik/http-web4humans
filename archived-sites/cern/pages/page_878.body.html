@@ -1,0 +1,45 @@
+<div data-element="archive-body">
+  <h1>Function body layout</h1>
+  With the body of functions, this is the way we aim to do it...we're
+  not religious about it, but consistency helps.  If you think your
+  way is smarter, you may be right but this is the way we do it.  
+  <p>
+    Whatever you do, NEVER make global changes to the indentation etc
+    in a file without agreement from me first. (It screws up diffs and
+    cde management as well as people).
+  </p>
+  <h2>Indentation</h2>
+  <ul>
+    <li>Put opening { at the end of the same line as the if, while, etc which
+      affects the block;
+    </li>
+    <li>Align the closing brace with the START of that opening line;
+    </li>
+    <li>Indent everything between { and }  by an extra 4 (FOUR) spaces.
+    </li>
+    <li>Never indent preprocessor instructions (#ifdef, etc), nor increase
+      the indentation level on account of preprocessor instructions.
+    </li>
+    <li>Block comments should start with /* in column 1, end end with */ in
+      column 1. In between, having ** in column 1 is conventional but not
+      necessary for very large comments.
+    </li>
+    <li>Comment the closing braces of conditionals and other blocks with the
+      type of block, including the correct sense of the condition of the
+      block being closed if there was an "else",  of the function name.
+      For example,
+    </li>
+  </ul>
+  <xmp>			    if (cb[k]==0) {	/* if black */
+    foo = bar;
+    } else {		/* if white */
+    foo = foobar;
+    }			/* if white */
+    } 		/* switch on character */
+    } 			/* loop on lines */
+    }			/* scan_lines()	*/
+  </xmp>
+  <pre></pre>
+  _________________________________________________________________
+  <address><a name="0" href="/archive/cern/1895" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1895">Tim BL</a></address>
+</div>

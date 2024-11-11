@@ -1,0 +1,47 @@
+<div data-element="archive-body">
+  <h1>Oracle server</h1>
+  This was written during August and September 1992 by <a name="6" href="/archive/cern/24" original-href="../../People.html#17" archive-page-id="24">Arthur Secret</a>.
+  <p>
+    The server takes a W3 query as an SQL SELECT staement and returns
+    the results formatted as a table in plain text.</p>
+  <p>
+    This server is obviously a good sarting point for a gateway to provide
+    a hypertext view of an oracle database.
+  </p>
+  <h2>Sources</h2>
+  The normal daemon files from the basic W3 daemon and library are used,
+  and also:
+  <dl>
+    <dt>
+      <a name="1" href="/archive/cern/816" original-href="src/Makefile" archive-page-id="816">Makefile</a>
+    </dt>
+    <dd>The clue to how it is built, with lists of W3 and oracle libraries.
+      (Not all the Oracle libraries mentioned are necessarily used).
+    </dd>
+    <dt>
+      <a name="2" href="/archive/cern/817" original-href="src/HTOracle.pc" archive-page-id="817">HTOracle.pc</a>
+    </dt>
+    <dd>Is put through the Oracle preprocessor Pro*C. This is the
+      guts of the gateway.
+    </dd>
+    <dt>
+      <a name="3" href="/archive/cern/818" original-href="src/HTOracle.h" archive-page-id="818">HTOracle.h</a>
+    </dt>
+    <dd>Header file for HTOracle.pc
+    </dd>
+    <dt>
+      <a name="4" href="/archive/cern/819" original-href="src/HTRetrieve.c" archive-page-id="819">HTRetrieve.c</a>
+    </dt>
+    <dd>This is modified from the regular version  to call HTOracle.pc
+    </dd>
+    <dt>
+      <a name="5" href="/archive/cern/820" original-href="src/y.pc" archive-page-id="820">y.pc</a>
+    </dt>
+    <dd>This is a test program which runs on the terminal
+    </dd>
+  </dl>
+  _________________________________________________________________
+  <address>
+    <a name="0" href="/archive/cern/821" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="821">Tim BL</a>
+  </address>
+</div>

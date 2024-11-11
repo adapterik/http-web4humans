@@ -1,0 +1,77 @@
+<div data-element="archive-body">
+  <h1>Field names</h1>
+  When you search for a person in the WHO database, you normally search
+  with their name. In fact, words you give will be matched against any
+  part of  a person's phone book record, so you can search by phone
+  number or division, for example.
+  <p>
+    You can, however, specify that a value must match a particular field
+    by prefixing it with a field name. Field names all start with colons
+    (:) to distinguish them from any other data.</p>
+  <p>
+    You can give many such sets of field name and value(s), which must
+    all match (logical AND) for a name to be displayed.  Here are some
+    field names -- these can be abreviated to two letters:
+  </p>
+  <ul>
+    <li>
+    </li>
+  </ul>
+  <dl>
+    <dt>CODE
+    </dt>
+    <dd>FOLLOWED BY
+    </dd>
+    <dt>:phone
+    </dt>
+    <dd>A (four digit) phone number
+    </dd>
+    <dt>:building
+    </dt>
+    <dd>A building number, eg 513
+    </dd>
+    <dt>:surname
+    </dt>
+    <dd>The surname (last name, normally family name) of a person.
+      If the surname consists of several words, any number of these may
+      be specified.
+    </dd>
+    <dt>:firstname
+    </dt>
+    <dd>The forenames of a person.
+    </dd>
+    <dt>:flooroffice
+    </dt>
+    <dd>A room number of the form 1-007
+    </dd>
+    <dt>:div
+    </dt>
+    <dd>The division, eg  ":div ecp" to select only those in ECP division.
+      See also :CG.
+    </dd>
+    <dt>:cg
+    </dt>
+    <dd>A code for a persons "group" inside their division in the CERN
+      hierarchy. For example, AS
+    </dd>
+    <dt>:all
+    </dt>
+    <dd>A field consisting of the whole phone book line followed by the
+      preferred electronic mail address and  the account-file information
+      belonging to the same person.
+    </dd>
+  </dl>
+  <h2>Example:</h2>
+  searching with string
+  <xmp>			john :div cn :cg as
+  </xmp>
+  <pre></pre>
+  finds all people called "John" as first name or second name in division
+  CN. group AS. For more field names, see the writeup on the <a name="1" href="/archive/cern/1837">WHO program</a>.
+  <p>
+    _________________________________________________________________
+  </p>
+  <address>
+    <a name="0" href="/archive/cern/1838" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1838">Tim BL</a>
+  </address>
+</div>

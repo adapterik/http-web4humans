@@ -1,0 +1,23 @@
+<div data-element="archive-body">
+  <h1>Design Constraints</h1>
+  When designing the <a name="0" href="/archive/cern/1066" original-href="HTML.html" archive-page-id="1066">HTML</a> document type, consideration was given to
+  a certain simplicity in order to allow many browsers and hopefully
+  editors to be developed on many platforms.
+  <h2>Lack of nesting</h2>
+  Many text editing systems (Microsoft Word, The NeXT text object, the
+  Mac text object, etc) handle text in a variety of styles but do not
+  have any concept of nestable structure in the SGML sense.
+  <p>
+    The constraint here is therefore that HTML be able to be mapped into
+    a sequence of paragraphs of styled text, and that if that text is
+    edited that the editor should be able to map the sequence of styles
+    back onto a sequence of elements in a well-defined way. This allows
+    some limited trivial nesting (eg LI within UL) but no general nesting,
+    as a finite and small set of styles is used. In particular, the styles
+    are not parameterized by the nesting level.
+  </p>
+  <h2>Logical Markup</h2>
+  It is required that HTML be a common language between all platforms.
+  This implies no device-specific markup, or anything which requires
+  control over fonts or colors, for example.  This is in keeping with
+  the SGML ideal.</div>

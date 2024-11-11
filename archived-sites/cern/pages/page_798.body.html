@@ -1,0 +1,51 @@
+<div data-element="archive-body">
+  <h1>Improvements made to the CERNVM FIND server</h1>
+  In reverse chronological order, these are the improvements which have
+  taken place to <a name="1" href="/archive/cern/166" original-href="Overview.html" archive-page-id="166">the FIND server</a> . Changes are made immediately in machine
+  SERVUS03 (operating occasionally on port  8000), and later transferred
+  to SERVUS02 (operating continually on port 2784).
+  <h2>October 1991</h2>
+  <ul>
+    <li>Bug fix:Ocasionally the server got into a mode in which it returns
+      all blank lines. This bizarre mode is only reset by killing it.
+    </li>
+    <li>CERN phone book (white pages) on line.
+    </li>
+  </ul>
+  <h2>September 91</h2>
+  <ul>
+    <li>Internet node number of client passed to REXX execs as first parameter
+      for monitoring (26-Sept-91).
+    </li>
+    <li>Log file introduced as in normal daemon.
+    </li>
+    <li>Bug fix:  A file containing a line consisting of just  slash followed
+      by asterisk put the server into a weird mode in which everything was
+      returned as a sequence of blank lines. (A crazy facet of the IBM C
+      runtime library in which /* was interpreted as eond of file! ) (24
+      Sep 91)
+    </li>
+    <li>Title added (in C) to seach result virtual documents.	
+    </li>
+  </ul>
+  <h2>End Mar 91</h2>
+  <ul>
+    <li>Bug fix: Anchors which do not go anywhere are no longer generated.
+    </li>
+    <li>Bug fix: If nothing is found, a message to that effect is generated,
+      not an acess error message.
+    </li>
+  </ul>
+  <h2>11 Feb 91</h2>
+  <ul>
+    <li>The Yellow pages information and NEWS information has been added.
+    </li>
+    <li>The format has been changed to use heading tags instead of glossary
+      tags.
+    </li>
+  </ul>
+  __________________________________________________________
+  <address>
+    <a name="0" href="/archive/cern/1838" original-href="../../TBL_Disclaimer.html" archive-page-id="1838">Tim BL</a>
+  </address>
+</div>

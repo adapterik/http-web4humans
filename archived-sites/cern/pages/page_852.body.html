@@ -1,0 +1,97 @@
+<div data-element="archive-body">
+  <h1>Link Types</h1>
+  See <a name="3" href="/archive/cern/233" original-href="Topology.html#4" archive-page-id="233">discussion of whether links should
+    be typed</a> .
+  <p>
+    Descriptive (normal) link types are
+    mainly for the benefit of users and
+    tracing, and graphics representation
+    algorithms. Some link types for example
+    express relationships between the
+    things described by two nodes.</p>
+  <p>
+    A Is part of B  / B includes A</p>
+  <p>
+    A Made B / B is made by A</p>
+  <p>
+    A Uses B  / B is used by A</p>
+  <p>
+    A refers to B / B is referred to
+    by A
+  </p>
+  <h2>Magic link types</h2>
+  These have a significance known to
+  the system, and may be treated in
+  special ways.  Many of these relate
+  whole nodes, rather than particular
+  anchors within them.  (See also <a name="4" href="/archive/cern/233" original-href="Topology.html#12" archive-page-id="233">multiended
+    links</a> and predicate logic) Suggestions:
+  <h2>UseIndex</h2>
+  The destination is the related index
+  for a search by a user reading this
+  document who asks for an index search
+  function.
+  <p>
+    A document may have any number of
+    index links, causing several indexes
+    top be searched in a client-defined
+    manner.
+  </p>
+  <h2>UseGlossary</h2>
+  The destination of the link is an
+  index which should be used to resiolve
+  glossary queries in the document.
+  (Typically, a double-clik on a word
+  which is not within an anchor).
+  <p>
+    A document may have any number of
+    glossary links.
+  </p>
+  <h2>Annotation</h2>
+  The information in the destination
+  node is additional to that in the
+  source node, and may be viewed at
+  the same time. It may be filtered
+  out (as a function of author?).
+  <p>
+    Annotation is used by one person
+    to write the equivalent of "margin
+    notes" or other criticism on another's
+    document, for example.</p>
+  <p>
+    <a name="2" href="/archive/cern/942" original-href="TracingLinks.html" archive-page-id="942">Tracing</a> may ignore annotations when
+    generating trees or sequences.
+  </p>
+  <h2>Embedded information</h2>
+  If this link is followed, the node
+  at the end of it is embedded into
+  the display of the source node. This
+  is supported by Guide, but not many
+  other systems.  It is used, in effect,
+  by those systems (VAX/notes under
+  Decwindows, Microsoft Word) which
+  allow "Outlining" -- expanding a
+  tree bit by bit.
+  <p>
+    The browser has a more difficult
+    job to do if this is supported.
+  </p>
+  <h2>person described by node A is author
+    of node B</h2>
+  This information can be used for
+  protection, and informing authors
+  of interest, for sending mail to
+  authors, etc.
+  <h2>person described by node A is interested
+    in node B</h2>
+  This information can be used for
+  informing readers of changes.
+  <h2><a name="1">Node A is in fact a previous version
+      of node B</a></h2>
+  <h2>Node A is in fact a set of differences
+    between B and its previousversion. This information will probably
+    not be stored as nodes, but be generated
+    from regular diff files. or some
+    other delta method.
+  </h2>
+</div>

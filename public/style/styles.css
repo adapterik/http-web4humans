@@ -67,7 +67,7 @@ body {
 
 .footer {
     flex: 0 0 auto;
-    margin-top: 16px;
+    /* margin-top: 16px; */
     padding: 16px;
     border-top: 1px gray solid;
     background-color: silver;
@@ -120,6 +120,96 @@ table.layout-table td.side-bar-section-header {
     margin: 10px;
     font-weight: bold;
 }
+
+/* site archive layout table */
+
+table.layout-table.archive {
+}
+
+
+
+table.layout-table.archive th, table.layout-table.archive td {
+    padding: 8px;
+}
+
+
+table.layout-table.archive > tbody > tr.archive-header-row {
+    background-color: rgb(110, 129, 115);
+    height: 40px;
+}
+
+table.layout-table.archive > tbody > tr.archive-header-row a {
+    background-color: rgb(203, 203, 203);
+    padding: 4px;
+}
+
+
+
+/* table.layout-table.archive > tbody > tr.archive-header-row > td {
+    border: 1px red solid;
+    padding: 8px;
+} */
+
+table.layout-table.archive > tbody > tr.archive-content-row {
+    
+}
+
+table.layout-table.archive > tbody > tr.archive-content-row td.archive-left-col {
+    width: 40px;
+    background-color: rgb(110, 129, 115);
+}
+
+table.layout-table.archive > tbody > tr.archive-content-row > td.archive-content-col {
+    
+}
+
+table.layout-table.archive > tbody > tr.archive-content-row > td.archive-content-col  {
+    width: 800px;
+    vertical-align: top;
+    /* line-height: 20px; */
+}
+
+table.layout-table.archive > tbody > tr.archive-content-row > td.archive-metadata-col {
+    /* max-width: 800px; */
+    /* line-height: 20px; */
+    vertical-align: top;
+    padding-top: 60px;
+}
+
+table.layout-table.archive > tbody > tr.archive-content-row > td.archive-right-col {
+    width: 40px;
+    background-color: rgb(110, 129, 115);
+}
+
+table.layout-table.archive > tbody > tr.archive-footer-row {
+    background-color: rgb(110, 129, 115);
+    height: 40px;
+}
+
+/* Metadata table for the right column */
+
+.metadata-table {
+    border: 1px solid silver;
+    font-size: 80%;
+    width: 100%;
+}
+
+.metadata-table th, .metadata-table td {
+    border: 1px solid silver;
+    margin: 0;
+    padding: 8px;
+}
+
+
+.metadata-table th {
+   width: 110px;
+}
+
+
+.metadata-table th {
+    text-align: right;
+}
+
 
 /* content area containers */
 

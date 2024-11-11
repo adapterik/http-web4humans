@@ -1,0 +1,31 @@
+<div data-element="archive-body">
+  <h1><a name="top">HTML Extremes</a></h1>
+  These are a little tricky, and might break some quick-and-dirty
+  implementations. But they are parsed correctly by implementations
+  based on <a name="id1" href="/archive/cern/1074" content-type="application/octet-stream" original-href="libHTML.tar.Z" archive-page-id="1074">libHTML</a>.
+  <p>
+    These constructs are not recommended.</p>
+  <p>
+  </p>
+  <h2>Document Structure</h2>
+  <h4>The tags for this element have spaces in them.</h4>
+  <h4>Another H4 Just in case it missed the close tag with spaces</h4>
+  <h2>Header Elements</h2>
+  <h2>Body Elements</h2>
+  <h3><a name="delimiters">Delimiter Recognition</a></h3>
+  Character reference (not used in HTML): 'SPACE;' and È.
+  And character from data: &amp;, and from markup: &amp;.
+  <p>
+    And-hash from data:  and from markup &amp;#.</p>
+  <p>
+    Less-thans as data: &lt; &lt;1 &lt;-)</p>
+  <p>
+    Less-than-slash as data:  1 -)</p>
+  <p>
+    greater-than (pretty much always data): &gt; abc&gt; 0&gt;</p>
+  <p>
+    comment: <!-- implementation is broken if this shows up--> The sample
+    implementation groks.</p>
+  <p>
+    comment w/space between -- and &gt;: </p>
+</div>

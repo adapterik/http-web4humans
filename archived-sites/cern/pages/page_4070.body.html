@@ -1,0 +1,39 @@
+<div data-element="archive-body">
+  <h1>Mailboxes</h1>
+  Mailbox is one of the fields routined checked in a general search,
+  and  if your target contains an '@', it is the ONLY field tried.
+  Input of  "joe" would find mailboxes "joe@..." and "joe%...". 
+  <p>
+    Mailboxes are stored in the database with the host part canonicalized,
+    that is, made official.  If you use a non-official hostname or 
+    nickname, it is automatically canonicalized for you before the search.
+    If the named host is not known, the search is performed anyway on
+    the exact target string. </p>
+  <p>
+    You may search for mailboxes any of three ways: 
+  </p>
+  <dl>
+    <dt>user@
+    </dt>
+    <dd> Looks for mailboxes with a username part of 
+      <dd> "user" on any
+        host. This is a fast search. 
+      </dd>
+    </dd>
+    <dt>@host
+    </dt>
+    <dd> Finds ALL mailboxes on host "host".  This is  a SLOW search.
+    </dd>
+    <dt>user@host
+    </dt>
+    <dd> Looks for an exact mailbox match, user andhost parts both.
+      This is fastest. 
+    </dd>
+  </dl>
+  __________________________________________________________
+  <address>
+    <a name="1" href="/archive/cern/989" original-href="help.html#3" archive-page-id="989">Whois online help</a>
+  </address>
+  <address>
+  </address>
+</div>

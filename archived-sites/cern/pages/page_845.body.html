@@ -1,0 +1,56 @@
+<div data-element="archive-body">
+  <h1>Telnet addressing</h1>
+  A telnet address is a spcecial case of a <a name="2" href="/archive/cern/185" original-href="Addressing.html" archive-page-id="185">W3 address</a>.
+  <p>
+    When a telnet address is used, information can only be rertrieved
+    using an interactive telnet session. This has the disadvantage that
+    information cannot be indexed, searched, etc automatically, nor can
+    it be gatewayed into other systems.  The telnet addressing form is
+    used to allow a pointer to information systems such as library information
+    systems which have not been gatewayed into the web properly yet.</p>
+  <p>
+    The syntax is, with [] indicating optional parts (see full <a name="1" href="/archive/cern/284" original-href="BNF.html#55" archive-page-id="284">BNF</a>)
+  </p>
+  <xmp>		telnet : / /  [ user @ ] host  [ : port ]
+  </xmp>
+  <pre></pre>
+  There should be no spaces. For example, the following are valid telnet
+  addresses:
+  <xmp>		telnet://www@info.cern.ch:23
+    telnet://www@info.cern.ch
+    telnet://info.cern.ch
+  </xmp>
+  <pre></pre>
+  <dl>
+    <dt>
+      <a name="5" href="/archive/cern/284" original-href="BNF.html#57" archive-page-id="284">user</a>
+    </dt>
+    <dd>is the optional name of the user to be used for login. If the
+      username  is omitted, then so must be the "@" sign. This is equivalent
+      to the argument used with the -l option on the ucb telnet command.
+      When the username is omitted, some access servers will prompt for
+      a username and password.
+    </dd>
+    <dt>
+      <a name="3" href="/archive/cern/284" original-href="BNF.html#43" archive-page-id="284">host</a>
+    </dt>
+    <dd>This is the name of the server in internet form. A numeric form
+      (e.g. 128.141.201.74) may be used, by the domain name form (e.g. 
+      info.cern.ch) is preferred. The host is mandatory.
+    </dd>
+    <dt>
+      <a name="4" href="/archive/cern/284" original-href="BNF.html#7" archive-page-id="284">port</a>
+    </dt>
+    <dd>This is a numeric port number. If a non-numeric string is used,
+      it must be a defined service name. Note that as there is no central
+      repository for service names (they are defined locaaly for each host),
+      a service name is NOT an appropriate way to specify a port number
+      for a hypertext address. If the port number is omitted the preceding
+      colon must also be omitted. In this case, port number 23 is assumed.
+    </dd>
+  </dl>
+  _________________________________________________________________
+  <address>
+    <a name="0" href="/archive/cern/1853" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1853">Tim BL</a>
+  </address>
+</div>

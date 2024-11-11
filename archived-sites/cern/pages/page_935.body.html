@@ -1,0 +1,139 @@
+<div data-element="archive-body">
+  <h1>User's Guide to ViolaWWW</h1>
+  This is a brief guide to the viola-based 
+  <a href="/archive/cern/2" original-href="http://info.cern.ch/hypertext/WWW/TheProject.html" archive-page-id="2">World-Wide Web</a>
+  browser.
+  <a href="/archive/cern/1946">
+    Check this out </a> for a possible update of this guide. 
+  <h2>Following links</h2>
+  Single click to follow a hypertext link.
+  <p>
+    Notice that the ``current'' document identifier is displayed in a text
+    field (next to the label ``Doc ID'') at the bottom of the main window. 
+    You can type in a document ID there, and cause the browser to fetch the
+    document. If you want the browser to fetch a document identifier that 
+    is in X-Window's selection, press the ``Use Selected'' button.
+  </p>
+  <p>
+    Beware of this bug: if a line of hot text wraps around the page, 
+    you should click on the last line of the multiple lines.
+  </p>
+  <h2>Home</h2>
+  The house icon in the upper left corner always takes you to the home
+  page. The WWW_HOME environment variable tells this browser where the
+  home document is. If WWW_HOME is undefined, the home document is assumed
+  to be:
+  <xmp>
+    /usr/local/lib/WWW/default.html
+  </xmp>
+  <pre></pre>
+  If that file is inaccessible, then the following address is used:
+  <xmp>
+    http://info.cern.ch/hypertext/WWW/TheProject.html
+  </xmp>
+  <pre></pre>
+  <h2>Revisiting traveled documents (Prev, Back, Next)</h2>
+  A history list keeps track of your link travels. To see the history
+  list, click on the paper-scroll icon (with an ``H'') that is near the 
+  lower right corner of this application. The document titles are listed, 
+  with the ``current'' document highlighted. 
+  <p>
+    In the history window, the ``Dismiss'' buttons tells the history window
+    to go away. You can bring it back again by clicking on the history icon.
+  </p>
+  <p>
+    The other three buttons (Prev, Back, Next), also in the history window, 
+    have exactly the same function and meaning as the three navigation icons 
+    that are next to the house icon.
+  </p>
+  <p>
+    In the history list, you can click on a title to cause the main text field
+    to show that document.
+  </p>
+  <h2>Keyword search</h2>
+  This operation is valid only with documents containing a
+  <a href="/archive/cern/286" original-href="http://info.cern.ch/hypertext/WWW/MarkUp/Tags.html#18" archive-page-id="286">IsIndex</a> tag.
+  The message label, being either "Is Index" or "Not Index", indicates whether
+  the current document can or can not take keyword for searching.
+  <p>
+    You can enter a keyword by moving the cursor into the text field next to 
+    the message label, then type. Convenience feature: if your mouse cursor is 
+    in the main text field, you can simply type straight away; the cursor 
+    will be warpped to the keyword entry field, and warpped back on carriage 
+    return.
+  </p>
+  <p>
+    Bug warning: problem at the first IsIndex document?
+  </p>
+  <h2>Book mark</h2>
+  At the top of the main window is a ``Marked Documents'' menu. It is, like 
+  the home page, a good place to put pointers to frequently needed documents...
+  <p>
+    It contains a set of prepackaged document references. To visit a document
+    marked in the menu, just choose it as you would a menu item. To mark
+    the current document (append it into the menu), click on the ``mark'' 
+    icon that is next to the menu.
+  </p>
+  <p>
+    When this browser starts up, it looks for the file "~/.WWWBookMarks"
+    to put into that menu. If you don't have one, a default bookmark (specified
+    in file "www.v") is used, instead of letting it empty. 
+  </p>
+  <p>
+    Below is a shortened version of the default bookmark list. You can 
+    change the defaults by editing either the bookmark file "~/.WWWBookMarks"
+    (or the browser application "www.v"!). 
+  </p>
+  <xmp>
+    .{World-Wide Web} {www("show", "http://info.cern.ch/hypertext/WWW/TheProject.html");}
+    .{Information sources by subject} {www("show", "http://info.cern.ch/hypertext/DataSources/bySubject/Overview.html");}
+    .{Local Weather (SF Bay Area)} {www("show", "gopher://mermaid.micro.umn.edu:150/00/Weather/California/San%20Francisco");}
+  </xmp>
+  <pre></pre>
+  <h2>Tearing-out a page</h2>
+  Notice the icon that looks like a-piece-of-paper-about-to-fly-off, 
+  near the upper left corner of the main text field. Clicking on it 
+  makes a clone of the hypertext page. The clone page has a trash-can
+  icon instead of the paper-tear icon, for dismissing the clone.
+  <p>
+    Notice that clicking hot text in the cloned page actually causes action 
+    in the main text field, and not in clone text field.
+  </p>
+  <h2>Printing</h2>
+  Use the icon that looks like a printer, near the lower right corner 
+  of the main window. Currently, to use this function you must have the 
+  lineMode browser ``www'' installed.
+  <p>
+    If you want to specify the printer name, set the WWW_LPR environment variable.
+    For example, the following will work, if your printer happens to be named 
+    ``lw199b'':
+  </p>
+  <xmp>
+    setenv WWW_LPR "lpr -Plw199b"
+  </xmp>
+  <pre></pre>
+  <p>
+    The current implementation is pretty rudimentary (delegating formatting 
+    work to www). If you have your own printing method, it should be easy for 
+    you to easily incorporate that method into the browser's default printing 
+    script. Look at the file "www.v", and search for "WWW_LPR" to get to the 
+    relevant area... If you make improvements, please share! 
+  </p>
+  <h2>Source viewing</h2>
+  Use the icon labeled ``SRC'', near the lower right corner of the main window.
+  It pops a window displaying the 
+  <a href="/archive/cern/38" original-href="http://info.cern.ch/hypertext/WWW/MarkUp/MarkUp.html" archive-page-id="38">HTML</a> source
+  of the current document.
+  <h2>More information</h2>
+  The globe icon brings up general project information about this browser.
+  The question-mark icon brings(brought!) up this document.
+  The catoon-speak-bubble toggles the active help on and off.
+  The smudge, that appears when you press buttons, is a finger-print that
+  is supposed to provide visual feedback.
+  <h2>Bugs</h2>
+  <a href="/archive/cern/1808">
+    Bugs/ToDo list</a>.
+  <h2>Status</h2>
+  Very drafty. Last update is May 10, 1992.
+  <address>Bugs/Comments/Suggestions &gt;&gt; wei@xcf.berkeley.edu</address>
+</div>

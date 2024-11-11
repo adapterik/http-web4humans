@@ -1,0 +1,164 @@
+<div data-element="archive-body">
+  <h1>Recommended HTML Usage</h1>
+  This part of <a href="/archive/cern/294" original-href="MarkUp.html" archive-page-id="294">the HTML Reference</a> shows
+  recommended usage. These constructs are recommended because
+  <ul>
+    <li>They conform to the SGML definition of HTML
+    </li>
+    <li>They are straightforward to implement
+    </li>
+    <li>They work on most existing browsers
+    </li>
+  </ul>
+  This section contains many suggestions, rules of thumb, and the like.
+  Where the suggestions are not equivalent to <a name="id1" href="/archive/cern/1067" original-href="html.dtd" archive-page-id="1067">the DTD</a>, the words "should," "may," etc. are
+  linked to futher explanation.
+  <h2>Structure of an HTML document</h2>
+  An HTML document <a name="id2" href="/archive/cern/1070" original-href="complete.html#structure" archive-page-id="1070">should</a>
+  start with a <a href="#TITLE">TITLE element</a>.
+  <p>
+    If the document is searchable, an <a name="id3" href="#ISINDEX">ISINDEX</a> element should come next.</p>
+  <p>
+    After any TITLE and ISINDEX elements comes the BODY, which <a name="id4" href="/archive/cern/1071" original-href="tolerated.html#id1" archive-page-id="1071">should</a> start with an H1 element,
+    followed by other elements character data.</p>
+  <p>
+    See also: <a name="id13" href="/archive/cern/1071" original-href="tolerated.html#structure" archive-page-id="1071">tolerated
+      structural errors</a>, <a name="id14" href="/archive/cern/1073" original-href="errors.html#structure" archive-page-id="1073">severe structural errors</a>.
+  </p>
+  <h2>Header Elements</h2>
+  <h3><a name="TITLE">TITLE</a></h3>
+  The TITLE element should identify the document in a fairly wide
+  context. Its content should fit on one line: it should be less than 72
+  characters with no linebreaks. It <a name="id5" href="/archive/cern/1070" original-href="complete.html#TITLE" archive-page-id="1070">should
+  </a>
+  not contain any '&lt;' characters.
+  <p>
+    The title may be used to identify the node in a history list, to label
+    the window displaying the node, etc. It is not normally displayed in
+    the text of a document itself. Contrast titles with <a href="#headings">headings </a>.
+  </p>
+  <h3><a name="ISINDEX">ISINDEX</a></h3>
+  The presence of the ISINDEX element indicates the document is
+  searchable.
+  <p>
+  </p>
+  <h2>Body Elements</h2>
+  Within the content of these elements, the characters '&lt;', '&gt;',
+  and '&amp;' signal markup <a name="id12" href="/archive/cern/1068" original-href="Text.html#PCDATA" archive-page-id="1068">in many
+    cases</a>. They <a name="id6" href="/archive/cern/1075" original-href="supported.html#delimiters" archive-page-id="1075">should
+  </a>
+  be written as "&amp;lt;", "&amp;gt;", and "&amp;amp;" respectively, to
+  prevent this.
+  <h3>Anchors</h3>
+  A span of text can be marked as an anchor. Anchors can be used as the
+  source of a hypertext link:
+  <p>
+    Choose <a href="/archive/cern/1071" original-href="tolerated.html" archive-page-id="1071">this</a> to view a neighbor
+    document.</p>
+  <p>
+    ... or as the destination: </p>
+  <p>
+    <a name="Fred">Fred Flinstone</a></p>
+  <p>
+    See also: <a name="id15" href="/archive/cern/1071" original-href="tolerated.html#A" archive-page-id="1071">tolerated errors in
+      anchors</a>, <a name="id16" href="/archive/cern/1073" original-href="errors.html#a" archive-page-id="1073">severe errors in
+      anchors</a>.
+  </p>
+  <h3><a name="headings">Headings</a></h3>
+  Headings are used to break the body into sections and subsections.
+  Several levels of headings are defined: 
+  <p>
+  </p>
+  <h4>Level four headings are for sub-sub-sub headings</h4>
+  <h3>Paragraphs</h3>
+  Text that isn't marked up as some other element forms a paragraph.
+  <p>
+    Normal paragraphs consist of text consisting of words, sentences, and
+    other stuff. Line breaks have no significance except to separate words.
+    This is still the first
+    paragraph of this section.
+  </p>
+  <p>
+    This is the second paragraph. Paragraphs are separated by P elements.
+    HTML is relatively flat, and paragraph breaks are not allowed inside
+    lists, headers, anchors, etc.</p>
+  <p>
+  </p>
+  <h3>Lists</h3>
+  <ul>
+    <li>This is the first item of an unordered list.
+    </li>
+    <li>This is the
+      second item. It's kinda long, and should wrap around on most screens.
+    </li>
+    <li>This is the third item. It's only one paragraph, but it's got a
+      paragraph tag at the end.
+    </li>
+    <li>This is the fourth and final item.
+    </li>
+  </ul>
+  <!-- @@ link to unordered lists -->
+  <h3>Glossaries</h3>
+  <dl>
+    <dt>term </dt>
+    <dd> definition 
+    </dd>
+    <dt>another term </dt>
+    <dd> and its definition, which is long enough that it
+      should wrap around on most screens.
+    </dd>
+  </dl>
+  <h3>Address</h3>
+  The address element indicates the author or source of the document:
+  <p>
+  </p>
+  <address>DWC
+    connolly@convex.com</address>
+  <h3>TYPEWRITER</h3>
+  The TYPEWRITER element is used for characters that have already been
+  formatted for a typewriter-like device. Markup is recognized in this
+  element just as in the normal body paragraphs. But after processing tags
+  and entity references, the data is displayed as on a typewriter,
+  rather than using typesetting conventions.
+  <p>
+    Line breaks are significant, and characters are rendered in a
+    fixed-width font to preserve horizontal formatting.</p>
+  <p>
+    For example, a portion of a man page might look like:</p>
+  <p>
+    <typewriter>
+      NOTES
+      cat is able to correctly access files larger that two giga-
+      bytes in size.
+      SEE ALSO
+      <a name="id7" href="/archive/cern/2001">cp(1)</a>, <a name="id8" href="/archive/cern/2002">ex(1)</a>, <a name="id9" href="/archive/cern/2003">more(1)</a>, <a name="id10" href="/archive/cern/2004">pr(1)</a>, <a name="id11" href="/archive/cern/2005">tail(1)</a>
+    </typewriter>
+    <!-- @@ highlighting, character-level elements: bold, italic, etc. -->
+  </p>
+  <h2>Literal Text Elements</h2>
+  <h3>XMP and LISTING</h3>
+  These elements are used when you want to type the characters into the
+  source document and have them show up in the output just like you
+  typed them.
+  <p>
+    These elements act much like the TYPEWRITER element, but because
+    markup is not recognized in their content, some character sequences
+    can't be represented (SGML end tags, for example.) On the other
+    hand, you don't have to meticulously mark up all the special characters.
+  </p>
+  <xmp>
+    You can draw pictures    /\
+    in example elements    /  \
+    see:                \__/
+  </xmp>
+  <pre></pre>
+  <xmp>This is literal text. THIS word
+    should line up under  THIS word.
+    There should be exactly three blank lines between here
+    and here.
+  </xmp>
+  <pre></pre>
+  These elements are the source of the most errors in HTML
+  implementations. They should be used only for simple examples that
+  don't contiain SGML markup constructs.
+</div>

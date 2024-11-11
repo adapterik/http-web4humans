@@ -1,0 +1,50 @@
+<div data-element="archive-body">
+  <h1>Language features</h1>
+  Code to be common shared code must (unfortunately!) be written in
+  C, rather than any objective C or C++, to ensure maximum portability.
+  This section does not apply to code written for specific platforms.
+  <p>
+    C code must compile under either a conforming ANSI C compiler OR an
+    original Kernighan &amp; Ritchie C compiler. Therefore, the __STDC__ macro
+    must be used to select alternative code where necessary.. (<a name="1" href="/archive/cern/1888" original-href="Ex_Heading.html" archive-page-id="1888"> example</a>
+    )</p>
+  <p>
+    Code should compile without warnings under an ANSI C compiler such
+    as gcc with all warnings enabled.
+  </p>
+  <dl>
+    <dt>Parameters and Arguments
+    </dt>
+    <dd> The <a name="3" href="/archive/cern/874" original-href="Macros.html#1" archive-page-id="874">PARAMS(()) macro</a>  is used to give a format
+      parameter list in a declataion so that it will be suppressed if the
+      compiler is not standard C - see <a name="4" href="/archive/cern/1888" original-href="Ex_Heading.html" archive-page-id="1888">example</a> ..  The ARGS1 macro is for
+      the declaration of the implementation,  taking first the type then
+      the argument name. For n arguments, macros <a name="5" href="/archive/cern/874" original-href="Macros.html#9" archive-page-id="874">ARGn</a> exists taking 2n arguments
+      each.
+    </dd>
+    <dt>#endif
+    </dt>
+    <dd> Do put the ending condition in a comment. Don't put  it as
+      code - it won't pass all compilers. 
+    </dd>
+    <dt>#elif
+    </dt>
+    <dd>Don't use it. Basic cpp doesn't know it.
+    </dd>
+    <dt>#preprocessor statements
+    </dt>
+    <dd> DON'T indent any preprocessor statements.
+      They must (for some compilers) begin in column 1.
+    </dd>
+    <dt>const
+    </dt>
+    <dd> This keyword does not exist in K&amp;R C, so use the macro <a name="6" href="/archive/cern/874" original-href="Macros.html#10" archive-page-id="874">CONST</a>
+      which expands to "const" under standard C and nothing otherwise. --
+      See HTUtils.h
+    </dd>
+  </dl>
+  (part of: <a name="2" href="/archive/cern/192" original-href="Coding.html" archive-page-id="192">style guide</a> ) _________________________________________________________________
+  <address>
+    <a name="0" href="/archive/cern/1889" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1889">Tim BL</a>
+  </address>
+</div>

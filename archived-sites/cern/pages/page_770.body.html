@@ -1,0 +1,50 @@
+<div data-element="archive-body">
+  <h1>News Server address</h1>
+  To be able to read news, the www program needs the address of a news
+  server. This is a machine which runs the NNTP protocol.  If you already
+  use internet news on your site, you will have one of these. There
+  are several ways you can tell www which news server to use.
+  <p>
+    Note you may also have your machine enabled as being authorised to
+    pick up news from the news server by that server's system manager.
+  </p>
+  <h2>Exception</h2>
+  <dl>
+    <dt>On a NeXT
+    </dt>
+    <dd> The NeXT defaults are read, looking for a value for "NewsHost"
+      for application name "WorldWideWeb", then for a global default, then
+      for application named "News". 
+    </dd>
+  </dl>
+  <h2>All other cases</h2>
+  <h3>Set an environment variable</h3>
+  You can set the environment variable NNTPSERVER to be the internet
+  address of the server. You can do this in your .login file. (On VMS,
+  use a logical name, on  VM/CMS, the CENV globalv table).
+  <h3>Use a file</h3>
+  The file /usr/local/lib/rn/server will be read if it exists and no
+  environment variable is defined.  It should contain the single line
+  containing the name of the news server.  This filename may be overridden
+  at compile time by defining the SERVER_FILE symbol to be the quoted
+  string.
+  <h3>At compile time</h3>
+  If you are installing www for several people, you can set the default
+  by defining the variable DEFAULT_NEWS_HOST to be the quoted string
+  of the server name on the command line fo the compilation of the HTNews.c
+  module  For example, use the option (check your own compiler's command
+  line syntax)
+  <xmp>
+    -DDEFAULT_NEWS_HOST="mynewshost.domain"
+  </xmp>
+  <pre></pre>
+  <h3>Use a domain name alias</h3>
+  If  no other deafult news host is found, the software looks for a
+  machine with name or alias "news" in the local domain. If your domain
+  has a single news server which you would like to use as a default,
+  and the person in charge of the domain name registration agrees, then
+  make an alias "news" for the server. This will have the managemnt
+  advantage that the administration can move the news server without
+  any trouble later.  (This is the way it is done at CERN).
+  <address><a name="0" href="/archive/cern/1830" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1830">Tim BL</a></address>
+</div>

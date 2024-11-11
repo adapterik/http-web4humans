@@ -1,0 +1,29 @@
+<div data-element="archive-body">
+  <h1>Identifiers</h1>
+  When chosing identifier names, 
+  <ul>
+    <li>Macros should be un upper case entirely unless they mimic and replace
+      a genuine function.
+    </li>
+    <li>External names should be prefixed with HT to avoid confusion with
+      other projects' code. Wthin the rest of the identifier, we use initial
+      capitals a la Objective-C (e.g. HTSendBuffer).
+    </li>
+    <li>The macro SHORT_NAMES is defined on systems in which external names
+      must be unique to within 8 characters (case insesitive). If your names
+      would clash, at the top of the .h file for a module you should include
+      macros defining distinct short names:
+    </li>
+  </ul>
+  <xmp>			#ifdef SHORT_NAMES
+    #define HTSendBufferHeader	HTSeBuHe
+    #define HTSendBuffer		HTSeBuff
+    #endif
+  </xmp>
+  <pre></pre>
+  (back to <a name="1" href="/archive/cern/192" original-href="Coding.html" archive-page-id="192">Overview</a>)
+  <p>
+    ___________________________________________________________
+  </p>
+  <address><a name="0" href="/archive/cern/1896" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1896">Tim BL</a></address>
+</div>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body class="http-only-site">
+    <%= include_partial "header" %>
+    <div class="body">
+      <table  class="layout-table"  cellspacing="0" cellpadding="0">
+        <tr>
+          <td class="menu-area">
+            <%= include_partial "menu-list" %>
+          </td>
+          <td  class="content-area">
+            <iframe src="/archive/cern/pages/<%= @archive_id %>%">
+          </td>
+          <% if is_authenticated? %>
+              <td class="side-bar">
+                <%= include_partial "side-bar-navigation" %>
+              </td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>

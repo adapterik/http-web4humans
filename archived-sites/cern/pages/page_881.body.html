@@ -1,0 +1,41 @@
+<div data-element="archive-body">
+  <h1>Include Files</h1>
+  <h2>Module include files</h2>
+  Every module in the project should have a C #incldue file defining
+  its interface, and a   .c source file (of the same name apart from
+  the suffix) containing the implementation. 
+  <p>
+    The .c file should #include its own .h file.</p>
+  <p>
+    A .h file should be protected so that no errors occur if  it is #included
+    twice.</p>
+  <p>
+    An interface which relies on other interfaces should #include those
+    interface files.  An implemention file which uses other modules should
+    #include the .h file if it not already #included by its own .h file.
+  </p>
+  <h2>Common include files</h2>
+  These are all in the WWW/Implementation directory.
+  <dl>
+    <dt>
+      <a name="1">HTUtils.h</a>
+    </dt>
+    <dd> Definitions of macros like PUBLIC and PRIVATE and YES and
+      NO. For use in all .c files.
+    </dd>
+    <dt>tcp.h
+    </dt>
+    <dd> All machine-dependent code for accesing TCP/IP channels and
+      files. Also defines some machine-dependent bits like SHORT_NAMES.
+    </dd>
+    <dt>WWW.h
+    </dt>
+    <dd> Project-wide definition of constants, etc.
+    </dd>
+  </dl>
+  (See also: <a name="2" href="/archive/cern/192" original-href="Coding.html" archive-page-id="192">Style in general</a> , <a name="3" href="/archive/cern/882" original-href="Directories.html" archive-page-id="882">directory structure</a> )
+  <address>
+    <a name="0" href="/archive/cern/1899" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1899">Tim BL</a>
+    <p></p>
+  </address>
+</div>

@@ -1,0 +1,64 @@
+<div data-element="archive-body">
+  <h1>Gopher addressing</h1>
+  Gopher addresses indicate that the gopher protocol should be used
+  to access the information.  The Gopher protocol is a simple internet
+  protocol similar to <a name="1" href="/archive/cern/283" original-href="HTTPAddressing.html" archive-page-id="283">HTTP</a> . It allows the transfer of menus or plain
+  text files.  (HTTP expresses both menus and plain text files as special
+  cases of hypertext files). See the gopher protocol <a name="6" href="/archive/cern/841" original-href="../../Gopher/gopher_protocol/protocol.rtf" archive-page-id="841">notes</a> .   
+  <p>
+    The syntax is, with [] indicating optional parts (see <a name="8" href="/archive/cern/284" original-href="BNF.html#72" archive-page-id="284">BNF</a> )
+  </p>
+  <xmp>		gopher:// hostname [: port ] [/gtype/ [selector] ] [ ? search ]
+  </xmp>
+  <pre></pre>
+  There should be no spaces. For example, the following are valid addresses:
+  <xmp>		gopher://gopher.micro.umn.edu:70
+    gopher://gopher.micro.umn.edu:70/1/
+    gopher://gopher.micro.umn.edu:70
+  </xmp>
+  <pre></pre>
+  The W3 address for a gopher item may be derived from the fields of
+  a gopher menu line which has the format
+  <dl>
+    <dt>
+      <a name="4" href="/archive/cern/284" original-href="BNF.html#43" archive-page-id="284">host</a>
+    </dt>
+    <dd> This is the name of the server in internet form. A numeric form
+      (e.g. 128.141.201.74) may be used, by the domain name form (e.g. info.cern.ch)
+      is preferred. The hostname is mandatory.
+    </dd>
+    <dt>
+      <a name="3" href="/archive/cern/284" original-href="BNF.html#7" archive-page-id="284">port</a>
+    </dt>
+    <dd> This is a numeric port number. If a non-numeric string is used,
+      it must be a defined service name. Note that as there is no central
+      repository for service names (they are defined locaaly for each host),
+      a service name is NOT an appropriate way to specify a port number
+      for a hypertext address. If the port number is omitted the preceding
+      colon must also be omitted. In this case, port number 70 is assumed.
+    </dd>
+    <dt>
+      <a name="7" href="/archive/cern/284" original-href="BNF.html#70" archive-page-id="284">gtype</a>
+    </dt>
+    <dd> This is a gopher item type number, a (hopefully printable!)
+      ASCII character.  Currently these types are all ASCII decimal digit
+      characters. Character "0" (hex 30)  signifies a plain text file. Character
+      "1" signifies a Menu.  Character "7" signifies a searchable index.
+      Character "8" should not be used in a W3 address: use <a name="2" href="/archive/cern/845" original-href="TelnetAddressing.html" archive-page-id="845">telnet addressing</a>
+      instead.  In general W3 terms, the type is the first part of the path.
+      The rest of the path is the gopher selector string. The type field
+      is a hint to the client as to how to represent the anchor, and how
+      to follow it.
+    </dd>
+    <dt>
+      <a name="9" href="/archive/cern/284" original-href="BNF.html#75" archive-page-id="284">selector</a>
+    </dt>
+    <dd> This is the string to be sent to the gopher server to identify
+      the information required.
+    </dd>
+  </dl>
+  _________________________________________________________________
+  <address>
+    <a name="0" href="/archive/cern/1854" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1854">Tim BL</a>
+  </address>
+</div>

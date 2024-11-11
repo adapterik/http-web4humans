@@ -1,0 +1,59 @@
+<div data-element="archive-body">
+  <h1>Use of CVS</h1>
+  <h2>History</h2>
+  of <a name="3" href="/archive/cern/221" original-href="../IntroCVS.html" archive-page-id="221">introducing CVS</a> in WWW code management
+  <h2>Short Description</h2>
+  Code management in WWW is done with tools to be found in the directory
+  hypertext/WWW/CodeManagexec.
+  <p>
+    CVS (Concurrent Versions System) is installed there, with all its
+    sources. </p>
+  <p>
+    CVS keeps all versions and all branches of a particular source file
+    "f.c" in a single file "f.c,v". This file has a structure which uses
+    the differences from version to version, so that it takes up much
+    less space than the corresponding set of versions. Access to versions
+    is through a command "check out" and a new version is incorporated
+    into this file through a command "check in".</p>
+  <p>
+    The set of all ",v" files used for an application is called its "repository".
+    The repository is structured as a hierarchy of directories, just like
+    the sources for the application would be.</p>
+  <p>
+    You never touch the repository except through commands given to CVS.</p>
+  <p>
+    Normally you will start work by checking out of the repository a complete
+    set of source files into your private work space. CVS will extract
+    the sources and create the necessary directory structure in your space.</p>
+  <p>
+    Development can then go on independently of any other person working
+    on the same version: each developer has his own private copies.</p>
+  <p>
+    When you have work ready, you will check in your files: CVS will incorporate
+    the changes of all modified files into the repository as a new version.</p>
+  <p>
+    More important: when a different developer has checked in some work
+    (e.g. a bug fix), you can incorporate that into your current work
+    *without* having to check in, by the "update" operation. Developers
+    synchronise once in a while through updates.</p>
+  <p>
+    There are also various means of identifying important versions.
+  </p>
+  <h2>WWW installation</h2>
+  The directory CVSROOT is where CVS stores its bookkeeping files.
+  <p>
+    The directory CVSRepository is where CVS stores the sources in the
+    RCS format, i.e. one file for all versions and branches of each source
+    file.</p>
+  <p>
+    Please do not touch CVSROOT nor CVSRepository, they are to be maintained
+    by use of CVS commands only.
+  </p>
+  <h2>CVS manual</h2>
+  The <a name="1" href="/archive/cern/1897" original-href="CVSman.html" archive-page-id="1897">CVS</a> and <a name="2" href="/archive/cern/1898" original-href="RCSman.html" archive-page-id="1898">RCS</a> manuals are in the web.
+  <p>
+    (Note: Terry Hung introduced it at SLAC, but I believe we got it from
+    the "standard" sources: prep.ai.mit.edu.)</p>
+  <p>
+    <a name="0" href="/archive/cern/24" original-href="http://info.cern.ch/hypertext/WWW/People.html#Cailliau" archive-page-id="24"> RC</a></p>
+</div>

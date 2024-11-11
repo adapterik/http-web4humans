@@ -1,0 +1,139 @@
+SGML-UG SIGhyper Document # 1991-1
+Rev. 1991/04/01.  
+Source: Charles F. Goldfarb, IBM Almaden Research Laboratory.  
+Note: Dr. Goldfarb serves as Project Editor for ISO/IEC 10744: 
+    "HyTime" Hypermedia Time-based Structuring Language.
+
+
+		       Information About HyTime
+
+The Hypermedia/Time-based Structuring Language (HyTime) is an
+International Standard currently being balloted as a Committee Draft
+(ISO/IEC CD 10744).  The ballot closes July 31.  A Draft International
+Standard will then be published and balloted, with publication of the
+approved standard expected next year.
+
+The following material is excerpted from the standard.
+
+			      DEFINITION
+
+A standardized hyperdocument structuring language for representing
+hypertext linking, time scheduling, and synchronization.  HyTime
+provides basic identification and addressing mechanisms and is
+independent of object data content notations, link types, processing
+and presentation functions, and semantics.  Links can be established
+to documents that conform to HyTime and to those that do not,
+regardless of whether those documents can be modified.  The full
+HyTime function supports "integrated open hypermedia" (IOH) -- the
+"bibliographic model" of referencing that allows links to anything,
+anywhere, at any time -- but systems need support only the subset that
+is within their present capabilities.
+
+
+                    SCOPE AND FIELD OF APPLICATION
+
+                               1. Scope
+
+This International Standard defines a model and language for the
+representation of "hyperdocuments" that link and synchronize static
+and time-based information contained in multiple conventional and
+multimedia documents and information objects.  The language is known
+as the "Hypermedia/Time-based Structuring Language", or "HyTime".
+
+HyTime can represent time in both the abstract, or "musical" sense,
+and in user-defined real-time units, and it provides for relating the
+two so that all elements of time-dependent documents can be
+synchronized.
+
+NOTE -- This facility extends to multimedia information the ability to
+distinguish between intrinsic information content and style
+considerations that is a hallmark of contemporary document
+representation methods.
+
+
+The time model is extended to visual aspects of multimedia by treating
+temporal and spatial measurement domains isomorphically, as systems
+for measuring along different axes of a coordinate space.  Arbitrary
+cross-references and access paths based on external interactions
+("hypermedia links") are also supported.
+
+The time representation contains sufficient information to derive the
+durations of both control ("gestural") data (e.g., control information
+for audio or video hardware) and visual data (e.g., a music score,
+presentation storyboard, or television script).
+
+The media formats and data notations of objects in a HyTime
+hyperdocument can include formatted and unformatted documents, audio
+and video segments, still images, and object-oriented graphics, among
+others.  Users can specify the positions and extents of occurrences of
+objects in space and time, using a variety of measurement units and
+granularities.  Temporal requirements of applications ranging from
+animation to project management can be supported by choosing
+appropriate measurement granules.
+
+NOTE -- This International Standard does not address the
+representation audio or video content data, but simply defines the
+means by which the start-time and duration of such data can be
+synchronized with other of digitized information.  Nor does it specify
+the layout process by which occurrences of unformatted documents and
+other information objects can be made to fit the positions and extents
+specified for them.
+
+
+The documents comprising a HyTime hyperdocument can conform to any
+architectures and be represented in any notation permitted by those
+architectures.  Only the "hub document", which determines the
+hyperdocument membership, must also conform to HyTime.
+
+HyTime is designed for flexibility and extensibility.  Optional
+subsets can be implemented, alone or in conjunction with user-defined
+extensions.
+
+The Hypermedia/Time-based Structuring Language is an SGML
+application conforming to International Standard ISO 8879
+--  Standard Generalized Markup Language.
+
+The hyperdocument interchange format specified by this International
+Standard is defined in Abstract Syntax Notation 1 (ISO 8824) and can
+be encoded according to the basic encoding rules of ISO 8825 for
+interchange using protocols conforming to the Open Systems
+Interconnection (OSI) model.
+
+
+                       2. Field of Application
+
+The field of application of HyTime is "integrated open hypermedia"
+(IOH), the "bibliographic model" of hyperlinking wherein an author
+can, by a suitable reference, link to anything, anywhere, at any time.
+
+Because of HyTime's modular design and flexible conformance rules,
+implementations need support only those parts of that are within their
+present capabilities.  User investment in hyperdocument preparation is
+nevertheless encouraged because of the well-defined upward-compatible
+path to a full hypermedia solution.
+
+HyTime is intended for use as the infrastructure of
+platform-independent information interchange for hypermedia and
+synchronized and non-synchronized multimedia applications.
+Application developers will use HyTime constructs to design their
+information structures and objects, and the HyTime language to
+represent them for interchange.
+
+NOTE -- The HyTime language is not intended for encoding the internal
+representation of information on which application programs act while
+executing.
+
+Applications can use HyTime to represent hyperdocuments containing
+information that is at any stage in the rendition cycle, from
+"revisable" to "optimized for interactive access".  An application can
+also choose to convert a rendition of a HyTime hyperdocument into an
+optimized form for transmission or interactive presentation.
+
+NOTE -- Whether the HyTime representation of a hyperdocument can be
+used in a local file system for direct access by programs will depend
+on the type of information in the hyperdocument, the speed of the
+platform, and the functions performed by the applications that access
+the hyperdocument.
+
+
+

@@ -1,0 +1,57 @@
+<div data-element="archive-body">
+  <h1>Gateway to VMS Help: Internals</h1>
+  These are technical and installation notes about the <a name="1" href="/archive/cern/167" original-href="../VMSHelp/Overview.html" archive-page-id="167">gateway to VMS
+    Help</a> . Please send bug reports and suggestions to <a name="2" href="/archive/cern/24" original-href="../People.html#groff" archive-page-id="24">Jean-Francois Groff</a>
+  (jfg@cernvax.cern.ch).
+  <h2>Sources</h2>
+  The program consists of the generic daemon <a name="3" href="/archive/cern/790" original-href="Implementation/HTDaemon.c" archive-page-id="790">HTDaemon.c</a> , and a special
+  function, stored in <a name="4" href="/archive/cern/1840" original-href="Implementation/VMSHelpGate.c" archive-page-id="1840">VMSHelpGate.c</a> , to retrieve VMS Help data and
+  convert it to HTML.
+  <h2>Installation</h2>
+  The files you need are as follows. You should customise them, putting
+  in your own directory names.:
+  <dl>
+    <dt>
+      <a name="7" href="/archive/cern/1841" original-href="Implementation/VMSHelp/launchgate.com" archive-page-id="1841">launchgate.com</a>
+    </dt>
+    <dd>Runs the server as a detached process. Put a call to
+      this from your sys$startup procedure, wherever that is. This detaches
+      a job to use www_server.com ans input, and a log file as output.
+    </dd>
+    <dt>
+      <a name="8" href="/archive/cern/1842" original-href="Implementation/VMSHelp/www_server.com" archive-page-id="1842">www_server.com</a>
+    </dt>
+    <dd>The server command file, a wrapper for the actual server
+      executable.  In this file, set the temporary directory for the storage
+      of a cache of .HLP files. This file runs the executable.
+    </dd>
+    <dt>
+      <a name="9" href="/archive/cern/1843" original-href="Implementation/VMSHelp/test.com" archive-page-id="1843">test.com</a>
+    </dt>
+    <dd>Here is just an example of  a file to build and test the server.
+    </dd>
+    <dt>
+      <a name="5" href="/archive/cern/1844" original-href="Implementation/VMSHelp/descrip.mms" archive-page-id="1844">descrip.mms</a>
+    </dt>
+    <dd>This is an MMS file to build the executable. If you don't
+      have MMS, you may be able to figure out from loking at it which commands
+      you should use.  You can find a machine running MMS and generate the
+      equivalent .com files. See comments at the top of this file on how
+      to run it.
+    </dd>
+  </dl>
+  The source files and executable .EXE are currently (October 92) available
+  on HEP  decnet in vxcrna::disk$d1:[jfg.www...].  Note also you can
+  pick up the master sources from dxcern:: automatically by running
+  <p>
+    MMS /MACRO=(U=DXCERN::).</p>
+  <p>
+    If you are not in HEP decnet, you should find the sources in the WWWDaemon_v.vv.tar.Z
+    file in the distribution. See the <a name="6" href="/archive/cern/27" original-href="../../README.html" archive-page-id="27">README file</a>.</p>
+  <p>
+    _________________________________________________________________
+  </p>
+  <address>
+    <a name="0" href="/archive/cern/1845" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1845">JFG</a>
+  </address>
+</div>

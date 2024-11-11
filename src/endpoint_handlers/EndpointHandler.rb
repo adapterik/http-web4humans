@@ -1,7 +1,9 @@
 require 'erb' 
+require 'json'
 require 'redcarpet'
 require 'rouge'
 require 'rouge/plugins/redcarpet'
+require 'csv'
 require_relative '../SiteDB'
 require_relative '../responses'
 
@@ -26,6 +28,7 @@ class EndpointHandler
     @site = {}
     @site_db =  SiteDB.new()
     @markdown = Redcarpet::Markdown.new(MyRender, authlink: false, tables: true, fenced_code_blocks: true)
+    @dir = File.dirname(File.realpath(__FILE__))
 
     set_page_id
   end
@@ -94,6 +97,16 @@ class EndpointHandler
     template = ERB.new erb
     @@template_cache[path] = template
     template
+  end
+
+  def load_json(path)
+    content = load_file(path)
+    JSON.parse content
+  end
+
+  def load_csv(path)
+    content = load_file(path)
+    CSV.parse content
   end
 
   def is_rendered?(path)

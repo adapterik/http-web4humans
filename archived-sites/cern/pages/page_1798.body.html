@@ -1,0 +1,34 @@
+<div data-element="archive-body">
+  <h1>Can't connect to server</h1>
+  There is more information you can get.  use the "verbose" option on
+  the browser to find out what went wrong:
+  <xmp>			www -v http://myhost.domain:80/
+  </xmp>
+  <pre></pre>
+  What do you get? A load of trace messages. There are several cases.
+  <ul>
+    <li>The browser can't look up the name of the host. If it can, it will
+      display "Parsed address as" message. If not, try fixing your name
+      server or /etc/hosts file, or quoting the IP number of the host in
+      decimal notation (like 128.141.77.45) instead.
+    </li>
+    <li>
+      <a name="1" href="/archive/cern/3827" original-href="ConnectionRefused.html" archive-page-id="3827">The browser can get to the host but gets "Connection refused" status
+        back</a> . 
+    </li>
+    <li>Your browser gets an error number but prints "error message not translated".
+      This is because when it was compiled on your platform it didn't know
+      what form the error message table took. Try the same thing form a
+      unix platform for example.
+    </li>
+    <li>You get some network error like "network unreachable". Depending on
+      whether the IP network is your responsibility or not, and your attitude
+      to life, either fix it,  try again in an hour's time, or complain
+      to someone.
+    </li>
+  </ul>
+  _________________________________________________________________
+  <address>
+    <a name="0" href="/archive/cern/3828" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="3828">Tim BL</a>
+  </address>
+</div>

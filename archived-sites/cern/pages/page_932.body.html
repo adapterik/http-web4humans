@@ -1,0 +1,41 @@
+<div data-element="archive-body">
+  <h1>Installing www if you are not superuser</h1>
+  So you want to install www, but you do not have the privilege to become
+  super-user.   No problem: you can install it for your own use.
+  <p>
+    You have found (or <a name="1" href="/archive/cern/931" original-href="Porting.html" archive-page-id="931">built if it did not exist</a> ) a subdirectory of WWW/LineMode/Implementation
+    for your type of machine.</p>
+  <p>
+    You have modified the Makefile in that directory to reflect the directory
+    name. Don't worry about BINDIR, the name of the installation directory,
+    because you aren't making a system-wide installation.</p>
+  <p>
+    Type
+  </p>
+  <xmp>			make
+  </xmp>
+  <pre></pre>
+  This should generate the executable file called "www". There are two
+  ways you can make this available. 
+  <p>
+    One is, if in your "<a name="2" href="/archive/cern/1943" original-href="Path.html" archive-page-id="1943"> path</a> " there is a directory to wrich you do have
+    write access, then you put move www into that directory. You may have
+    to then "rehash" to regenerate the list of commands.</p>
+  <p>
+    If there isn't a writable directory on your path, then you can put
+    an alias command into a login shell script (.login or .cshrc) to define
+    www as being a file in the directory where it is.</p>
+  <p>
+    Now if you run www it will complain that it can't find the default
+    home page, /usr/local/bin/WWW/default.html.  You will find a copy
+    of a default page in the distribution WWW/LineMode/Defaults/default.html.</p>
+  <p>
+    In your <a name="3" href="/archive/cern/1944" original-href="LoginScript.html" archive-page-id="1944">login shell script</a> ,  set the environment variable WWW_HOME
+    to  the full pathname of default.html as distributed, or to the w3
+    address of the copy on our server. See <a name="4" href="/archive/cern/734" original-href="Customisation.html" archive-page-id="734">customization</a> about how to
+    set environment variables.
+  </p>
+  <address>
+    <a name="0" href="/archive/cern/1945" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1945">Tim BL</a>
+  </address>
+</div>

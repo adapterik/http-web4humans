@@ -1,0 +1,38 @@
+<div data-element="archive-body">
+  <h1>Function Headings</h1>
+  This style concerns the comments, and so is not essential to compilation.
+  However, it helps readability of code written by a number of people.
+  Some of these conventions may be arbitrary, but are none the less
+  useful for that. 
+  <h2>Format</h2>
+  See a <a name="1" href="/archive/cern/1888" original-href="Ex_Heading.html" archive-page-id="1888">sample procedure heading</a> . Note:-
+  <ul>
+    <li>White space of two lines separating functions.
+    </li>
+    <li>The identifier of the function right-justified to make it easy to
+      find when flicking through a listing
+    </li>
+    <li>The separate definitions for standard and old C.
+    </li>
+    <li>The macros PUBLIC and PRIVATE (in <a name="2" href="/archive/cern/881" original-href="IncludeFiles.html#1" archive-page-id="881">HTUtils.h</a> ) expand to null and to
+      "static" respectively.  They show that one has thought about whether
+      visibility is required outside the module, and they get over the overloading
+      of the keyword "static" in C. Use one or the other. (Use for top level
+      variables too).
+    </li>
+  </ul>
+  <h2>Entry and exit condidtions</h2>
+  It is most important to document the function as seen by the rest
+  of the world (especially the caller). The most important aspects of
+  the appearance of the function to the caller are the pre- and post-conditions.
+  <p>
+    The pre conditions include the value of the parameters and structures
+    they point to.  Both include any requirements on or changes to global
+    data, the screen, disk files, etc.</p>
+  <p>
+    _________________________________________________________________
+  </p>
+  <address>
+    <a name="0" href="/archive/cern/1894" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1894">Tim BL</a>
+  </address>
+</div>

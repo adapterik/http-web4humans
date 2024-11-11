@@ -1,0 +1,103 @@
+<div data-element="archive-body">
+  <h1>Installation under VMS</h1>
+  To install under VMS, get the files WWW.EXE and SETUP.COM from sources
+  described below. To set up the commands, put the command
+  <xmp>			$ @[...]SETUP
+  </xmp>
+  <pre></pre>
+  into your LOGIN.COM, or the system SYLOGIN.COM.  This command file
+  assumes you have left all the distributed files  in the same directory
+  as itself.
+  <h2><a name="3">Customization using logical names</a></h2>
+  Under VMS,  the home page may be defined using the logical name WWW_HOME.
+  You should define this to be the full address of the document which
+  you want to be displayed when www is invoked without parameters. For
+  example,
+  <xmp>        $ DEFINE/SYSTEM WWW_HOME "file://myvax/sys$library/default.html"
+  </xmp>
+  <pre></pre>
+  Note that the www address you must set it to is still in unix-like
+  format (with slashes instead of :: : [.])Users may of course override
+  the system logical name with their own. If no logical name is defined,
+  the VMS browser will default to picking up the default page from our
+  server,  document http://info.cern.ch./default.html.
+  <p>
+    The other <a name="4" href="/archive/cern/734" original-href="Customisation.html" archive-page-id="734">customization variables</a> may be defined in the same way.</p>
+  <p>
+    Accessing VMS files</p>
+  <p>
+    If you are making you own home page, or any other documentation, you
+    will probably want to store it on your VMS machine. The www program
+    has the ability, if running under VMS,  to access VMS files. the document
+    name for a VMS file is simply the filename, but:</p>
+  <p>
+    The host name must be the name of the machine WITHOUT any domain name
+    on it, e.g. //vxcrna/</p>
+  <p>
+    The filename is written with each punctuation converted into a single
+    slash. Examples are
+  </p>
+  <xmp> Document identifier           			Filename
+    file://vxcrna/sys$www_home			vxcrna::sys$home
+  </xmp>
+  <pre></pre>
+  <h2><a name="1">Availability of .EXE files</a></h2>
+  Versions are available for any of the following implementations of
+  TCP/IP which you may have installed on your system: Digital's UCX,
+  Wollongongs's WIN/TCP, or SRI's Multinet.  If you are on the High
+  Energy Physics DECnet, the versions are currently (Jan 92) available
+  compiled in directories as follows:
+  <dl>
+    <dt>Wollongong WIN_TCP
+    </dt>
+    <dd> none - see <a name="6" href="/archive/cern/1941" original-href="Installation_VMS_NewTCP.html#2" archive-page-id="1941">recompiling</a> .
+    </dd>
+    <dt>Multinet
+    </dt>
+    <dd> vxcrna::disk$oc1:[timbl.www.multinet.works]
+    </dd>
+    <dt>Digital's UCX
+    </dt>
+    <dd> vxcrna::disk$oc1:[timbl.www.ucx.works]
+    </dd>
+    <dt>CMU TCP
+    </dt>
+    <dd> none - see r<a name="5" href="/archive/cern/1941" original-href="Installation_VMS_NewTCP.html#1" archive-page-id="1941"> ecompiling</a> .
+    </dd>
+  </dl>
+  If you are not on HEPnet, but can pick up binary files from info.cern.ch
+  using FTP,  then you will find executables in the /pub/www/bin/vms,
+  as files www_ucx.exe or www_multinet.exe. Remember to transfer in
+  binary mode. Pick one and rename it to www.exe
+  <h2>Rebuilding from source</h2>
+  You may have to do this if your sharable libraries are not compatible
+  with those for which the .EXE file was built. If there is a version
+  incompatability, then you get an explicit message about sharable library
+  versions when you try to run www.
+  <p>
+    If you have utilities for uncompressing and untarring the main source
+    file, then you could remake the distribution from source.</p>
+  <p>
+    Another way of getting the sources up can be used if you happen to
+    have access to an untrix machine on the same DECnet as your vax. FTP
+    the source tar file over to the ultrix machine, uncompress it and
+    untar it, then copy over the descrip.mms in LineMode/Implementation/vms.
+    In there you'll find all the commands to copy the sources from a unix
+    machine (PRIAM:: in that instance -- you'll have to edit it) and rebuild
+    the .exe. </p>
+  <p>
+    When you remake the exe, you must specifify
+  </p>
+  <xmp>
+    MMS/MACRO=(MULTINET=1)
+    or
+    MMS/MACRO=(WIN_TCP=1)
+    or
+    MMS/MACRO=(UCX=1)
+  </xmp>
+  <pre></pre>
+  to get the right version for Multinet, Wollongong TCP or DEC/UCX respectively.
+  <address>
+    <a name="0" href="/archive/cern/1900" original-href="http://info.cern.ch/hypertext/TBL_Disclaimer.html" archive-page-id="1900">Tim BL</a>
+  </address>
+</div>

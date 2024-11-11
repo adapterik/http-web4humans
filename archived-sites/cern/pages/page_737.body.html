@@ -1,0 +1,40 @@
+<div data-element="archive-body">
+  <h1>Daemon Command Line</h1>
+  The command line options for the <a name="11" href="/archive/cern/19" original-href="../Overview.html" archive-page-id="19">simple www server</a> are as follows.
+  <dl>
+    <dt>
+      <a name="12">-a address</a>
+    </dt>
+    <dd> Specify the port number. The address should be in the form
+      "*:80" with 80 replaced with the desired port number, which can be
+      different for tests for instance. Note that the string must be quoted
+      because of the asterisk. <a name="7">If this option is not given, the daemon assumes
+        that it has been run by inetd, and uses stdin and stdout as its communication
+        channel</a> . Note that port numbers under 1024 are <a name="13" href="/archive/cern/1796" original-href="PrivilegedPorts.html" archive-page-id="1796">privileged</a> .
+    </dd>
+    <dt>-l  file
+    </dt>
+    <dd> Log all calls to the given file. The file is appended to
+      if it already exists.
+    </dd>
+    <dt>-v
+    </dt>
+    <dd> Verbose mode. Copious trace messages are written to the standard
+      output stream. Mainly for debugging.
+    </dd>
+    <dt>
+      <a name="5">-r file</a>
+    </dt>
+    <dd> Load a <a name="10" href="/archive/cern/738" original-href="RuleFile.html" archive-page-id="738">rule file</a> . The rules are added after any rules already
+      loaded.  Inhibits the loading of the default rule file.
+    </dd>
+    <dt>
+      <a name="6">-R</a>
+    </dt>
+    <dd> Inhibit the loading of the default rule file.  Warning: running
+      without a rule file  normally poses a security problem.
+    </dd>
+  </dl>
+  _________________________________________________________________
+  <address><a name="0" href="/archive/cern/1794" original-href="../../../TBL_Disclaimer.html" archive-page-id="1794">Tim BL</a></address>
+</div>

@@ -1,0 +1,128 @@
+<div data-element="archive-body">
+  <h1>A quick look at ViolaWWW</h1>
+  <a name="3" href="/archive/cern/16" original-href="../WWW/Status.html#35" archive-page-id="16">
+    Note: This version of 11 April 92 is obsoleted by a </a><a href="/archive/cern/748" original-href="Review.html" archive-page-id="748">new one</a>.
+  <p>
+    This W3 browser for X11 workstations is based on the "Viola" hypertext
+    browser.  Viola uses X11 intrinsics, but does not need motif. I tested
+    it using a NeXT with CubeX, in grayscale and color versions.  A minor
+    bug crashes the program when displaying on color screens -- which
+    is a pity, particularly as the color icons are good. See the <a name="1" href="/archive/cern/16" original-href="../WWW/Status.html#38" archive-page-id="16">bug list</a>
+    for details of problems of particular platforms.</p>
+  <p>
+    Pei Wei, Viola's author, is finishing his degree at UC Berkley, and
+    plans for the continued support of viola are being mapped out now.</p>
+  <p>
+    Here are my personal comments on a (April 11)  test version. See also:<a name="2" href="/archive/cern/1809" original-href="AtCERN.html" archive-page-id="1809">
+      running it at CERN</a> , <a name="4" href="/archive/cern/1804" original-href="../Erwise/vsViola.html" archive-page-id="1804">comparison with Erwise</a>.
+  </p>
+  <h2>Summary</h2>
+  Features of the browser are:
+  <ul>
+    <li>Multifont text
+    </li>
+    <li>Links highlighted with "button" boxes, single click to jump
+    </li>
+    <li>"Home", "Back" and "Forward"  buttons
+    </li>
+    <li>Single window operation plus "clone" of a copy of any document in
+      another window.
+    </li>
+    <li>A "bookmark" facility
+    </li>
+    <li>Online help buttons
+    </li>
+    <li>Searching of remote index: input field at bottom of window
+    </li>
+  </ul>
+  Current (Apr 29) bugs include
+  <ul>
+    <li>Crashes on first jump if a color display is used.
+    </li>
+    <li>The scroll bar and icons buttons on the left hand side of windows
+      sometimes are not present. I found resizing the window vertically
+      made it reappear.
+    </li>
+    <li>There is isn't much documentation on the product.
+    </li>
+    <li>If you close a clone window (or the main window) the program crashes.
+      This is the only way to quit it in fact!
+    </li>
+  </ul>
+  <h2>Look and Feel</h2>
+  The overall look was very good to my particular taste: I'm no great
+  fan of motif LAF, anyway.  The "feel" is also good, apart from the
+  speed of display which is just slow enough to be frustrating if you're
+  used to something faster.   The  old1.0 version was much faster, but
+  monofont. The multifont text is certainly worth the wait unless its
+  only a phone number you're after.
+  <p>
+    The formatting of the text is very good: the styles are clear and
+    distinct, apart from the List style (LI) which looks too much like
+    normal text. It could do with being indented and a bit of white space
+    inserted between list elements.</p>
+  <p>
+    The window looks a little cluttered.  Perhaps the "ViolaWWW" could
+    be taken out of the window itself and put as the window title in place
+    of "www". 
+  </p>
+  <h2>Ease of use</h2>
+  The program has to be installed, coming with three parts: a binary,
+  a directory full of  viola scripts, and a shell script to define an
+  environment variable to point to the viola script directory.  Once
+  this has been set up,  all you have to type is "vw" and the program
+  starts from a default home page just as the line mode browser does.
+  That's three keystrokes, and it's point-and-click from then on!
+  <p>
+    A strange characteristic is that a click in a hypertext window doesn't
+    have to be on a button, it can be somewhere near it. This can lead
+    to an unexpected jump if the click was just to bring the window to
+    the surface, or an attempt to copy some text. (Cut and paste don't
+    work yet).
+  </p>
+  <h2>Bells and Whistles</h2>
+  The arrow buttons along the top margin look like "Previous", "Back"
+  and "Next", but don't work in quite the same way as in the NeXT and
+  line mode browsers.  "Up" is the same as "Back", a destructive backtrack
+  through the history, but "Left" is just s non-destructive backtrack:
+  "Right" undoes "Left".  The function of "Next" meaning the next article
+  in a list is not available.
+  <h3>Hidden documentation</h3>
+  You have to be inquisitive to find out that there's documentation
+  about Viola hidden under the globe icon.   It is more obvious that
+  help resides under the big question mark.  In both cases, the program
+  intelligently checks for a local copy of the help before going off
+  to California for the original.  Nice point.  I suggest a link from
+  the help into the "About Viola" documents.
+  <h3>See the hypertext markup</h3>
+  Other gadgets are at the bottom of the window: three small icons tucked
+  in after the index search field.  The history feature and "print"
+  buttons don't quite work in practice, but are close to working. 
+  <h3></h3>
+  The third is is source viewer which allows you to see the HTML source
+  of a document in a separate window. This is useful for information
+  providers, and also for explaining how WWW works!
+  <p>
+    Cloning</p>
+  <p>
+    There is a little "clone" button (an icon of tearing a sheet off a
+    pad) which allow one to make a copy, in another window, of a document.
+    This is not a complete clone, as the window does not have any buttons
+    (except for "clone"!). Therefore, if it is an index, you can't search
+    it (pity),. You can, however, follow links with it -- but the referenecd
+    document is brought up in the orinial, unique "master" window.  The
+    clone window is nicely unclutteretd as a result, though.
+  </p>
+  <h2>Conclusion</h2>
+  A very neat browser useable by anyone: very intuitive and straightforward.
+  The extra features are probably more than 90% of "real" users will
+  actually use, but just the things which an experienced user will want.
+  I'm looking forward to the minor bugs with the scroll bar and color
+  working being cleared up.
+  <p>
+    _________________________________________________________________
+  </p>
+  <address>
+    <a name="0" href="/archive/cern/3835" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="3835">Tim BL</a>
+  </address>
+</div>

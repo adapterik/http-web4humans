@@ -1,0 +1,67 @@
+<div data-element="archive-body">
+  <h1>Installing www on VM</h1>
+  This is possible, and has been done
+  at CERN and Rutherford labs, for
+  example.  However, the latest version
+  has probably not been done. Because
+  no two VM systems seem to be the
+  same, you may have to change things
+  in order to find things like libraries
+  and standard C header files.
+  <p>
+    Here are some files which were used
+    during the last port to VM.   The
+    C and H files are all the same as
+    the unix distribution: take the LineMode
+    and Library tar files.</p>
+  <p>
+    (If you are at or connected to CERNVM
+    you can of course pick up the WWW
+    EXEC and WWW MODULE from the public
+    disks there.)</p>
+  <p>
+    Note that compiling with (DEF(VM,IBM,DEBUG,SHORT_NAMES))
+    selects the code options for VM,
+    in particular  replaces long identifiers
+    which are ambiguous when truncated
+    with short identifiers.  Do not worry
+    about warnings about truncated identifiers,
+    only worry about errors when two
+    different identifiers are truncated
+    to the same thing.
+  </p>
+  <dl>
+    <dt>
+      <a name="z4" href="/archive/cern/1812" original-href="WWW.EXEC" archive-page-id="1812">WWW EXEC</a>
+    </dt>
+    <dd> Runs WWW MODULE .
+    </dd>
+    <dt>
+      <a name="z5" href="/archive/cern/1813" original-href="MAKEW.EXEC" archive-page-id="1813">MakeW EXEC</a>
+    </dt>
+    <dd> Generates the WWW MODULE
+      from sources. See note on XA running
+      below. 
+    </dd>
+  </dl>
+  <h2>Under VM/XA</h2>
+  Andrew Sansum writes, "Well I've
+  now got the WWW line mode browser
+  going on VM. All it needed were a
+  couple of extra options on the CMOD
+  command of MAKEW, the AMODE and RMODE
+  options allow XA mode to work. The
+  RLDSAVE makes the module relocatable
+  (at the cost of increased size),
+  allowing users to run the module
+  who have machines configured differently
+  from the machine that built it.
+  <pre>'EXEC CMOD 'sources' (AMODE ANY RMODE ANY RLDSAVE MODNAME' modname
+
+
+
+</pre>
+  <address>
+    <a name="0" href="/archive/cern/1814" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1814">Tim BL</a>
+  </address>
+</div>

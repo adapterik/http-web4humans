@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%= include_partial "head" %>
+  </head>
+  <body class="http-only-site">
+    <%= include_partial "header" %>
+    <div class="body">
+      <table  class="layout-table archive"  cellspacing="0" cellpadding="0">
+        <tr class="archive-header-row">
+          <td colspan="4">
+            <a href="/">home</a>
+            <a href="/archive/<%= @context[:archive][:name] %>/1">archive home</a>
+            <a href="/archive/<%= @context[:archive][:name] %>/about">about</a>
+          </td>
+        </tr>
+        <tr class="archive-content-row">
+          <td class="archive-left-col">
+          </td>
+          <td class="archive-content-col">
+            <% if @archive_id.nil? %>
+              <h1><%= @context[:page]['title'] %></h1>
+              <%= include_page_content %>
+            <% else %>
+              <%= @context[:archive][:content] %>
+            <% end %>
+          </td>
+           <td class="archive-metadata-col">
+            <% if @archive_id.nil? %>
+               <% if is_authenticated? %>
+                  <%= include_partial "side-bar-navigation" %>
+              <% else %>
+                UNAUTHENTICATED CONTENT HERE?
+              <% end %>
+            <% else %>
+              <table class="metadata-table" cellspacing="0">
+                <tbody>
+                  <tr>
+                      <th>
+                        ID
+                      </th>
+                      <td>
+                        <%= @context[:archive][:page_id] %>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>
+                        Title
+                      </th>
+                      <td>
+                        <%= @context[:archive][:metadata]['head']['title'] %>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>
+                        Created
+                      </th>
+                      <td>
+                        <%= @context[:archive][:metadata]['created'] %>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th>
+                        Last fetched
+                      </th>
+                      <td>
+                        <%= @context[:archive][:metadata]['last_fetched'] %>
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <th>
+                        Last checked
+                      </th>
+                      <td>
+                        <%= @context[:archive][:metadata]['last_checked'] %>
+                      </td>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+          </td>
+          <td class="archive-right-col">
+          </td>
+        </tr>
+        <tr class="archive-footer-row">
+          <td colspan="4">
+          </td>
+        </tr> 
+      </table>
+    </div>
+    <%= include_partial "footer" %>
+  </body>
+</html>

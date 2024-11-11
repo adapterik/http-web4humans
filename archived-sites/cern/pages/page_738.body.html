@@ -1,0 +1,63 @@
+<div data-element="archive-body">
+  <h1>The Rule File</h1>
+  The rule file defines how the server will translate a request into
+  an actual filename. It allows one to provide an extra level of  name
+  mapping above that given by links in the file system. It allows, for
+  example, out of date names to mapped onto their more recent counterparts.
+  <p>
+    The rule file also allows access to be restricted.  This is essential,
+    to prevent, for example, unauthorized access to your password file.</p>
+  <p>
+    By default, the rule file /etc/httpd.conf is loaded, unless specified
+    otherwise with the -R or -r <a name="1" href="/archive/cern/737" original-href="CommandLine.html#5" archive-page-id="737">options</a> . </p>
+  <p>
+    See <a name="3" href="/archive/cern/1797" original-href="RuleExamples.html" archive-page-id="1797">example rule files</a> .
+  </p>
+  <h2><a name="2">Format</a></h2>
+  [The format changed for version 0.2] Each line consists of an operation
+  code and one or two parameters, referred to as the template and the
+  result.  Anything on a line after and including a hash sign (#) is
+  ignored, as are empty lines.
+  <p>
+    The operation codes are as follows
+  </p>
+  <dl>
+    <dt>map template result
+    </dt>
+    <dd> If the address matches the template, use the result
+      string from now on for future rules. 
+    </dd>
+    <dt>pass template
+    </dt>
+    <dd> If the address maches the template, use it as it is,
+      porocessing no further rules.
+    </dd>
+    <dt>fail template
+    </dt>
+    <dd> If the address matches the template, prohibit access,
+      processing no futher rules.
+    </dd>
+  </dl>
+  The template string may contain at most one wildcard asterisk ("*").
+  The result string may have one wildcard  only if the template has
+  one.
+  <p>
+    When matching,
+  </p>
+  <ul>
+    <li>Rules are scanned from the top of the file to the bottom.
+    </li>
+    <li>If a request matches a "map" template exactly, the result string is
+      used from then on.
+    </li>
+    <li>If the request maches a "map" template with wildcard, then the text
+      of the request which matches the wildcard is inserted in place of
+      the wildcard in the result string to form the translated request.
+      If the result string has no wildcard, it is used as it is.
+    </li>
+    <li>When a substitution takes place, the rule scan continues with the
+      next rule using the new string in place of the request.
+    </li>
+  </ul>
+  <address><a name="0" href="/archive/cern/1794" original-href="../../../TBL_Disclaimer.html" archive-page-id="1794">Tim BL</a></address>
+</div>

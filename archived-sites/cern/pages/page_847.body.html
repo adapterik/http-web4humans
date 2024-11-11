@@ -1,0 +1,51 @@
+<div data-element="archive-body">
+  <h1>W3 addresses for WAIS servers</h1>
+  Servers using the WAIS (<a name="2" href="/archive/cern/258" original-href="../../Products/WAIS/Overview.html" archive-page-id="258">"Wide Area Information Systems"</a>) protocols
+  from Thinking Machines may be accessed as part of the web using addresses
+  of the form (see <a name="8" href="/archive/cern/284" original-href="BNF.html#105" archive-page-id="284">BNF description</a>)
+  <p>
+    w a i s : / / hostport / database ...</p>
+  <p>
+    Access (currently) goes through a gateway which stores the "source"
+    files which contain the descriptions of WAIS servers. This address
+    corresponds to the address of an index. To this may optionally be
+    appended either a search string or a document identifier.</p>
+  <p>
+    Note that changes have been proposed to WAIS document id format, so
+    this representation of them may have to change with that format. Currently
+    the WAIS document address necessary for retrieval by a client requires
+    the following information, which is orginally provided by the server
+    in the hit list.
+  </p>
+  <dl>
+    <dt>
+      <a name="5" href="/archive/cern/284" original-href="BNF.html#102" archive-page-id="284">Document format</a>
+    </dt>
+    <dd>This is normally "TEXT" but other formats such as PS,
+      GIF, exist.
+    </dd>
+    <dt>
+      <a name="6" href="/archive/cern/284" original-href="BNF.html#107" archive-page-id="284">Document length</a>
+    </dt>
+    <dd>This is needed by the client who must loop to retrie
+      the whole document in slices.
+    </dd>
+    <dt>
+      <a name="7" href="/archive/cern/284" original-href="BNF.html#99" archive-page-id="284">Document identifier</a>
+    </dt>
+    <dd>This is an entity consisting of numerically tagged
+      fields. the binary representation used by WAIS is transformed for
+      readability into  a sequence of  fields each consisting of a decimal
+      tag, an equals sign (=) , the field value, and a semicolon. Within
+      the field value, hex <a name="1" href="/archive/cern/843" original-href="Escaping.html" archive-page-id="843">escaping</a> is used for otherwise illegal characters.
+    </dd>
+  </dl>
+  See also: Other <a name="3" href="/archive/cern/185" original-href="Addressing.html" archive-page-id="185">W3 address formats</a>, <a name="4" href="/archive/cern/284" original-href="BNF.html#105" archive-page-id="284">BNF definition</a>.
+  <p>
+    _________________________________________________________________
+  </p>
+  <address>
+    <a name="0" href="/archive/cern/1855" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1855">Tim BL</a>
+    <p></p>
+  </address>
+</div>

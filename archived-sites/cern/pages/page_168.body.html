@@ -1,0 +1,31 @@
+<div data-element="archive-body">
+  <h1>The W.A.I.S. - WWW gateway</h1>
+  This is an example of a WWW <a name="5" href="/archive/cern/19" original-href="Overview.html" archive-page-id="19">server</a> and a<a name="3" href="/archive/cern/258" original-href="../../Products/WAIS/Overview.html" archive-page-id="258"> WAIS</a> client. It uses the
+  common WWW daemon <a name="1" href="/archive/cern/19" original-href="Overview.html#13" archive-page-id="19">sources</a> and also has one extra file, <a name="2" href="/archive/cern/807" original-href="Implementation/WAISGate.c" archive-page-id="807">WAISGate.c</a>
+  The <a name="6" href="/archive/cern/139" original-href="User/Guide.html" archive-page-id="139">command line syntax</a> is the same as for the normal W3 daemon, except
+  that a rule file is not used. (No -r or -R options).
+  <p>
+    See a summary of <a name="4" href="/archive/cern/808" original-href="../../Products/WAIS/Sources/Overview.html" archive-page-id="808">some data available through the gateway</a> . 
+  </p>
+  <h2>WSRC files</h2>
+  The gateway keeps a cache of WAIS "source" files. These are files
+  <p>
+    describing WAIS servers. They are normally picked up automatically
+    by searching a "directory of servers" index. Once the gateway has
+    picked up a desciption of  a server,  it uses the description to describe
+    the server to those who follow links to it.</p>
+  <p>
+    These source files are converted into hypertext, and are kept in the
+    directory /usr/local/lib/WAIS under the server name, port, and database
+    name.</p>
+  <p>
+    To add an extra source file to this cache by hand, feed it as standard
+    input to the ParseWSRC program.</p>
+  <p>
+    _________________________________________________________________
+  </p>
+  <address>
+    <a name="0" href="/archive/cern/809" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="809">Tim BL</a>
+    <p></p>
+  </address>
+</div>

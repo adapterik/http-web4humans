@@ -1,0 +1,125 @@
+<div data-element="archive-body">
+  <h1>Tolerating broken HTML writers</h1>
+  These are illegal according to SGML, but they're so prevalent that
+  they're supported by the sample implementation.
+  <p>
+    Please stop generating HTML in this style!</p>
+  <p>
+  </p>
+  <h2><a name="id1">Document Structure</a></h2>
+  The BODY element must start with some element. See: <a href="/archive/cern/2012" original-href="error_data_starts_body.html" archive-page-id="2012">an example document where this rule
+    is broken</a>.
+  Paragraph breaks are not allowed in headers, lists etc. They may be
+  ignored or treated intelligently.
+  <ul>
+    <li>a list item
+      <p>
+        with more than one paragraph
+      </p>
+    </li>
+  </ul>
+  <h3>Muti-paragraph</h3>
+  <p>
+    heading
+  </p>
+  <h3>Unknown Tags</h3>
+  Tags that aren't known to the parser are treated as data by, for
+  example, the MidasWWW-1.0 implementation. They should be ignored.
+  There should be no tags around the word foo: <unknown>foo</unknown>.
+  <h2>Body Elements</h2>
+  Note that conforming SGML parsers will treat "&amp;", "&lt;", "&lt;/",
+  and "&lt;!" as normal text characters when they are not followed by a
+  letter. HTML producers are discouraged from taking advantage of this
+  feature.
+  <p>
+  </p>
+  <h3><a name="a">Anchors</a></h3>
+  <h4>numeric IDs: <a href="#NeXT">NeXT</a> and <a href="/archive/cern/2013" original-href="html-mode" archive-page-id="2013">html-mode.el</a>
+  </h4>
+  <a name="10">This</a> anchor's name starts with a digit, which is not a
+  name start character.
+  <p>
+  </p>
+  <h4>unquoted attribute literals: <a href="#NeXT">NeXT</a> and <a href="/archive/cern/2013" original-href="html-mode" archive-page-id="2013">html-mode.el</a>
+  </h4>
+  <a href="#NeXT">This anchor</a>'s href contains a '#', which is not a name
+  character. It should lead to the NeXT implementation reference below
+  anyway. <a href="/archive/cern/2014">This
+    anchor</a>'s href
+  contains ':' and '/', which are not a name characters. It should lead
+  to the SLAC MidasWWW doc anyway.
+  <p>
+  </p>
+  <h2>Literal Text Elements</h2>
+  <h4>Historical Note</h4>
+  The original semantics of the XMP and LISTING elements is not
+  representable in SGML. From <a href="/archive/cern/286" original-href="http://info.cern.ch/hypertext/WWW/MarkUp/Tags.html" archive-page-id="286">Tags used in
+    HTML</a>:
+  <p>
+  </p>
+  <ul>
+    <li>The text may contain any ISO Latin printable characters, including
+      the tag opener, so long as it does not contain the closing tag in
+      full. </li>
+  </ul>
+  But in section 7.6 of the SGML standard:
+  <p>
+  </p>
+  <ul>
+    <li>The content of an element declared to be character data or
+      replaceable character data is terminated only by an etago
+      delimiter-in-context (which need not open a valid end-tag) ... .
+    </li>
+  </ul>
+  The XMP and LISTING elements are deprecated in favor of the TYPEWRITER
+  element.
+  <h4>Non-standard CDATA parsing: LineMode, MidasWWW, etc.</h4>
+  <xmp>
+    This example section ends here: 
+    The following systems are known to read and/or write HTML. They all
+    have bugs.</xmp>
+  <pre><xmp>
+Just in case the foo close tag above wasn't recognized:
+</xmp><pre></pre>
+  <h2>Known Implementations</h2>
+  <p>
+  </p>
+</pre>
+<dl>
+  <dt>Linemode Browser 1.3c
+  </dt>
+  <dd>
+  </dd>
+  <dt>MidasWWW 1.0</dt>
+  <dd>
+    The MidasWWW parses HTML into its internal data structures, and
+    then offers the option to extract the data and write it to a file.
+    It doesn't get it right all the time.
+  </dd>
+  <dt>
+    <a name="NeXT">NeXT editor</a>
+  </dt>
+  <dd>From timbl@info.cern.ch
+  </dd>
+  <dt>
+    <a name="html-mode">html-mode.el</a>
+  </dt>
+  <dd>from marca@@@
+  </dd>
+  <dt>Viola</dt>
+  <dd>
+    From Pei Wei @ O'Reilly (@@email address). Any known problems? I hear
+    it's going to use <a name="id3" href="/archive/cern/2015" type="application/x-tar">SGMLs</a>.
+  </dd>
+  <dt>www_and_frame</dt>
+  <dd>
+    @@Go get <a name="id5" href="/archive/cern/2016">The
+      latest version</a> -- it should be current with this spec.
+  </dd>
+  <dt>perl client</dt>
+  <dd>
+    Just heard about it. haven't tried it. I don't think it supports
+    entities.
+  </dd>
+</dl>
+</div>

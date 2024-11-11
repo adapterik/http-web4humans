@@ -1,0 +1,51 @@
+<div data-element="archive-body">
+  <h1>The problem of linking to living documents</h1>
+  See also: Annotation, <a name="5" href="/archive/cern/228" original-href="Multiuser.html" archive-page-id="228">Multiuser considerations</a>.
+  <p>
+    A problem arises when one user wants to refer to a portion of another
+    document to which he does not have write access.  The reference to
+    a part of the document must remain as valid as possible when the document
+    is updated. </p>
+  <p>
+    The solution set is as follows: take your pick.
+  </p>
+  <h2>The document is frozen.</h2>
+  This in fact applies nicely to mail messages and news articles which,
+  once published, are unretractable.  You can refer to a part of these
+  messages by character range (line and character etc).
+  <h2>Versions are kept.</h2>
+  If the document itself is not frozen, one can still refer to a particular
+  version of it if a record of versions is kept.  This requires that
+  the server provdie an additional protocol funtion, which is to tell
+  a client exactly which part (if any) of the current version of a document
+  is the part corresponds to a particular part of  an older version.
+  This translation can be <a name="3">generated automatically</a> by the "diff" engine
+  used by most source code control systems. These systems do not always
+  work: a smart editor would be able to keep better track.
+  <p>
+    This is an interesting option, because the operations needed to do
+    it are the same as those needed for putting links onto plain text
+    documents and keeping track of versions, both of which are important
+    aspects of collaborative software design.</p>
+  <p>
+    (See also: <a name="2" href="/archive/cern/234" original-href="Versioning.html" archive-page-id="234">versioning</a> )
+  </p>
+  <h2>The document is writable by the annotater.</h2>
+  In this case, when the person refering to the document has write access
+  to it, he can insert marks. This is the way the current (1992) NeXTStep
+  editor works: it embeds anchors in the destination document. If the
+  document is later edited, the anchors are moved around with the text,
+  though in some cases (drastic rewriting) they can disappear.
+  <h2>Everything is numbered</h2>
+  This solution requires the author (or rather, the author's editing
+  program) to give unique identifiers to every part of a document which
+  can be the destination of a link.  This is not in fact a ridiculous
+  overhead if handled efficiently.    There must be a certain granularity
+  (paragrpah, for example) which prevents people linking to precise
+  words, and this is a drawback.
+  <h2>Linking by context</h2>
+  In this case, the annotater refers to a part of the document by the
+  context: for example, he quotes the first and last pieces. See for,
+  example, the section "In this case...". This method is clearly heuristic
+  and prone to failures just as is the <a name="4" href="#3">automatic generation</a> of differences
+  above..</div>

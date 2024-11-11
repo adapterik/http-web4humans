@@ -1,0 +1,39 @@
+<div data-element="archive-body">
+  <h1>Versioning</h1>
+  Definition: The storage and management of previous copies of a piece
+  of information, for security, diagnostics, and interest.
+  <p>
+    Do you want version control?</p>
+  <p>
+    Can you reference a version only?</p>
+  <p>
+    If you refer to a particular place in a node, how does one follow
+    it in a new version, if that place ceases to exist?</p>
+  <p>
+    (ªPeter Aiken is the expert in this areaº - Tim Oren, Apple)</p>
+  <p>
+    Yes, at CERN we will want versioning. Very often one wants to correct
+    a news item, even one of limited life, without reissuing it. This
+    is a problem with VAX/NOTES for example. I would suggest that the
+    text for the current version is stored, and separately those modifications
+    necessary to backtrack to previous versions. I would expect previous
+    versions to be regenerated only on the fly, as needed. (Apparaently
+    SCCS stores the original file and the differences. This system does
+    allow you to ditsribute the differences when updating copies.)</p>
+  <p>
+    If full differences (deltas) are kept, the first version is just the
+    first delta from a null document. The latest version is not available
+    without regenerating it from all the deltas.  For speed, it is obviously
+    useful to <a name="3">keep a copy</a> of the latest version  (see <a name="2" href="/archive/cern/853" original-href="Caching.html" archive-page-id="853">caching</a> ).</p>
+  <p>
+    Versioning is necessary for accountability  (--David Durand, dgd@cs.bu.edu).
+    If an author is to be accountable for information published, it should
+    be possible to demonstrate later what he wrote, even if he has later
+    changed it.</p>
+  <p>
+    A WWW server may provide versioning, by allowing links between a document
+    version and its previou and succesive versions. This would be a good
+    use of <a name="1" href="/archive/cern/852" original-href="LinkTypes.html#1" archive-page-id="852">link typing</a> .</p>
+  <p>
+    Keeping track of versions allows one solution to the <a name="4" href="/archive/cern/943" original-href="Annotation.html" archive-page-id="943">annotation problem</a>.</p>
+</div>

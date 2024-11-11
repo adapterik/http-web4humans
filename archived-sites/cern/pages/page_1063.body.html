@@ -1,0 +1,40 @@
+<div data-element="archive-body">
+  <h1>Using the "SOURCE" prefix</h1>
+  Note: Version 1.3 and later.  The SOURCE (S) prefix to a command within
+  <a name="1" href="/archive/cern/137" original-href="QuickGuide.html" archive-page-id="137">www</a> qualifies the execution of that command.  It make the command
+  generate raw unformatted text instead of formatting it. Som examples
+  of use are:
+  <h2>Printing Poscscript documents</h2>
+  Currently, a postscript document comes up on the screen in its postscript
+  form.  Printing the display from the screen, formatted, is not a good
+  idea as the postscript is damages by being formatted. Use with PRInt
+  to send the document to the printer directly:
+  <xmp>			SOURCE PRINT
+  </xmp>
+  <pre></pre>
+  You must have a postscript printer for this to work.
+  <h2>Looking at SGML source code</h2>
+  If you want to see the SGML source of a document, prefix the FIND
+  or jump command with SOURCE.
+  <xmp>
+    SOURCE &gt; temp.html
+  </xmp>
+  <pre></pre>
+  saves the current document in a file temp.html.
+  <xmp>			SOURCE 1
+  </xmp>
+  <pre></pre>
+  Follows the first link from the current document, displaying the source
+  of the destination document.   Note that while the raw data is retrieved
+  without interpretation, it is formatted for display on your terminal
+  in this case.
+  <h2>What it won't do</h2>
+  SOURCE won't change the format of a document already loaded, so SOURCE
+  by itself won't display the source of the current document.
+  <p>
+    SOURCE only works for documents from W3 servers and, to a certain
+    extent, news articles. You can't get original source for for example
+    file directories.
+  </p>
+  <address><a name="0" href="/archive/cern/2000" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="2000">Tim BL</a></address>
+</div>

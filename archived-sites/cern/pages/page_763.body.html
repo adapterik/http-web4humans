@@ -1,0 +1,117 @@
+<div data-element="archive-body">
+  <h1>Browser Software Architecture</h1>
+  The <a name="5" href="/archive/cern/2" original-href="../TheProject.html" archive-page-id="2">WWW</a> browsers share a common architrecure, and a certain amount
+  of common code.  (See also: Browser <a name="7" href="/archive/cern/1820" original-href="BrowserOperation.html" archive-page-id="1820">operation</a> , and <a name="23" href="/archive/cern/1821" original-href="UtilityOverview.html" archive-page-id="1821">utility modules</a>
+  which are used throughout).
+  <p>
+    In the <a name="1" href="/archive/cern/1822" original-href="BrowserControl.ps" archive-page-id="1822">contol flow diagram</a> , common code is to the right of the grey
+    line.
+  </p>
+  <dl>
+    <dt>
+      <a name="16">Application</a>
+    </dt>
+    <dd> This module is the  main program, and is window-system-dependent.
+      In the line mode browser , it is <a name="21" href="/archive/cern/765" original-href="../LineMode/Implementation/HTBrowse.h" archive-page-id="765">HTBrowse</a> .  The application is called
+      by the operating system, and manages the overall running of the program.
+      It asks the <a name="19" href="/archive/cern/763" original-href="BrowserOverview.html#8" archive-page-id="763">navigation</a> module to load the default page. 
+    </dd>
+    <dt>
+      <a name="8">Navigation</a>
+    </dt>
+    <dd> The module which acually loads documents is based in HTAccess.c.
+      This uses all the <a name="3" href="/archive/cern/763" original-href="BrowserOverview.html#2" archive-page-id="763">protocol modules</a> .  Given an anchor ID to jump to,
+      it asks the anchor object for the address in order to load it.
+    </dd>
+    <dt>
+      <a name="20">History</a>
+    </dt>
+    <dd> This module records and replays on request the documents which
+      the user vists.
+    </dd>
+    <dt>Format manager
+    </dt>
+    <dd> The format manager  uses the <a name="15" href="/archive/cern/763" original-href="BrowserOverview.html#11" archive-page-id="763">parser modules</a> to load
+      the document as appropriate. It can also decide on the format of a
+      file from its name.
+    </dd>
+    <dt>
+      <a name="9">Anchor object</a>
+    </dt>
+    <dd> The <a name="22" href="/archive/cern/1823" original-href="../Implementation/HTAnchor.h" archive-page-id="1823">HTAnchor</a> module takes care of creating anchors,
+      managing the links between them and their attributes. This module
+      is independent of the type of graphics object (text, line drawing
+      etc). It stores hypertext addresses of anchors, and ensures that anchors
+      with the same address are the same anchor. (<a name="13" href="/archive/cern/1824" original-href="Anchors.html" archive-page-id="1824"> More</a> )
+    </dd>
+  </dl>
+  <h2><a name="2">Protocol modules</a></h2>
+  A protocol module is invoked by the navigation module in order to
+  access a document. Each protocol  module is responible for extracting
+  information from a local file or remote server using a particular
+  protocol.  Depending on the protocol, the protocol module either builds
+  a graphic object (e.g. hypertext) itself, or it passes a socket descriptor
+  to the format manager for parsing by one of the parser modules. 
+  <dl>
+    <dt>File access
+    </dt>
+    <dd> HTFile.c provides access to files, using HTFTP.c for remote
+      access.  The latter uses HTTCP for common TCP routines.
+    </dd>
+    <dt>HTTP access
+    </dt>
+    <dd> The <a name="25" href="/archive/cern/1825" original-href="../Implementation/HTTP.h" archive-page-id="1825">HTTP module</a> handles document search and retrieve using
+      the<a name="6" href="/archive/cern/37" original-href="../Protocols/HTTP/AsImplemented.html" archive-page-id="37"> HTTP</a> protocol.
+    </dd>
+    <dt>News access
+    </dt>
+    <dd> The NNTP internet news protocol is handled by <a name="24" href="/archive/cern/1826" original-href="../Implementation/HTNews.h" archive-page-id="1826">HTNews</a> which
+      builds a hypertext.
+    </dd>
+    <dt>Gopher access
+    </dt>
+    <dd> The internet gopher access to menus and flat files (and
+      links to telnet nodes etc) is handled by <a name="26" href="/archive/cern/1827" original-href="../Implementation/HTGopher.h" archive-page-id="1827">HTGopher</a> .
+    </dd>
+    <dt>WAIS access
+    </dt>
+    <dd> is implemented in a separate <a name="27" href="/archive/cern/168" original-href="../Daemon/WAISGate.html" archive-page-id="168">gateway program</a> .
+    </dd>
+  </dl>
+  <h2><a name="11">Parser modules</a></h2>
+  The parser modules allow different formats to be used to generate
+  graphic objects.  A parser is invoked by the format manager. Currently
+  we only parse HTML and plain text, but obviously other formats can
+  be added.
+  <dl>
+    <dt>HTML
+    </dt>
+    <dd> Basic hypertext parsing is done by <a name="18" href="/archive/cern/1828" original-href="../Implementation/HTML.c" archive-page-id="1828">HTML.c</a> which uses the simple
+      SGML engine SGML.c as a basic tokeniser and element stack manager.
+    </dd>
+    <dt>Plain text
+    </dt>
+    <dd> This is built directly by the format manager as it is so
+      simple.
+    </dd>
+  </dl>
+  <h2><a name="14">Graphic objects</a></h2>
+  A graphic object is a (complex) displayable entity. It is built by
+  a protocol module directly or using a parser.  Graphic objects are
+  in general necessarily coded differently on diferent window systems.
+  The graphic object is resposible for displaying istelf, catching mouse
+  clicks, and calling the navigation object in order to follow links.
+  We use the more common term "document" to describe the logical entity
+  which a graphics object represents and displays.
+  <dl>
+    <dt>
+      <a name="12">Hypertext</a>
+    </dt>
+    <dd> This object is window-system dependent. In the line mode
+      browser, the <a name="17" href="/archive/cern/156" original-href="../LineMode/Internals.html#3" archive-page-id="156">GridText</a> module is the hypertext object, providing the
+      generic functionality of HText.h
+    </dd>
+  </dl>
+  _________________________________________________________________
+  <address><a name="0" href="/archive/cern/1829" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1829">Tim BL</a></address>
+</div>

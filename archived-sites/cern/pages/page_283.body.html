@@ -1,0 +1,47 @@
+<div data-element="archive-body">
+  <h1>HTTP Addressing</h1>
+  With an access code of http:,  a protocol introduced for  the WWW
+  initiative is used to acquire data from a server. This is the "Hypertext
+  Transfer protocol", <a name="1" href="/archive/cern/37" original-href="../Protocols/HTTP/AsImplemented.html" archive-page-id="37">HTTP</a> , a simple search and retrieve (S and R)
+  protocol.
+  <p>
+    The syntax of an http address is, with [] indicating optional parts
+    (see <a name="5" href="/archive/cern/284" original-href="BNF.html#1" archive-page-id="284">BNF description</a> ),
+  </p>
+  <xmp>		http : // hostname [ : port ] / path [ ? searchwords ]
+  </xmp>
+  <pre></pre>
+  for example, the following are valid addresses:
+  <xmp> 		http://info.cern.ch/hypertext/WWW/TheProject.html
+    http://crnvmc.cern.ch/FIND?sgml+examples
+  </xmp>
+  <pre></pre>
+  HTTP addresses conform to the WWW conventions,  including the possibility
+  of using the <a name="4" href="/archive/cern/285" original-href="Search.html" archive-page-id="285">search format</a> . The significance of the items in the
+  path part of the document name is completely up to the server. Different
+  paths may be used to select different databases, different views of
+  the same database, etc.
+  <dl>
+    <dt>hostname
+    </dt>
+    <dd> This is the name of the server in internet form. A numeric
+      form (e.g. 128.141.201.74) may be used, by the domain name form (e.g.
+      info.cern.ch) is preferred. The hostname is mandatory.
+    </dd>
+    <dt>port
+    </dt>
+    <dd> This is a numeric port number. If a non-numeric string is used,
+      it must be a defined service name. Note that as there is no central
+      repository for service names (they are defined locaaly for each host),
+      a service name is NOT an appropriate way to specify a port number
+      for a hypertext address. If the port number is omitted the preceding
+      colon must also be omitted. In this case, port number 2784 is assumed
+      [This may change!].
+    </dd>
+  </dl>
+  See also: <a name="3" href="/archive/cern/185" original-href="Addressing.html" archive-page-id="185">WWW addressing in general</a> , <a name="2" href="/archive/cern/282" original-href="../Protocols/HTTP.html" archive-page-id="282">HTTP protocol</a> .
+  _________________________________________________________________
+  <address>
+    <a name="0" href="/archive/cern/1051" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1051">Tim BL</a>
+  </address>
+</div>

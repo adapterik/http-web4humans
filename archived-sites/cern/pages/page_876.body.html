@@ -1,0 +1,131 @@
+<div data-element="archive-body">
+  <h1>Rules for straight ANSI C:</h1>
+  <h2>Assumptions</h2>
+  Object oriented programming classes are not supported.
+  <h2>A program</h2>
+  A program's executable code is made up of
+  <ul>
+    <li>global variables, knowable to all code.
+    </li>
+    <li>several modules of routines and corresponding private global variables,
+      some of the routines and/or variables may be exported to other modules.
+    </li>
+    <li>a main routine, which starts the program and normally exports nothing.
+    </li>
+  </ul>
+  <h2>Source code files</h2>
+  For maintenance, the source code is written as:
+  <ul>
+    <li>one or more ".d" files containing definitions (no variables nor routines!)
+      A ".d" file never generates code. The set of ".d" files implements
+      a hierarchical tree of dependencies between the definitions.
+    </li>
+    <li>one or more modules, each consisting of a ".h" file and a ".c" file.
+      A ".c" file always generates code. A ".h" file defines only what the
+      module exports to others, and never generates any code. Its definitions
+      may however depend on ".d" files.
+    </li>
+    <li>one main routine file, which is ".c" and possibly has no ".h" file
+      (it normally exports nothing).
+    </li>
+  </ul>
+  <h2>Simulating Modules with include files</h2>
+  We try to simulate modules with include files. As stated above, the
+  source of a module consists of:
+  <ul>
+    <li>a ".h" file with the exported constants, variables and routine headers,
+    </li>
+    <li>a ".c" file with the private constants and variables and the code
+      of all routines.
+    </li>
+  </ul>
+  The ".h" file is included by other modules, which must see the variable
+  as extern during their compilation. The exporting module also needs
+  the declarations, but without the "extern" keyword. Therefore either
+  the declarations occur again inside the module's ".c" file or we find
+  a mechanism of re-using the ".h" file. Writing the declarations twice
+  means a maintenance problem when changes happen. 
+  <p>
+    The following mechanism is proposed for including ".h" files:
+  </p>
+  <ul>
+    <li>a declaration of an exported variable is preceded by the word "PROVIDE".
+    </li>
+    <li>every ".h" file uses
+    </li>
+  </ul>
+  <xmp>                           #include </xmp>
+  <pre><importation.d>
+				  
+</importation.d></pre>
+  in order to define "PROVIDE" to be either null or "extern" depending
+  on whether the word "IMPORT" is defined.
+  <ul>
+    <li>If a variable is initialised,
+      then its initial value is given as 
+    </li>
+  </ul>
+  <xmp>                           INITIALLY(initial value);
+  </xmp>
+  <pre></pre>
+  (no equal sign!). Example for initialising exported integer i to 5:
+  <xmp>                           PROVIDE int i INITIALLY(5);
+  </xmp>
+  <pre></pre>
+  The file Importation.d contains:
+  <xmp>                      #undef PROVIDE
+    #ifdef IMPORT
+    #define PROVIDE extern
+    #define INITIALLY(s)
+    #else
+    #define PROVIDE
+    #define INITIALLY(s) = s
+    #endif
+  </xmp>
+  <pre></pre>
+  Thus, in a module A which imports from a module B, the ".c" file starts
+  with:<xmp>                      #define IMPORT
+    #include "B.h"
+    ...
+    #undef IMPORT
+  </xmp>
+  <pre></pre>
+  But module B's ".c" file has the line
+  <xmp>                      #include "B.h"
+  </xmp>
+  <pre></pre>
+  outside of "#define IMPORT" / "#undef IMPORT" brackets.
+  <p>
+    The ".h" file of a module never imports from other modules (but it
+    can of course use #include for definitions).
+  </p>
+  <h2>Global variables</h2>
+  Because they are instantiated as code, they are written as a module.
+  <p>
+    Because there are only variables, the ".h" file contains all the declarations
+    and the ".c" file is empty apart from an include for generation of
+    the code. The ".c" file is simply:
+  </p>
+  <xmp>                      #include "Globals.h"
+  </xmp>
+  <pre></pre>
+  <h2>The Main routine</h2>
+  The main routine's ".c" file looks like:
+  <xmp>                  #include &lt;... .h&gt;
+    #include &lt;... .h&gt;
+    #define IMPORT
+    #include "Definitions.d"
+    #include "Globals.h"
+    #include "A.h"
+    #include "B.h"
+    #include "... ".h""
+    #undef IMPORT
+    void main() {
+    ...
+    ...
+    }
+  </xmp>
+  <pre></pre>
+  <p>
+    <a name="0" href="/archive/cern/24" original-href="http://info.cern.ch/hypertext/WWW/People.html#Cailliau" archive-page-id="24"> RC</a></p>
+</div>

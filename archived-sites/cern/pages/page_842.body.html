@@ -1,0 +1,52 @@
+<div data-element="archive-body">
+  <h1>Relative naming</h1>
+  The address of a hypertext document is normally given within the context
+  of another hypertext document. Where the addresses of the two documents
+  are the similar, this allows only the difference between the two names
+  to be given, saving space. An example is the address of the <a name="0" href="/archive/cern/286" original-href="../MarkUp/Tags.html#13" archive-page-id="286">destination
+    of a hypertext link</a> , which is specified relative to the source document
+  address.
+  <p>
+    (A futher practical advantage is that a group of documents may be
+    transmitted without internal changes, or accessed using more than
+    one address.)</p>
+  <p>
+    This implies that certain characters ("/", "..") have a significance
+    reserved for representing a hierarchical space, and must be recognized
+    as such by both clients and servers.</p>
+  <p>
+    In the <a name="1" href="/archive/cern/185" original-href="Addressing.html" archive-page-id="185">WWW address format</a> , the rules for relative naming are:
+  </p>
+  <ul>
+    <li>If the "<a name="2" href="/archive/cern/185" original-href="Addressing.html#17" archive-page-id="185"> scheme</a> " parts  are different, the whole absolute address
+      must be given. Other wise, the scheme is omitted, and:
+    </li>
+    <li>If the "host" and/or "port" <a name="3" href="/archive/cern/284" original-href="BNF.html#3" archive-page-id="284">parts</a> are different, the host name and
+      all the rest of the address must be given. The host name may be given
+      using internet hostname conventions, ie domains may be omitted where
+      different. This is not very well defined:  one tends to assume that
+      if any dot is present, then the full domain name is being given, up
+      to the root (.) domain, while if there are no dots, the domain is
+      the same as that of the hostname part of the the base address.
+    </li>
+    <li>If the access and host parts are the same, then the path may be given
+      with the unix convention, including the use of  ".." to mean indicate
+      deletion of a path element. Within the path:
+    </li>
+    <li>If a leading slash is present, the path is absolute. Otherwise:
+    </li>
+    <li>The last part of the path of the base address (e.g. the filename of
+      the  current document) is removed, and the given relative address
+      appended in its place.
+    </li>
+    <li>Within the result,  all occurences "xxx/.."  or "/." are recursively
+      removed, where xxx is one path element (directory).
+    </li>
+  </ul>
+  The use of the slash "/" and double dot ".." in this case must be
+  respected by all servers. If necessary, this may mean converting their
+  local representations in order that these characters should not appear
+  within path elements (see <a name="4" href="/archive/cern/843" original-href="Escaping.html" archive-page-id="843">"escaping"</a> ).
+  <p>
+  </p>
+</div>

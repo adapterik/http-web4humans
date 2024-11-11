@@ -1,0 +1,60 @@
+<div data-element="archive-body">
+  <h1>Customizing www</h1>
+  Customizing <a name="7" href="/archive/cern/137" original-href="QuickGuide.html" archive-page-id="137">www</a> 's behaviour is done with environment variables or
+  their equivalent.
+  <p>
+    "<a name="11" href="/archive/cern/1792" original-href="EnvVariables.html" archive-page-id="1792"> Environment variable</a> " is a unix term. On VMS you should use a <a name="3" href="/archive/cern/929" original-href="Installation_VMS.html#3" archive-page-id="929">logical
+      name</a> . Under VM/CMS use a <a name="10" href="/archive/cern/1793" original-href="GlobalV.html" archive-page-id="1793">global variable</a> .</p>
+  <p>
+    You can also customise www by defining your own "www" command to invoke
+    www with certain <a name="2" href="/archive/cern/732" original-href="CommandLine.html" archive-page-id="732">command line options</a> set, such as the page length.
+    See also how to make <a name="8" href="/archive/cern/733" original-href="Shortcuts.html" archive-page-id="733">shortcut commands (aliases)</a> .</p>
+  <p>
+    A list of things you can customize with environment variables (or
+    local equivalents) are as follows:-
+  </p>
+  <h2><a name="9">WWW_HOME</a></h2>
+  The address of the first document to start with if you run www without
+  a document name on the command line. For example, you can set it to
+  <xmp>
+    http://info.cern.ch/hypertext/WWW/LineMode/Defaults/default.html
+  </xmp>
+  <pre></pre>
+  if you want to always use the home page on the CERN information server.
+  <p>
+    As the <a name="6" href="/archive/cern/137" original-href="QuickGuide.html" archive-page-id="137">line mode browser</a> is installed, it comes with a default copy
+    of that home page, frozen at the time when the distribution was made.
+    That page has (right at the bottom) a link back to the current version
+    on our server.  If you are installing www without privileges, you
+    may not be able to install the home page, and so you will have to
+    set WWW_HOME to point to a local copy of the file, or to our server.</p>
+  <p>
+    You can customize www to start at a page of your choice. You can write
+    your own page, or use someone else's.  All you have to do is to set
+    the environment variable WWW_HOME to the www address of your preferred
+    home page. (When you are using www, you can see what an address looks
+    like by typing help when you are reading a document - it tells you
+    the address of that node).
+  </p>
+  <h2>NNTPSERVER</h2>
+  See how to set up the <a name="5" href="/archive/cern/770" original-href="NewsServer.html" archive-page-id="770">news server's address</a> .
+  <h2><a name="12">WWW_PRINT_COMMAND</a></h2>
+  Unix only. A quoted printf-style format string for the system command
+  you wish to invoke with the www PRINT command.  This should contain
+  one %s marker where www should put the name of the document to be
+  printed. The default is
+  <xmp>
+    www -n -na -p66 '%s' | lpr
+  </xmp>
+  <pre></pre>
+  (The single quotes around the %s are necessary in case the address
+  contains shell metacharacters. When you define this variable, you
+  may of course have to enclose the whole thing in double quotes, e.g.
+  <xmp>
+    setenv WWW_PRINT_COMMAND "www -n -na -p66 '%s' | lpr"
+  </xmp>
+  <pre></pre>
+  <address>
+    <a name="0" href="/archive/cern/1794" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="1794">Tim BL</a>
+  </address>
+</div>

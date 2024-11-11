@@ -1,0 +1,51 @@
+<div data-element="archive-body">
+  <h1>Relevant protocols</h1>
+  The <a name="0" href="/archive/cern/2" original-href="../TheProject.html" archive-page-id="2">WorldWideWeb</a> system can pick up information from many information
+  sources, using existing protocols. Among these are file and news transfer
+  protocols.
+  <h2><a name="11">File Transfer</a></h2>
+  The file transfer protocol currently most used for accessing fairly
+  stable public information over a wide area is "Anonymous FTP". This
+  means the use of the internet File Transfer Protocol without authentication.
+  As the WWW project currently operates for the sake of public information,
+  anonymous FTP is quite appropriate, and WWW can pick up any information
+  provided by anonymous FTP. FTP is defined in<a name="1" href="/archive/cern/835" original-href="rfc959.txt" archive-page-id="835"> RFC 959</a> which includes
+  material from many previous RFCs. (See also: <a name="2" href="/archive/cern/836" original-href="../Addressing/FileAddressing.html" archive-page-id="836"> file address syntax</a>
+  ). Directories are browsed as hypertext.  The browser will notice
+  references to files which are in fact accessible as locally mounted
+  (or on DECnet on VMS systems) and use direct access instead.
+  <p>
+    See also the prospero project and the <a name="10" href="/archive/cern/837" original-href="../../../Shift/shift0-4.dvi" archive-page-id="837">shift</a> project, for more powerful
+    file access systems.
+  </p>
+  <h2>Network News</h2>
+  The "Network News Transfer Protocol" (NNTP) is defined in<a name="3" href="/archive/cern/838" original-href="rfc977.txt" archive-page-id="838"> RFC 977</a>
+  by Kantor and Lampsley. This allows transient news information in
+  the USENET news format to be exchanged over the internet. The format
+  of news articles is defined in<a name="4" href="/archive/cern/839" original-href="rfc850.txt" archive-page-id="839"> RFC 850, Standard for Interchange of
+    USENET Messages</a> by Mark Horton. This in turn refers to the standard<a name="5" href="/archive/cern/840" original-href="rfc822.txt" archive-page-id="840">
+    RFC 822</a> which defines the format of internet mail messages. News articles
+  make good examples of hypertext, as articles contain references to
+  other articles and news groups. News groups appear like directories,
+  but more informative.
+  <h2>Search and Retrieve</h2>
+  The WWW project defines its own protocol for information transfer,
+  called HTTP, for <a name="9" href="/archive/cern/37" original-href="HTTP/AsImplemented.html" archive-page-id="37">HyperText Transfer Protocol</a>. HTTP is a very simple
+  internet protocol, similar in implementation to FTP and NNTP.  The
+  HTTP client sends a <a name="17" href="/archive/cern/185" original-href="../Addressing/Addressing.html" archive-page-id="185">document identifier</a> with or without search words,
+  and the server responds with hypertext or plain text. Extensions are
+  foreseen to allow for more elaborate queries and <a name="16" href="/archive/cern/279" original-href="../DesignIssues/Formats.html#4" archive-page-id="279">format negotiation</a>.
+  The protocol runs over TCP, using one connection per document request.
+  The browser acts as a pipeline, so that as data arrives from the server,
+  it is presented to the reader on the fly.
+  <p>
+    Whilst the <a name="12" href="/archive/cern/282" original-href="HTTP.html" archive-page-id="282">HTTP</a> protocol provides a simple keyword search function,
+    a famous search-and-retrieve protocol is Z39.50, and the version of
+    it used by the <a name="13" href="/archive/cern/258" original-href="../../Products/WAIS/Overview.html" archive-page-id="258">WAIS</a> project.  (See also the WAIS-WWW <a name="14" href="/archive/cern/168" original-href="../Daemon/WAISGate.html" archive-page-id="168">gateway</a>).
+  </p>
+  <h2>Gopher</h2>
+  The Gopher distributed information system uses a lightweight <a name="15" href="/archive/cern/841" original-href="../../Gopher/gopher_protocol/protocol.rtf" archive-page-id="841">protocol</a>
+  very similar to HTTP. Therefore, it is now included in every WWW client,
+  so that the Gopher world can be browsed as part of the Web. Gopher
+  menus are easily mapped onto hypertext links. Chances are that future
+  versions of the Gopher and HTTP protocols will converge.</div>

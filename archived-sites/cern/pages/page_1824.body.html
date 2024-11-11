@@ -1,0 +1,48 @@
+<div data-element="archive-body">
+  <h1>Anchors</h1>
+  Anchors represent parts of graphic objects which may be the sources
+  or destinations of links. Here follows a general description of thir
+  implementation in the <a name="2" href="/archive/cern/763" original-href="BrowserOverview.html" archive-page-id="763">WWW architecure</a>. (See <a name="3" href="/archive/cern/29" original-href="../Terms.html#anchor" archive-page-id="29">definition</a>)
+  <p>
+    An anchor be the source of no, one, or many <a name="4" href="/archive/cern/29" original-href="../Terms.html#link" archive-page-id="29">links</a>. It has one "main"
+    link for the (common) case in which it is the source for one link.
+    (In the w3 software, only the main link is normally used - jan 92)</p>
+  <p>
+    An anchor may be the destination of no, one, or many links.  The anchor
+    module stores all links known by the program, and so in fact manages
+    a copy of a small part of the web.</p>
+  <p>
+    There are two types of anchors: Parenet anchors and child anchors.
+  </p>
+  <h2>Parent anchors</h2>
+  These represent whole documents.  Every <a name="1" href="/archive/cern/763" original-href="BrowserOverview.html#14" archive-page-id="763">graphic object</a> has an associated
+  parent anchor. Associated with a parent anchor is data including:
+  <ul>
+    <li>The title of the associated document, if known. This allows the document's
+      title to be displayed in lists of previous nodes visited,  etc., even
+      when the document itself has been freed.
+    </li>
+    <li>A flag as to whether the document is an index.
+    </li>
+    <li>The address of the document.  When a new anchor is created, the code
+      ensures that if an anchor with that address already exists, that that
+      anchor is returned instead, so no duplicates can exist.
+    </li>
+    <li>A list of children
+    </li>
+  </ul>
+  <h2>Child anchors</h2>
+  These represent parts of documents.  The graphic object stores the
+  correlation between  the id of the anchor and the actual space (time)
+  shape which is referred to. Child anchors contain
+  <ul>
+    <li>A pointer to the parent.
+    </li>
+  </ul>
+  <dl>
+    <dt>
+    </dt>
+  </dl>
+  _________________________________________________________________
+  <address><a name="0" href="/archive/cern/3844" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="3844">Tim BL</a></address>
+</div>

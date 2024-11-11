@@ -1,0 +1,27 @@
+<div data-element="archive-body">
+  <h1>Bad output from the daemon</h1>
+  These are some ideas:
+  <ul>
+    <li>Try <a name="2" href="/archive/cern/3829" original-href="DebugServer.html" archive-page-id="3829">running the server from the terminal</a> .
+    </li>
+    <li>Check the HTML source the daemon produces with
+    </li>
+  </ul>
+  <xmp>	www -source http://myost.domain:80/
+  </xmp>
+  <pre></pre>
+  <ul>
+    <li>Try <a name="3" href="/archive/cern/3832" original-href="TelnetToServer.html" archive-page-id="3832">telnetting to the daemon</a> and simulating the client:
+    </li>
+  </ul>
+  <xmp>
+    &gt; telnet myhost.domain 80
+    Connected to myhost.domain on port 80
+    Escape is ^[
+    GET /documentname
+  </xmp>
+  <pre></pre>
+  <address>
+    <a name="0" href="/archive/cern/3833" original-href="http://info.cern.ch./hypertext/TBL_Disclaimer.html" archive-page-id="3833">Tim BL</a>
+  </address>
+</div>
