@@ -8,8 +8,10 @@
     <div class="body">
       <table  class="layout-table archive"  cellspacing="0" cellpadding="0">
         <tr class="archive-header-row">
-          <td colspan="4">
-            <a href="/archive/<%= @context[:archive][:name] %>/1"><%= @context[:archive][:name] %> archive home</a>
+           <td colspan="4">
+            <a href="/">home</a>
+            <a href="/archive/<%= @context[:archive][:name] %>/1">archive home</a>
+            <a href="/archive/<%= @context[:archive][:name] %>/about">about</a>
           </td>
         </tr>
         <tr class="archive-content-row">

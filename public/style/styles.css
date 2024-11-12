@@ -155,12 +155,11 @@ table.layout-table.archive > tbody > tr.archive-content-row {
 }
 
 table.layout-table.archive > tbody > tr.archive-content-row td.archive-left-col {
-    width: 40px;
+    width: 32px;
     background-color: rgb(110, 129, 115);
 }
 
 table.layout-table.archive > tbody > tr.archive-content-row > td.archive-content-col {
-    
 }
 
 table.layout-table.archive > tbody > tr.archive-content-row > td.archive-content-col  {
@@ -177,13 +176,13 @@ table.layout-table.archive > tbody > tr.archive-content-row > td.archive-metadat
 }
 
 table.layout-table.archive > tbody > tr.archive-content-row > td.archive-right-col {
-    width: 40px;
+    width: 32px;
     background-color: rgb(110, 129, 115);
 }
 
 table.layout-table.archive > tbody > tr.archive-footer-row {
     background-color: rgb(110, 129, 115);
-    height: 40px;
+    height: 32px;
 }
 
 /* Metadata table for the right column */

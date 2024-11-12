@@ -21,7 +21,10 @@ class ArchivedSites < EndpointHandler
           @page_id = "#{@archive_name}-archive-about"
         end
 
-         
+         puts 'ARCHIVE ID?'
+         puts @page_id
+         puts @archive_id
+         puts @archive_id.nil?
 
         # trail = @context[:request][:params][:trail]
         # @trail = trail.nil? ? [] : trail.split(',')
@@ -40,15 +43,6 @@ class ArchivedSites < EndpointHandler
         ui: ENV['HTTP_USER_AGENT']
       }
   
-      # @context.merge!({
-      #   site: @site,
-      #   page: page,
-      #   content_type: content_type,
-      #   env: {
-      #     request: request
-      #   },
-      # })
-
       @context.merge!({
         site: @site,
         page: page,
@@ -187,7 +181,6 @@ class ArchivedSites < EndpointHandler
         when 'inprogress'
           handle_message 'Page in inprogress State', "The requested archive page <code>#{uri}</code> was being imported when it was interrupted"
         when 'error'
-          puts 'ok, error.'
           handle_message 'Error Fetching Page', "The requested archive page <code>#{uri}</code> threw an error during import"
         when 'external'
           handle_message 'External Page Not Supported', "The requested external page <code>#{uri}</code> is not yet supported"
