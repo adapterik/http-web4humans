@@ -21,11 +21,6 @@ class ArchivedSites < EndpointHandler
           @page_id = "#{@archive_name}-archive-about"
         end
 
-         puts 'ARCHIVE ID?'
-         puts @page_id
-         puts @archive_id
-         puts @archive_id.nil?
-
         # trail = @context[:request][:params][:trail]
         # @trail = trail.nil? ? [] : trail.split(',')
         # puts 'NAV PATH', trail, @trail
