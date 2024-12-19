@@ -18,13 +18,22 @@ class Sites < EndpointHandler
 
     sites = @site_db.list_sites(sort: sort, search: search)
 
+    using_default_site = false
     site_id = @context[:request][:arguments][0]
     if site_id 
       selected_site = @site_db.get_site(site_id)
+      # sites = sites.filter do |entry|
+      #   entry['id'] != site_id
+      # end
     else
-      selected_site = nil
+      if sites.length > 0 
+        selected_site = sites[0]
+        using_default_site = true
+      else
+        selected_site = nil
+      end
     end
-
+   
     # Create the context object, which is a merging of
     # - the site, page def, menu, etc. see below
     request = {
@@ -45,6 +54,7 @@ class Sites < EndpointHandler
       content_type: content_type,
       sites: sites,
       selected_site: selected_site,
+      using_default_site: using_default_site,
       env: {
         request: request
       },

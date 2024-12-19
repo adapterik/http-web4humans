@@ -14,14 +14,12 @@
           </td>
           <td class="content-area">
 
-            <% if @content_item[:entries].length == 0 %>
+            <% if @content_item[:entry].nil? %>
             <div  class="alert warning">
-              <p>No blog isn't good blog</p>
+              <p>No blog isn't a good blog</p>
               <p>But, seriously, there is nothing for the blog yet.</p>
             </div>
-            <% end %>
-
-            <% if @content_item[:entries].length > 0 %>
+            <% else %>
             <div class="blog">
               <div class="blog-title"><%= @content_item[:entry]['title'] %></div>
               <div class="blog-created"><%= Time.at(@content_item[:entry]['created']).strftime('%Y-%m-%d at %H:%M') %></div>
@@ -45,6 +43,13 @@
                 More Blog
               </div>
               <div class="body">
+                <% if @content_item[:entries].length == 0 %>
+                <div  class="alert warning">
+                  <p>No more blog entries.</p>
+                  <p>You're looking at the only one.</p>
+                </div>
+                <% end %>
+                 <% if @content_item[:entries].length > 0 %>
                 <ul class="side-bar-blog-list">
                   <% @content_item[:entries].each do |blog_item| %>
                       <li>
@@ -62,6 +67,7 @@
                       </li>
                     <% end %>
                 </ul>
+                <% end %>
               </div>
             </div>
           </td>

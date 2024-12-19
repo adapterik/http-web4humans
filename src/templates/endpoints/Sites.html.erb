@@ -18,12 +18,18 @@
                 <p>But, seriously, there are no news items on the site yet.</p>
               </div>
               <% else %>
+                <% if @context[:using_default_site] %>
+                <div  class="alert warning" style="margin-bottom: 16px;">
+                  Showing Most Recently Added Site - the default view shows the most recently
+                  added site; select a site to view on the right.
+                </div>
+                <% end %>
                 <% if @context[:selected_site] %>
                   <% %>
                   <div class="selected-site">
 
                     <div class="site-title">
-                      <a href="/news/<%= @context[:selected_site]['id'] %>"><%= @context[:selected_site]['title'] %></a>
+                      <%= @context[:selected_site]['title'] %>
                     </div>
 
                     <div class="site-url">
@@ -31,7 +37,7 @@
                     </div>
                   
                     <div class="site-added">
-                      <%= Time.at(@context[:selected_site]['added']).strftime('%Y-%m-%d at %H:%M') %>
+                      added on <%= Time.at(@context[:selected_site]['added']).strftime('%Y-%m-%d at %H:%M') %>
                     </div>
 
                     <div class="site-abstract">
@@ -71,8 +77,8 @@
                 <% end %>
               <% end %>
           </td>
+          <td class="side-bar">
             <% if is_authenticated? %>
-              <td class="side-bar">
                 <%= include_partial "side-bar-navigation" %>
 
                 <div class="section">
@@ -97,7 +103,6 @@
                         <% else %>
                          
                         <% end %>
-
                     </div>
                 </div>
 
@@ -149,10 +154,46 @@
                       </div>
                     <% end %>
                 </div>
-
-              </td>
-          <% end %>
-          
+            <% end %>
+            <div class="section">
+              <div class="title">
+                More Sites
+              </div>
+              <div class="body">
+                <% if @context[:sites].length == 0 %>
+                  <div  class="alert warning">
+                     <p>No more sites</p>
+                  </div>
+                <% else %>
+                  <ul class="side-bar-site-list">
+                  <% @context[:sites].each do |site| %>
+                  <% if not @context[:selected_site].nil? and site['id'] == @context[:selected_site]['id'] %>
+                      <li>
+                        <span class="-title"><%= site['title'] %></span>
+                        <div class="-added">
+                          added on <%= Time.at(site['added']).strftime('%Y-%m-%d') %>
+                        </div>
+                        <div class="-abstract">
+                          &lt;- you are viewing this one
+                        </div>
+                      </li>
+                    <% else %>
+                      <li>
+                        <a href="/sites/<%= site['id'] %>" class="-title"><%= site['title'] %></a>
+                        <div class="-added">
+                          added on <%= Time.at(site['added']).strftime('%Y-%m-%d') %>
+                        </div>
+                        <div class="-abstract">
+                          <%=  site['abstract'] %>
+                        </div>
+                      </li>
+                    <% end %>
+                  <% end %>
+                  </ul>
+                <% end %>
+              </div>
+            </div>
+          </td>
         </tr>
       </table>
       

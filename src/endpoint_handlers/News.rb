@@ -23,6 +23,10 @@ class News < EndpointHandler
       article_id = article['id']
     end
 
+    articles = articles.filter do |entry|
+      entry['id'] != article_id
+    end
+
     article_content_type = nil
     if article
       article_content_type = @site_db.get_content_type(article['content_type'])

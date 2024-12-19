@@ -18,7 +18,7 @@ class SiteDB
 
   def sort_clause(sort)
     if sort.nil?
-      ''
+      "order by added desc"
     else
       column = sort[0]
       direction = if sort[1].start_with?('a')
@@ -382,8 +382,7 @@ class SiteDB
       #{limit_clause(limit)}
     "
 
-    content_list = @db.execute query, query_params
-    content_list
+    @db.execute query, query_params
   end
   
 end

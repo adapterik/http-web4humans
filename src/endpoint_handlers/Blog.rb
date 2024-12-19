@@ -14,7 +14,7 @@ class Blog < EndpointHandler
     blog_entry = nil
 
     if blog_entry_id 
-      blog_entry = @site_db.get_content @blog_entry_id
+      blog_entry = @site_db.get_content blog_entry_id
     end
 
     if blog_entry_id.nil? && blog_entries.length > 0
@@ -22,8 +22,12 @@ class Blog < EndpointHandler
       blog_entry_id = blog_entry['id']
     end
 
+    blog_entries = blog_entries.filter do |entry|
+      entry['id'] != blog_entry_id
+    end
+
     if blog_entry 
-      blog_content_type = @site_db.get_content_type('blog')
+      blog_content_type = @site_db.get_content_type 'blog'
     end
 
     @content_item = {
