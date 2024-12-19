@@ -31,8 +31,9 @@
                         <div class="title">
                             <a href="<%= site['url'] %>" target="_blank"><%= site['title'] %></a>
                         </div>
+                        <div class="added">added on <%= render_epoch_time site['added'] %></div>
                         <div class="content">
-                            <%= site['description'] %>
+                            <%= site['abstract'] %>
                         </div>
                       </div>
                       <% end %>
@@ -57,7 +58,7 @@
                             <%= entry['title'] %>
                             </a>
                           </div>
-                          <div class="created"><%= render_epoch_time entry['created'] %></div>
+                          <div class="created">created on <%= render_epoch_time entry['created'] %></div>
                           <div class="abstract"><%=  entry['abstract'] %></div>
                         </div>
                       </div>
@@ -83,7 +84,7 @@
                               <%= entry['title'] %>
                               </a>
                             </div>
-                            <div class="created"><%= render_epoch_time entry['created'] %></div>
+                            <div class="created">created on <%= render_epoch_time entry['created'] %></div>
                             <div class="abstract"><%= entry['abstract'] %></div>
                           </div>
                         <% end %>

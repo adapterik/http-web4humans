@@ -476,7 +476,12 @@ button:active {
 }
 
 .preview-box .item > .created {
-    font-weight: gray;
+    color: gray;
+    font-style: italic;
+}
+
+.preview-box .item > .added {
+    color: gray;
     font-style: italic;
 }
 
