@@ -43,7 +43,7 @@ jobs:
                       const username = '${{ github.event.repository.owner.login }}';
                       const repoName = '${{ inputs.name }}';
                       return tags.map((tag) => {
-                        return `ghcr.io/${username}/${repoName}:${tag}-${steps.date.outputs.date}`;
+                        return `ghcr.io/${username}/${repoName}:${tag}-${{ steps.date.outputs.date }}`;
                       }).join(',');
 
             - name: Build and push
