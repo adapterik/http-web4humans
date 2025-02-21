@@ -36,7 +36,7 @@ class Authenticate < EndpointHandler
     expires = 1000 * 60 * 60 * 24 * 2;
     ['', 302, {
       'location' => data['return-path'],
-      'Set-Cookie': "sid=#{session_id};path=/;expires=#{expires}"
+      'Set-Cookie': "sid=#{session_id};path=/;expires=#{expires};secure"
     }]
   end
 
@@ -71,7 +71,7 @@ class Authenticate < EndpointHandler
 
     ['', 302, {
       'location' => data['return-path'],
-      'Set-Cookie': "sid=#{session_id};path=/;expires=#{expires}"
+      'Set-Cookie': "sid=#{session_id};path=/;expires=#{expires};secure"
     }]
   end
 end
