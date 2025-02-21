@@ -9,7 +9,10 @@ jobs:
   #   uses: ./.github/workflows/reusable_test.yml
   build:
     # needs: test
-    uses: ./.github/workflows/reusable_build-push.yml
+    # we use the build-push that appends the current timestamp to the tag
+    # this a cheap and easy tagging system that still allows natural
+    # versioning.
+    uses: ./.github/workflows/reusable_build-push-date-tag.yml
     with:
       name: '${{ github.event.repository.name }}'
       tags: '${{ github.ref_name }}'
