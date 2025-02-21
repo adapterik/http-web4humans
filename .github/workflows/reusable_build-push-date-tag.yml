@@ -22,6 +22,10 @@ jobs:
               id: date
               run: echo "::set-output name=date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
+            - name: Get current date for the tag
+              id: tagdate
+              run: echo "::set-output name=tagdate::$(date -u +'%Y-%m-%dT%H-%M-%S')"
+
             - name: Set up Docker Buildx
               uses: docker/setup-buildx-action@v2
 
@@ -43,7 +47,7 @@ jobs:
                       const username = '${{ github.event.repository.owner.login }}';
                       const repoName = '${{ inputs.name }}';
                       return tags.map((tag) => {
-                        return `ghcr.io/${username}/${repoName}:${tag}-${{ steps.date.outputs.date }}`;
+                        return `ghcr.io/${username}/${repoName}:${tag}_${{ steps.tagdate.outputs.tagdate }}`;
                       }).join(',');
 
             - name: Build and push
@@ -54,7 +58,7 @@ jobs:
                   pull: true
                   push: true
                   build-args: |
-                      BUILD_DATE=${{ steps.date.outputs.date }}
+                      BUILD_DATE=${{ steps.Zdate.outputs.date }}
                       VCS_REF=${{ github.sha }}
                       BRANCH='${{ github.ref }}'
                       TAG='${{ github.ref }}'
