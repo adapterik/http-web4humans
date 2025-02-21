@@ -1,3 +1,4 @@
+
 {{ range $port_map := .PROXY_PORT_MAP | split " " }}
 {{ $port_map_list := $port_map | split ":" }}
 {{ $scheme := index $port_map_list 0 }}
@@ -11,14 +12,6 @@ server {
   {{ if $.NOSSL_SERVER_NAME }}server_name {{ $.NOSSL_SERVER_NAME }}; {{ end }}
   access_log  {{ $.NGINX_ACCESS_LOG_PATH }}{{ if and ($.NGINX_ACCESS_LOG_FORMAT) (ne $.NGINX_ACCESS_LOG_PATH "off") }} {{ $.NGINX_ACCESS_LOG_FORMAT }}{{ end }};
   error_log   {{ $.NGINX_ERROR_LOG_PATH }};
-  underscores_in_headers {{ $.NGINX_UNDERSCORE_IN_HEADERS }};
-
-  {{ if $.CLIENT_BODY_TIMEOUT }}client_body_timeout {{ $.CLIENT_BODY_TIMEOUT }};{{end}}
-  {{ if $.CLIENT_HEADER_TIMEOUT }}client_header_timeout {{ $.CLIENT_HEADER_TIMEOUT }};{{end}}
-  {{ if $.KEEPALIVE_TIMEOUT }}keepalive_timeout {{ $.KEEPALIVE_TIMEOUT }};{{end}}
-  {{ if $.LINGERING_TIMEOUT }}lingering_timeout {{ $.LINGERING_TIMEOUT }};{{end}}
-  {{ if $.SEND_TIMEOUT }}send_timeout {{ $.SEND_TIMEOUT }};{{end}}
-
 {{ if (and (eq $listen_port "80") ($.SSL_INUSE) (var "REDIRECT_HTTP")) }}
   include {{ $.DOKKU_ROOT }}/{{ $.APP }}/nginx.conf.d/*.conf;
   location / {
@@ -30,15 +23,13 @@ server {
     gzip on;
     gzip_min_length  1100;
     gzip_buffers  4 32k;
-    gzip_types    text/css text/javascript text/xml text/plain text/x-component application/javascript application/x-javascript application/wasm application/json application/xml application/rss+xml font/truetype application/x-font-ttf font/opentype application/vnd.ms-fontobject image/svg+xml;
+    gzip_types    text/css text/javascript text/xml text/plain text/x-component application/javascript application/x-javascript application/json application/xml  application/rss+xml font/truetype application/x-font-ttf font/opentype application/vnd.ms-fontobject image/svg+xml;
     gzip_vary on;
     gzip_comp_level  6;
 
     proxy_pass  http://{{ $.APP }}-{{ $upstream_port }};
     proxy_http_version 1.1;
-    {{ if $.PROXY_CONNECT_TIMEOUT }}proxy_connect_timeout {{ $.PROXY_CONNECT_TIMEOUT }};{{end}}
-    {{ if $.PROXY_READ_TIMEOUT }}proxy_read_timeout {{ $.PROXY_READ_TIMEOUT }};{{end}}
-    {{ if $.PROXY_SEND_TIMEOUT }}proxy_send_timeout {{ $.PROXY_SEND_TIMEOUT }};{{end}}
+    proxy_read_timeout {{ $.PROXY_READ_TIMEOUT }};
     proxy_buffer_size {{ $.PROXY_BUFFER_SIZE }};
     proxy_buffering {{ $.PROXY_BUFFERING }};
     proxy_buffers {{ $.PROXY_BUFFERS }};
@@ -83,18 +74,13 @@ server {
   {{ if $.NOSSL_SERVER_NAME }}server_name {{ $.NOSSL_SERVER_NAME }}; {{ end }}
   access_log  {{ $.NGINX_ACCESS_LOG_PATH }}{{ if and ($.NGINX_ACCESS_LOG_FORMAT) (ne $.NGINX_ACCESS_LOG_PATH "off") }} {{ $.NGINX_ACCESS_LOG_FORMAT }}{{ end }};
   error_log   {{ $.NGINX_ERROR_LOG_PATH }};
-  underscores_in_headers {{ $.NGINX_UNDERSCORE_IN_HEADERS }};
 
   ssl_certificate           {{ $.APP_SSL_PATH }}/server.crt;
   ssl_certificate_key       {{ $.APP_SSL_PATH }}/server.key;
   ssl_protocols             TLSv1.2 {{ if eq $.TLS13_SUPPORTED "true" }}TLSv1.3{{ end }};
   ssl_prefer_server_ciphers off;
 
-  {{ if $.CLIENT_BODY_TIMEOUT }}client_body_timeout {{ $.CLIENT_BODY_TIMEOUT }};{{end}}
-  {{ if $.CLIENT_HEADER_TIMEOUT }}client_header_timeout {{ $.CLIENT_HEADER_TIMEOUT }};{{end}}
-  {{ if $.KEEPALIVE_TIMEOUT }}keepalive_timeout {{ $.KEEPALIVE_TIMEOUT }};{{end}}
-  {{ if $.LINGERING_TIMEOUT }}lingering_timeout {{ $.LINGERING_TIMEOUT }};{{end}}
-  {{ if $.SEND_TIMEOUT }}send_timeout {{ $.SEND_TIMEOUT }};{{end}}
+  keepalive_timeout   70;
 
   location    / {
 
@@ -108,9 +94,7 @@ server {
     proxy_pass  http://{{ $.APP }}-{{ $upstream_port }};
     {{ if eq $.HTTP2_PUSH_SUPPORTED "true" }}http2_push_preload on; {{ end }}
     proxy_http_version 1.1;
-    {{ if $.PROXY_CONNECT_TIMEOUT }}proxy_connect_timeout {{ $.PROXY_CONNECT_TIMEOUT }};{{end}}
-    {{ if $.PROXY_READ_TIMEOUT }}proxy_read_timeout {{ $.PROXY_READ_TIMEOUT }};{{end}}
-    {{ if $.PROXY_SEND_TIMEOUT }}proxy_send_timeout {{ $.PROXY_SEND_TIMEOUT }};{{end}}
+    proxy_read_timeout {{ $.PROXY_READ_TIMEOUT }};
     proxy_buffer_size {{ $.PROXY_BUFFER_SIZE }};
     proxy_buffering {{ $.PROXY_BUFFERING }};
     proxy_buffers {{ $.PROXY_BUFFERS }};
@@ -160,7 +144,6 @@ server {
   {{ if $.NOSSL_SERVER_NAME }}server_name {{ $.NOSSL_SERVER_NAME }}; {{ end }}
   access_log  {{ $.NGINX_ACCESS_LOG_PATH }}{{ if and ($.NGINX_ACCESS_LOG_FORMAT) (ne $.NGINX_ACCESS_LOG_PATH "off") }} {{ $.NGINX_ACCESS_LOG_FORMAT }}{{ end }};
   error_log   {{ $.NGINX_ERROR_LOG_PATH }};
-  underscores_in_headers {{ $.NGINX_UNDERSCORE_IN_HEADERS }};
   location    / {
     grpc_pass  grpc://{{ $.APP }}-{{ $upstream_port }};
   }
@@ -177,7 +160,6 @@ server {
   {{ if $.NOSSL_SERVER_NAME }}server_name {{ $.NOSSL_SERVER_NAME }}; {{ end }}
   access_log  {{ $.NGINX_ACCESS_LOG_PATH }}{{ if and ($.NGINX_ACCESS_LOG_FORMAT) (ne $.NGINX_ACCESS_LOG_PATH "off") }} {{ $.NGINX_ACCESS_LOG_FORMAT }}{{ end }};
   error_log   {{ $.NGINX_ERROR_LOG_PATH }};
-  underscores_in_headers {{ $.NGINX_UNDERSCORE_IN_HEADERS }};
 
   ssl_certificate           {{ $.APP_SSL_PATH }}/server.crt;
   ssl_certificate_key       {{ $.APP_SSL_PATH }}/server.key;
