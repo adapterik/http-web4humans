@@ -15,7 +15,7 @@
 #
 # and, you'll have to watch "config/Guardfile" instead of "Guardfile"
 
-guard 'puma', :port => 3000 do
+guard 'puma', :port => ENV['PORT'] do
   watch('Gemfile.lock')
   watch(%r{^src/.*})
 end

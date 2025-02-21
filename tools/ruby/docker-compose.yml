@@ -1,0 +1,11 @@
+services:
+  ruby:
+    working_dir: /app
+    build:
+      dockerfile: ./Dockerfile 
+    container_name: ruby
+    ports: 
+      - "$PORT:$PORT"
+    dns: 8.8.8.8
+    volumes:
+      - $PROJECT_DIR:/app

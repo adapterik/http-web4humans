@@ -1,4 +1,4 @@
-FROM docker.io/ruby:3.4.0-rc1-alpine3.21
+FROM docker.io/ruby:3.4.2-alpine3.21
 
 # Packages db must be updated first, add os dependencies
 # required by Ruby gems (in this case just passenger)
@@ -13,6 +13,6 @@ COPY . .
 
 RUN bundle install
 
-EXPOSE 3000
+#EXPOSE 3000
 
 ENTRYPOINT ["bash", "tools/entrypoint.sh"]

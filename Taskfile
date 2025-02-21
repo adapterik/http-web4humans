@@ -28,16 +28,31 @@ function remove-dev-cert {
     rm ./tools/proxy/contents/ssl/*
 }
 
-function build-image {
-    docker build . -t local/http-only:dev
+function build-dev-image {
+    PROEJCT_DIR="${PWD}" PORT="${PORT}" docker compose --file tools/ruby/docker-compose.yml build
 }
 
-function run-dev-server {
-    docker run --env OWNER_PASSWORD=abc123 -p 3000:3000 local/http-only:dev 
+function run-dev-image {
+    OWNER_PASSWORD="${OWNER_PASSWORD}" PORT="${PORT}" PROJECT_DIR="$PWD" docker compose --file tools/ruby/docker-compose.yml run --rm --remove-orphans --service-ports ruby
+}
+
+
+function start-prod-server {
+    OWNER_PASSWORD="${OWNER_PASSWORD}" HOME_DIR=`pwd` bundle exec puma  --port "${PORT}" --no-config --workers 0
 }
 
 function start-dev-server {
-    OWNER_PASSWORD="${OWNER_PASSWORD}" HOME_DIR=`pwd` bundle exec guard -i
+    OWNER_PASSWORD="${OWNER_PASSWORD}" HOME_DIR=`pwd` PORT="${PORT}" bundle exec guard -i
+}
+
+function build-prod-image {
+    docker build -t http-web4humans:local-prod .
+}
+
+function run-prod-image {
+    docker run -e OWNER_PASSWORD="${OWNER_PASSWORD}" -p "${PORT}:${INTERNAL_PORT:-3000}" \
+        -e PORT="${INTERNAL_PORT:-3000}" -e WORKERS="${WORKERS}" -e PROJECT_DIR="$PWD" \
+        --rm http-web4humans:local-prod
 }
 
 function help {
